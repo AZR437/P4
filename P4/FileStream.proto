@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+service MeshStreamer
+{
+	//checks if mesh exist
+	rpc ValidateMesh(ValidationRequest) returns(ValidationReply){}
+	//Loads an item
+	rpc StreamMesh(MeshRequest) returns(MeshReply){}
+	//Finish Loading
+	rpc FinishLoad(FinishRequest) returns(FinishReply){}
+}
+service SceneLoader
+{	
+	//checks if scene exist
+	rpc ValidateScene(ValidationRequest) returns(ValidationReply){}
+	rpc LoadScene(SceneRequest) returns(SceneReply){}
+}
+message ValidationRequest
+{
+	int ID = 1;
+}
+message ValidationReply
+{
+	bool exists = 1;
+}
+// The request message containing the name of the asset to be 
+message MeshRequest 
+{
+	int meshID = 1;
+}
+
+// The response message containing the progress of the item loading
+message MeshReply 
+{
+	int meshID = 1;
+	int chunkID = 2;
+	int totalVert = 3;
+	Float3 chunkVert =4;
+}
+// request message containing the name of the assets being loaded
+message FinishRequest 
+{
+	string name = 1;
+}
+//response message containing the current progress of the loading of the assets in the scene
+message FinishReply
+{
+	int vertices = 1;
+}
+message SceneRequest 
+{
+	int sceneID = 1;
+}
+message SceneReply
+{
+	int sceneID = 1;
+	repeated int meshIDs = 2;
+	repeated Float3 positions = 3;
+}
+message Float3 
+{
+	float x = 1;
+	float y = 2;
+	float z = 3;
+}
