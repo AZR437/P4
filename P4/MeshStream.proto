@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+service MeshStream
+{
+	//checks if mesh exist
+	rpc ValidateMesh(ValidationRequest) returns(ValidationReply) {}
+	//Loads an item
+	rpc StreamMesh(MeshRequest) returns(MeshReply) {}
+}
+
+message ValidationRequest
+{
+	int32 ID = 1;
+}
+message ValidationReply
+{
+	bool exists = 1;
+}
+
+// The request message containing the name of the asset to be 
+message MeshRequest 
+{
+	int32 meshID = 1;
+	int32 chunkID = 2;
+}
+
+// The response message containing the progress of the item loading
+message MeshReply 
+{
+	int32 meshID = 1;
+	int32 chunkID = 2;
+	int32 numChunks = 3;
+	int32 numVertices = 4;
+	repeated Float3 chunkVertices = 5;
+}
+
+message Float3 
+{
+	float x = 1;
+	float y = 2;
+	float z = 3;
+}
