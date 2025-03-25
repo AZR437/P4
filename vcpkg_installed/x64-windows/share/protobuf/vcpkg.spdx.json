@@ -1,0 +1,242 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobuf-x64-windows-5.29.1-9e7f1972-fc5e-4b40-96b0-b2864ad0f7e1",
+  "name": "protobuf:x64-windows@5.29.1 e79199c53da0dabf382331c3e4eb70a8387a0c08011ac38c670efffb63f543f6",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2024-12-09-1005b78fa1bf1dde1a20c2734cba4ea61ca94d9a"
+    ],
+    "created": "2025-03-25T05:40:25Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-2"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-3"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-4"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-5"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-6"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-7"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-2",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-3",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-4",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-5",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-6",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-7",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "protobuf",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "5.29.1",
+      "downloadLocation": "git+https://github.com/microsoft/vcpkg@a08737d5c463e22ccf3fa7533122ab763c70e2b2",
+      "homepage": "https://github.com/protocolbuffers/protobuf",
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data.",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "protobuf:x64-windows",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "e79199c53da0dabf382331c3e4eb70a8387a0c08011ac38c670efffb63f543f6",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-0",
+      "name": "protocolbuffers/protobuf",
+      "downloadLocation": "git+https://github.com/protocolbuffers/protobuf@v5.29.1",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "18b49716ac15800f4ed970a2b2dc3235299933e1ab34edbffd0c1eeabd1ade37b3ea50d90b9a814211aa83ee7a335d9dae1763a088f8899ff64341911d3678c1"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/a08737d5c463e22ccf3fa7533122ab763c70e2b2/fix-default-proto-file-path.patch",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b3d0a1c6f0b82a864c6507dd072d4e0d8e2d8d100a09456c8716074cc00e109a"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/a08737d5c463e22ccf3fa7533122ab763c70e2b2/fix-install-dirs.patch",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "acc78f7e833a0b711ff96b65aa4120cc615ff8f8db1b210ffbc9adbb7675e072"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/a08737d5c463e22ccf3fa7533122ab763c70e2b2/fix-static-build.patch",
+      "SPDXID": "SPDXRef-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f097003ea111047d9fdcda78bb0121529d732fd084f151c96337e78a69e0b14e"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/a08737d5c463e22ccf3fa7533122ab763c70e2b2/fix-utf8-range.patch",
+      "SPDXID": "SPDXRef-file-3",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a70058c5d86388347ffe79f841067fbc01a328a379aa6dc985c6f6dccaa34fef"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/a08737d5c463e22ccf3fa7533122ab763c70e2b2/portfile.cmake",
+      "SPDXID": "SPDXRef-file-4",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8fcee6f974b0f207a53679a083584604563413ae47843e33c6375520a2303c6e"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/a08737d5c463e22ccf3fa7533122ab763c70e2b2/protobuf-targets-vcpkg-protoc.cmake",
+      "SPDXID": "SPDXRef-file-5",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f1cb32a8e19a263b6fc7e275d4a31bd724320394b1991b56772dd769feec20ad"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/a08737d5c463e22ccf3fa7533122ab763c70e2b2/vcpkg-cmake-wrapper.cmake",
+      "SPDXID": "SPDXRef-file-6",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "18480720d08ef5a87ce6744174cbe8cc451e3ffb857f2cbe2c8a6bbf385dce8a"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/a08737d5c463e22ccf3fa7533122ab763c70e2b2/vcpkg.json",
+      "SPDXID": "SPDXRef-file-7",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "de2d09177cc20579d56bf791d9a357d27b54a732fb4a7c3d7f33cd3bbf2862dd"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

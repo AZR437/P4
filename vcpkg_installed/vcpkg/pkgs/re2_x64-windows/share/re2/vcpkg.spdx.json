@@ -1,0 +1,110 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/re2-x64-windows-2024-07-02-82c1bcff-9ee8-4980-bc69-bb08e13abeab",
+  "name": "re2:x64-windows@2024-07-02 9b55fcfc56f79fbb8f3fdbbd3ae961ee9378a923aefa50a5601624739af0f2ac",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2024-12-09-1005b78fa1bf1dde1a20c2734cba4ea61ca94d9a"
+    ],
+    "created": "2025-03-25T05:37:03Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "re2",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "2024-07-02",
+      "downloadLocation": "git+https://github.com/microsoft/vcpkg@d35be5fcf5b689f48cd7f7b71c1dbd783283427a",
+      "homepage": "https://github.com/google/re2",
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "RE2 is a fast, safe, thread-friendly alternative to backtracking regular expression engines like those used in PCRE, Perl, and Python. It is a C++ library.",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "re2:x64-windows",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "9b55fcfc56f79fbb8f3fdbbd3ae961ee9378a923aefa50a5601624739af0f2ac",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-0",
+      "name": "google/re2",
+      "downloadLocation": "git+https://github.com/google/re2@2024-07-02",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "3776383355ccfdec85e0cdfb3ce980c6ecb3c336d603dd34c0a547c7c06a6243947a13cb352372335edac12d4f28cf1b7a51d034f5b34db3e46cbcac5e3f7479"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/d35be5fcf5b689f48cd7f7b71c1dbd783283427a/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2b01dfa70357c054a474707a44f3f444409e32d981c37f301ca67b3ba7d0a0d2"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/d35be5fcf5b689f48cd7f7b71c1dbd783283427a/vcpkg.json",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1c73702520f87e24b9463174671dd38bf56cbd1f8b5701b46a4e5d0ff977b9a7"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}
