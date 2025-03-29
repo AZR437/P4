@@ -1,29 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Protos">
-      <UniqueIdentifier>{88efd834-261a-4732-bd90-007d85d11599}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System">
       <UniqueIdentifier>{54142656-740f-469a-b2d2-94ea1dabd539}</UniqueIdentifier>
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{59dcb76f-2364-48fc-84b3-7ddf36e947c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{ef0ef261-6e74-46c9-a208-30f877247fb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{6779a66c-7895-4f2f-b947-ffbd4deb63ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Proto">
+      <UniqueIdentifier>{88efd834-261a-4732-bd90-007d85d11599}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MeshStream.grpc.pb.cc">
-      <Filter>Protos</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshStream.pb.cc">
-      <Filter>Protos</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneLoad.grpc.pb.cc">
-      <Filter>Protos</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneLoad.pb.cc">
-      <Filter>Protos</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -39,37 +33,46 @@
     <ClCompile Include="BaseRunner.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="AGameObject.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Time.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="VAO.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="VBO.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="VFShaders.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshManager.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="AGameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneData.grpc.pb.cc">
+      <Filter>Proto</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneData.pb.cc">
+      <Filter>Proto</Filter>
+    </ClCompile>
+    <ClCompile Include="EBO.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MeshStream.proto">
-      <Filter>Protos</Filter>
-    </None>
-    <None Include="SceneLoad.proto">
-      <Filter>Protos</Filter>
+    <None Include="SceneData.proto">
+      <Filter>Proto</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MeshStream.grpc.pb.h">
-      <Filter>Protos</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshStream.pb.h">
-      <Filter>Protos</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneLoad.grpc.pb.h">
-      <Filter>Protos</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneLoad.pb.h">
-      <Filter>Protos</Filter>
-    </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -85,14 +88,38 @@
     <ClInclude Include="BaseRunner.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="AGameObject.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="VAO.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="VBO.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="VFShaders.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="AGameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneData.grpc.pb.h">
+      <Filter>Proto</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneData.pb.h">
+      <Filter>Proto</Filter>
+    </ClInclude>
+    <ClInclude Include="EBO.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -130,33 +130,40 @@
     <ClCompile Include="AGameObject.cpp" />
     <ClCompile Include="BaseRunner.cpp" />
     <ClCompile Include="CustomStyles.cpp" />
+    <ClCompile Include="EBO.cpp" />
+    <ClCompile Include="MeshManager.cpp" />
+    <ClCompile Include="SceneData.grpc.pb.cc" />
+    <ClCompile Include="SceneData.pb.cc" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MeshStream.grpc.pb.cc" />
-    <ClCompile Include="MeshStream.pb.cc" />
-    <ClCompile Include="SceneLoad.grpc.pb.cc" />
-    <ClCompile Include="SceneLoad.pb.cc" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="AUIScreen.cpp" />
+    <ClCompile Include="VAO.cpp" />
+    <ClCompile Include="VBO.cpp" />
+    <ClCompile Include="VFShaders.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AGameObject.h" />
     <ClInclude Include="BaseRunner.h" />
     <ClInclude Include="CustomStyles.h" />
+    <ClInclude Include="EBO.h" />
+    <ClInclude Include="MeshManager.h" />
+    <ClInclude Include="SceneData.grpc.pb.h" />
+    <ClInclude Include="SceneData.pb.h" />
+    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="GameObjectManager.h" />
-    <ClInclude Include="MeshStream.grpc.pb.h" />
-    <ClInclude Include="MeshStream.pb.h" />
-    <ClInclude Include="SceneLoad.grpc.pb.h" />
-    <ClInclude Include="SceneLoad.pb.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UINames.h" />
     <ClInclude Include="AUIScreen.h" />
+    <ClInclude Include="VAO.h" />
+    <ClInclude Include="VBO.h" />
+    <ClInclude Include="VFShaders.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MeshStream.proto" />
-    <None Include="SceneLoad.proto" />
+    <None Include="SceneData.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
