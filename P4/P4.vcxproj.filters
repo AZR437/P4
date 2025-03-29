@@ -121,5 +121,8 @@
     <ClInclude Include="EBO.h">
       <Filter>Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

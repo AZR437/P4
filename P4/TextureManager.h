@@ -1,26 +1,22 @@
-#ifndef CONTROLLERS_TEXTURE_MANAGER_HPP
-#define CONTROLLERS_TEXTURE_MANAGER_HPP
-
-#include <vector>
-
+#pragma once
+#include <string>
+#include <unordered_map>
 #include <glad/glad.h>
 
-namespace controllers {
-	class TextureManager {
-    public:
-        void load(const char* path, bool flipVert, GLenum target);
+class TextureManager
+{
+public:
+    typedef std::string String;
+    typedef std::unordered_map<String, GLuint> HashTable;
 
-    private:
-        static TextureManager* SHARED_INSTANCE;
+    static TextureManager* getInstance();
+    GLuint load(const char* path, bool flipVert = false);
 
-    private:
-        TextureManager();
-        TextureManager(const TextureManager&);
-        TextureManager& operator = (const TextureManager&);
+private:
+    TextureManager() {}
+    TextureManager(const TextureManager&) {}
+    TextureManager& operator = (const TextureManager&) {}
+    static TextureManager* sharedInstance;
 
-    public:
-        static TextureManager* getInstance();
-    };
-}
-
-#endif
+    HashTable textureMap;
+};

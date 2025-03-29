@@ -152,6 +152,7 @@
     <ClInclude Include="MeshManager.h" />
     <ClInclude Include="SceneData.grpc.pb.h" />
     <ClInclude Include="SceneData.pb.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="GameObjectManager.h" />
