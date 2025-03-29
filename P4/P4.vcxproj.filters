@@ -1,30 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Protos">
       <UniqueIdentifier>{88efd834-261a-4732-bd90-007d85d11599}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{54142656-740f-469a-b2d2-94ea1dabd539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{59dcb76f-2364-48fc-84b3-7ddf36e947c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MeshStream.grpc.pb.cc">
+      <Filter>Protos</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshStream.pb.cc">
+      <Filter>Protos</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneLoad.grpc.pb.cc">
+      <Filter>Protos</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneLoad.pb.cc">
+      <Filter>Protos</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="AUIScreen.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomStyles.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseRunner.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="AGameObject.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FileStream.proto">
+    <None Include="MeshStream.proto">
       <Filter>Protos</Filter>
     </None>
+    <None Include="SceneLoad.proto">
+      <Filter>Protos</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MeshStream.grpc.pb.h">
+      <Filter>Protos</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshStream.pb.h">
+      <Filter>Protos</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLoad.grpc.pb.h">
+      <Filter>Protos</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLoad.pb.h">
+      <Filter>Protos</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="UINames.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="AUIScreen.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomStyles.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseRunner.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="AGameObject.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
