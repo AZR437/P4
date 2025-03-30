@@ -1,0 +1,7 @@
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/blds/tinyobjloader/x64-windows-dbg/CMakeFiles/tinyobjloader.dir
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/blds/tinyobjloader/x64-windows-dbg/CMakeFiles/uninstall.dir
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/blds/tinyobjloader/x64-windows-dbg/CMakeFiles/edit_cache.dir
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/blds/tinyobjloader/x64-windows-dbg/CMakeFiles/rebuild_cache.dir
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/blds/tinyobjloader/x64-windows-dbg/CMakeFiles/list_install_components.dir
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/blds/tinyobjloader/x64-windows-dbg/CMakeFiles/install.dir
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/blds/tinyobjloader/x64-windows-dbg/CMakeFiles/install/local.dir

@@ -1,0 +1,26 @@
+# ninja log v6
+45	531	7650370477788335	src/CMakeFiles/glfw.dir/platform.c.obj	9c832bf432c49423
+103	548	7650370478361217	src/CMakeFiles/glfw.dir/null_monitor.c.obj	8e5a9f3b9c44f754
+65	557	7650370477986105	src/CMakeFiles/glfw.dir/window.c.obj	3c46bd3d7e81e9e2
+37	568	7650370477698223	src/CMakeFiles/glfw.dir/monitor.c.obj	cbd5e6b73e56f3e3
+85	591	7650370478189048	src/CMakeFiles/glfw.dir/osmesa_context.c.obj	7d424ec2222fc1b2
+31	704	7650370477638595	src/CMakeFiles/glfw.dir/input.c.obj	feaa3021dd1951d7
+111	708	7650370478434429	src/CMakeFiles/glfw.dir/null_window.c.obj	34dc1e4caaa4cb24
+21	712	7650370477548615	src/CMakeFiles/glfw.dir/init.c.obj	93d34bd520747014
+12	715	7650370477455327	src/CMakeFiles/glfw.dir/context.c.obj	d2deb37c407d011d
+78	719	7650370478116937	src/CMakeFiles/glfw.dir/egl_context.c.obj	73208bbd1bdbcb44
+135	723	7650370478678132	src/CMakeFiles/glfw.dir/win32_time.c.obj	275df58c4211021e
+54	768	7650370477878339	src/CMakeFiles/glfw.dir/vulkan.c.obj	b01167b8e66a0f99
+141	772	7650370478749627	src/CMakeFiles/glfw.dir/win32_thread.c.obj	420471f1feaa37ad
+93	790	7650370478269047	src/CMakeFiles/glfw.dir/null_init.c.obj	f5e7694b8b61163d
+592	830	7650370483258476	src/CMakeFiles/glfw.dir/glfw.rc.res	7a1f5eb708276376
+120	876	7650370478536132	src/CMakeFiles/glfw.dir/null_joystick.c.obj	cf8478bda9d645ac
+127	888	7650370478608143	src/CMakeFiles/glfw.dir/win32_module.c.obj	65d45f0f9d066a3f
+148	977	7650370478811478	src/CMakeFiles/glfw.dir/win32_init.c.obj	4ff23069d4af02a
+535	989	7650370482682403	src/CMakeFiles/glfw.dir/win32_joystick.c.obj	d4652dbdf11232ef
+569	994	7650370483021501	src/CMakeFiles/glfw.dir/wgl_context.c.obj	26f18d3cff61c272
+558	1005	7650370482907449	src/CMakeFiles/glfw.dir/win32_window.c.obj	a54505ae358fc2f9
+548	1035	7650370482817406	src/CMakeFiles/glfw.dir/win32_monitor.c.obj	3d729d7503188bce
+1035	1526	7650370492243433	src/glfw3.dll	f9b6272511e9c323
+1035	1526	7650370492243433	src/glfw3dll.lib	f9b6272511e9c323
+1526	1724	7650370492594894	CMakeFiles/install.util	b3db90640a30cf1f

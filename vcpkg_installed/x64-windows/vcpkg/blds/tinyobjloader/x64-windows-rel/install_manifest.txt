@@ -1,0 +1,8 @@
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/pkgs/tinyobjloader_x64-windows/lib/tinyobjloader.lib
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/pkgs/tinyobjloader_x64-windows/lib/tinyobjloader/cmake/tinyobjloader-targets.cmake
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/pkgs/tinyobjloader_x64-windows/lib/tinyobjloader/cmake/tinyobjloader-targets-release.cmake
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/pkgs/tinyobjloader_x64-windows/include/tiny_obj_loader.h
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/pkgs/tinyobjloader_x64-windows/share/tinyobjloader/LICENSE
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/pkgs/tinyobjloader_x64-windows/lib/tinyobjloader/cmake/tinyobjloader-config.cmake
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/pkgs/tinyobjloader_x64-windows/lib/tinyobjloader/cmake/tinyobjloader-config-version.cmake
+C:/Users/theas/Documents/Acads/P4/vcpkg_installed/x64-windows/vcpkg/pkgs/tinyobjloader_x64-windows/lib/pkgconfig/tinyobjloader.pc

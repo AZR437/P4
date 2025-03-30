@@ -1,0 +1,26 @@
+# ninja log v6
+36	554	7650370495536654	src/CMakeFiles/glfw.dir/platform.c.obj	c09eba469f072a38
+84	571	7650370496016672	src/CMakeFiles/glfw.dir/null_monitor.c.obj	be3e230da77483ce
+95	585	7650370496116687	src/CMakeFiles/glfw.dir/null_window.c.obj	84c24055518a97d7
+68	599	7650370495854424	src/CMakeFiles/glfw.dir/osmesa_context.c.obj	1727bad60bcf4766
+77	612	7650370495944063	src/CMakeFiles/glfw.dir/null_init.c.obj	714e356fe8d03690
+116	632	7650370496330945	src/CMakeFiles/glfw.dir/win32_time.c.obj	d83260f945f5c30d
+56	638	7650370495722666	src/CMakeFiles/glfw.dir/window.c.obj	a4a8b81a051ac616
+102	644	7650370496186502	src/CMakeFiles/glfw.dir/null_joystick.c.obj	ddcfa0a111c7f767
+30	650	7650370495474828	src/CMakeFiles/glfw.dir/monitor.c.obj	34a3b0195b2d5c77
+12	655	7650370495293300	src/CMakeFiles/glfw.dir/context.c.obj	bc4b00b4f13414aa
+49	659	7650370495663415	src/CMakeFiles/glfw.dir/vulkan.c.obj	d4614d13ce13c87a
+17	663	7650370495343290	src/CMakeFiles/glfw.dir/init.c.obj	ded965cc204b730a
+61	667	7650370495784417	src/CMakeFiles/glfw.dir/egl_context.c.obj	5f5bdac03e35c211
+24	703	7650370495404840	src/CMakeFiles/glfw.dir/input.c.obj	340d025778fd96c8
+613	740	7650370501302321	src/CMakeFiles/glfw.dir/glfw.rc.res	a6f7a6193329a2e9
+123	768	7650370496404561	src/CMakeFiles/glfw.dir/win32_thread.c.obj	8ad1ed55cca6a213
+109	782	7650370496266589	src/CMakeFiles/glfw.dir/win32_module.c.obj	12f494c51562a0e1
+130	912	7650370496464550	src/CMakeFiles/glfw.dir/win32_init.c.obj	38a07f2daf1f200f
+557	943	7650370500749384	src/CMakeFiles/glfw.dir/win32_joystick.c.obj	9ec1ca60bdca17d1
+600	958	7650370501167789	src/CMakeFiles/glfw.dir/wgl_context.c.obj	638f34a277537dcf
+572	969	7650370500894608	src/CMakeFiles/glfw.dir/win32_monitor.c.obj	c8b59c09e3b98252
+586	1018	7650370501032355	src/CMakeFiles/glfw.dir/win32_window.c.obj	13e4acddbf5e5401
+1019	1234	7650370507216199	src/glfw3.dll	48aac951d9aaef50
+1019	1234	7650370507216199	src/glfw3dll.lib	48aac951d9aaef50
+1235	1400	7650370507519151	CMakeFiles/install.util	7191330c2aa41c38

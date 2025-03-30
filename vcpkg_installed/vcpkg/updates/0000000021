@@ -1,6 +1,0 @@
-Package: grpc
-Feature: codegen
-Architecture: x64-windows
-Multi-Arch: same
-Description: Build code generator machinery
-Status: install ok half-installed
