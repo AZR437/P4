@@ -1,7 +1,6 @@
 #pragma once
 #include "VAO.h"
 #include "VBO.h"
-#include "EBO.h"
 
 class Mesh
 {
@@ -14,6 +13,5 @@ private:
 	unsigned int numVertices = 0;
 	VAO* vao;
 	VBO* vbo;
-	EBO* ebo;
 };
 

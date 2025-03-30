@@ -16,19 +16,15 @@ public:
     typedef std::unordered_map<String, Data*> HashTable;
     typedef std::mutex Mutex;
 
-    static MeshDataCache* getInstance();
-    void cacheMeshData(String name, const Data& data);
-    void deleteCachedData(String name);
-    void deleteAllCachedData();
+    MeshDataCache();
+    ~MeshDataCache();
 
-    Data* getMeshData(String name);
+    void cacheMeshData(String path, const Data& data);
+    void deleteCachedData(String path);
+
+    Data* getMeshData(String path);
 
 private:
-    MeshDataCache() {}
-    MeshDataCache(const MeshDataCache&) {}
-    MeshDataCache& operator = (const MeshDataCache&) {}
-    static MeshDataCache* sharedInstance;
-
     CacheList cacheList;
     HashTable cacheMap;
     Mutex guard;

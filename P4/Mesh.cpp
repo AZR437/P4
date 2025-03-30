@@ -5,21 +5,16 @@ Mesh::Mesh(VAO* vao, std::vector<GLfloat> vertices)
     this->vao = vao;
     this->vbo = new VBO;
     this->numVertices = vertices.size();
-    this->ebo = new EBO;
 
     this->vbo->bind();
-    this->ebo->bind();
-
     this->vbo->bufferData(vertices);
-    //this->ebo->bufferData();
-
     this->vbo->unbind();
-    //this->ebo->unbind();
 }
 
 Mesh::~Mesh()
 {
-
+    this->vbo->deleteVertexBuffer();
+    delete this->vbo;
 }
 
 void Mesh::draw()

@@ -1,14 +1,14 @@
 #include "MeshLoader.h"
 #include "IExecutionEvent.h"
-#include "MeshDataCache.h"
+#include "MeshManager.h"
 
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-MeshLoader::MeshLoader(std::string path, IExecutionEvent* executionEvent)
+MeshLoader::MeshLoader(std::string path, MeshDataCache* cache)
 {
     this->path = path;
-    this->execEvent = executionEvent;
+    this->cache = cache;
 }
 
 MeshLoader::~MeshLoader()
@@ -121,9 +121,9 @@ void MeshLoader::onStartTask()
             }
         }
 
-        MeshDataCache::getInstance()->cacheMeshData(this->path, vertexData);
+        this->cache->cacheMeshData(this->path, vertexData);
+        MeshManager::getInstance()->loadMeshFromCache(this->path);
     }
 
-    this->execEvent->onFinishedExecution();
     delete this;
 }

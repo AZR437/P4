@@ -1,8 +1,5 @@
 #include "MeshManager.h"
-
-//std::vector<GLfloat> MeshManager::load(std::string path) {
-//    
-//}
+#include "MeshLoader.h"
 
 Mesh* MeshManager::getMesh(String meshName)
 {
@@ -12,6 +9,21 @@ Mesh* MeshManager::getMesh(String meshName)
     return NULL;
 }
 
+MeshManager::MeshManager()
+{
+    this->cache = new MeshDataCache();
+    this->threadPool = new ThreadPool("MeshLoaderPool", 8);
+    this->threadPool->startScheduler();
+}
+
+MeshManager::~MeshManager()
+{
+    this->threadPool->stopScheduler();
+
+    delete this->threadPool;
+    delete this->cache;
+}
+
 MeshManager* MeshManager::sharedInstance = NULL;
 
 MeshManager* MeshManager::getInstance() {
@@ -19,4 +31,23 @@ MeshManager* MeshManager::getInstance() {
         sharedInstance = new MeshManager();
 
     return sharedInstance;
+}
+
+void MeshManager::loadMeshDataAsync(String path)
+{
+    MeshLoader* meshLoader = new MeshLoader(path, this->cache);
+    this->threadPool->scheduleTask(meshLoader);
+}
+
+void MeshManager::loadMeshFromCache(String path)
+{
+    if (this->meshMap.find(path) != this->meshMap.end())
+    {
+        std::cout << "Mesh already exists." << "/n";
+    }
+    else
+    {
+        Mesh* mesh = new Mesh(this->vao, *this->cache->getMeshData(path));
+        this->meshMap[path] = mesh;
+    }
 }

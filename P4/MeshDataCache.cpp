@@ -1,43 +1,11 @@
 #include "MeshDataCache.h"
 
-MeshDataCache* MeshDataCache::sharedInstance = NULL;
-
-MeshDataCache* MeshDataCache::getInstance()
+MeshDataCache::MeshDataCache()
 {
-    if (sharedInstance == NULL)
-        sharedInstance = new MeshDataCache();
 
-    return sharedInstance;
 }
 
-void MeshDataCache::cacheMeshData(String name, const Data& data)
-{
-    this->guard.lock();
-    Data* dataPtr = new Data(data);
-    this->cacheList.push_back(dataPtr);
-    this->cacheMap[name] = dataPtr;
-    this->guard.unlock();
-}
-
-void MeshDataCache::deleteCachedData(String name)
-{
-    int index = -1;
-    for (int i = 0; i < this->cacheList.size(); i++)
-    {
-        if (this->cacheList[i] == this->cacheMap[name])
-        {
-            index = i;
-            break;
-        }
-    }
-
-    if (index != -1) this->cacheList.erase(this->cacheList.begin() + index);
-
-    delete this->cacheMap[name];
-    this->cacheMap.erase(name);
-}
-
-void MeshDataCache::deleteAllCachedData()
+MeshDataCache::~MeshDataCache()
 {
     for (int i = 0; i < this->cacheList.size(); i++)
     {
@@ -48,10 +16,37 @@ void MeshDataCache::deleteAllCachedData()
     this->cacheMap.clear();
 }
 
-MeshDataCache::Data* MeshDataCache::getMeshData(String name)
+void MeshDataCache::cacheMeshData(String path, const Data& data)
 {
-    if (this->cacheMap.find(name) != this->cacheMap.end())
-        return this->cacheMap[name];
+    this->guard.lock();
+    Data* dataPtr = new Data(data);
+    this->cacheList.push_back(dataPtr);
+    this->cacheMap[path] = dataPtr;
+    this->guard.unlock();
+}
+
+void MeshDataCache::deleteCachedData(String path)
+{
+    int index = -1;
+    for (int i = 0; i < this->cacheList.size(); i++)
+    {
+        if (this->cacheList[i] == this->cacheMap[path])
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if (index != -1) this->cacheList.erase(this->cacheList.begin() + index);
+
+    delete this->cacheMap[path];
+    this->cacheMap.erase(path);
+}
+
+MeshDataCache::Data* MeshDataCache::getMeshData(String path)
+{
+    if (this->cacheMap.find(path) != this->cacheMap.end())
+        return this->cacheMap[path];
 
     return NULL;
 }

@@ -5,13 +5,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "IWorkerAction.h"
-
-class IExecutionEvent;
+#include "MeshDataCache.h"
 
 class MeshLoader : public IWorkerAction
 {
 public:
-	MeshLoader(std::string path, IExecutionEvent* executionEvent);
+	MeshLoader(std::string path, MeshDataCache* cache);
 	~MeshLoader();
 
 public:
@@ -19,6 +18,6 @@ public:
 
 private:
 	std::string path;
-	IExecutionEvent* execEvent;
+	MeshDataCache* cache;
 };
 
