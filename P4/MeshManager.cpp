@@ -14,6 +14,11 @@ MeshManager::MeshManager()
     this->cache = new MeshDataCache();
     this->threadPool = new ThreadPool("MeshLoaderPool", 8);
     this->threadPool->startScheduler();
+
+    int dimensions[]{ 3,3,2,3,3 };
+    this->vao->bind();
+    this->vao->createPointers(dimensions, 5);
+    this->vao->unbind();
 }
 
 MeshManager::~MeshManager()
