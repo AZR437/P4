@@ -13,6 +13,11 @@ void EBO::bufferData(std::vector<GLuint> elements) {
     );
 }
 
+void EBO::draw()
+{
+
+}
+
 void EBO::bind() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->elementBuffer);
 }
