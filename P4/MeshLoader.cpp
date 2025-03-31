@@ -38,8 +38,6 @@ void MeshLoader::onStartTask()
     }
     else
     {
-        std::vector<glm::vec3> tangents;
-        std::vector<glm::vec3> bitangents;
         std::vector<GLfloat> vertexData;
 
         for (int i = 0; i < shapes.size(); i++)
@@ -92,14 +90,6 @@ void MeshLoader::onStartTask()
                 glm::vec3 tangent = (deltaPos1 * deltaUV2.y - deltaPos2 * deltaUV1.y) * r;
                 glm::vec3 bitangent = (deltaPos2 * deltaUV1.x - deltaPos1 * deltaUV2.x) * r;
 
-                tangents.push_back(tangent);
-                tangents.push_back(tangent);
-                tangents.push_back(tangent);
-
-                bitangents.push_back(bitangent);
-                bitangents.push_back(bitangent);
-                bitangents.push_back(bitangent);
-
                 vertexData.push_back(attributes.vertices[vData1.vertex_index * 3]);          //X
                 vertexData.push_back(attributes.vertices[vData1.vertex_index * 3 + 1]);      //Y
                 vertexData.push_back(attributes.vertices[vData1.vertex_index * 3 + 2]);      //Z
@@ -111,13 +101,13 @@ void MeshLoader::onStartTask()
                 vertexData.push_back(attributes.texcoords[vData1.texcoord_index * 2]);       //U
                 vertexData.push_back(attributes.texcoords[vData1.texcoord_index * 2 + 1]);   //V
 
-                vertexData.push_back(tangents[i].x);
-                vertexData.push_back(tangents[i].y);
-                vertexData.push_back(tangents[i].z);
+                vertexData.push_back(tangent.x);
+                vertexData.push_back(tangent.y);
+                vertexData.push_back(tangent.z);
 
-                vertexData.push_back(bitangents[i].x);
-                vertexData.push_back(bitangents[i].y);
-                vertexData.push_back(bitangents[i].z);
+                vertexData.push_back(bitangent.x);
+                vertexData.push_back(bitangent.y);
+                vertexData.push_back(bitangent.z);
             }
         }
 
