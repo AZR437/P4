@@ -7,7 +7,7 @@
 
 MeshLoader::MeshLoader(std::string path, MeshDataCache* cache)
 {
-    this->path = path;
+    this->path = "C:/Users/theas/Documents/Acads/P4/P4/Assets" + path;
     this->cache = cache;
 }
 

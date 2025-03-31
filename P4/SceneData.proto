@@ -5,7 +5,7 @@ service MeshStream
 	//checks if mesh exist
 	rpc ValidateMesh(ValidationRequest) returns(ValidationReply) {}
 	//Loads an item
-	rpc StreamMesh(MeshRequest) returns(MeshReply) {}
+	rpc StreamMesh(MeshRequest) returns(stream MeshReply) {}
 }
 
 service SceneLoad
@@ -18,7 +18,7 @@ service SceneLoad
 
 message ValidationRequest
 {
-	int32 ID = 1;
+	string ID = 1;
 }
 message ValidationReply
 {
@@ -35,18 +35,15 @@ message Float3
 // The request message containing the name of the asset to be 
 message MeshRequest 
 {
-	int32 meshID = 1;
-	int32 chunkID = 2;
+	string file_name = 1;
 }
 
 // The response message containing the progress of the item loading
 message MeshReply 
 {
-	int32 meshID = 1;
-	int32 chunkID = 2;
-	int32 numChunks = 3;
-	int32 numVertices = 4;
-	repeated Float3 chunkVertices = 5;
+	repeated Float3 vertices = 1; 
+	repeated int32 indices = 2;
+	
 }
 
 message SceneRequest 

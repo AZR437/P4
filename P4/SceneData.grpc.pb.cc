@@ -33,7 +33,7 @@ std::unique_ptr< MeshStream::Stub> MeshStream::NewStub(const std::shared_ptr< ::
 
 MeshStream::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_ValidateMesh_(MeshStream_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StreamMesh_(MeshStream_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StreamMesh_(MeshStream_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   {}
 
 ::grpc::Status MeshStream::Stub::ValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest& request, ::ValidationReply* response) {
@@ -59,27 +59,20 @@ void MeshStream::Stub::async::ValidateMesh(::grpc::ClientContext* context, const
   return result;
 }
 
-::grpc::Status MeshStream::Stub::StreamMesh(::grpc::ClientContext* context, const ::MeshRequest& request, ::MeshReply* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::MeshRequest, ::MeshReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StreamMesh_, context, request, response);
+::grpc::ClientReader< ::MeshReply>* MeshStream::Stub::StreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request) {
+  return ::grpc::internal::ClientReaderFactory< ::MeshReply>::Create(channel_.get(), rpcmethod_StreamMesh_, context, request);
 }
 
-void MeshStream::Stub::async::StreamMesh(::grpc::ClientContext* context, const ::MeshRequest* request, ::MeshReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::MeshRequest, ::MeshReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StreamMesh_, context, request, response, std::move(f));
+void MeshStream::Stub::async::StreamMesh(::grpc::ClientContext* context, const ::MeshRequest* request, ::grpc::ClientReadReactor< ::MeshReply>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::MeshReply>::Create(stub_->channel_.get(), stub_->rpcmethod_StreamMesh_, context, request, reactor);
 }
 
-void MeshStream::Stub::async::StreamMesh(::grpc::ClientContext* context, const ::MeshRequest* request, ::MeshReply* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StreamMesh_, context, request, response, reactor);
+::grpc::ClientAsyncReader< ::MeshReply>* MeshStream::Stub::AsyncStreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::MeshReply>::Create(channel_.get(), cq, rpcmethod_StreamMesh_, context, request, true, tag);
 }
 
-::grpc::ClientAsyncResponseReader< ::MeshReply>* MeshStream::Stub::PrepareAsyncStreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::MeshReply, ::MeshRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StreamMesh_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::MeshReply>* MeshStream::Stub::AsyncStreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncStreamMeshRaw(context, request, cq);
-  result->StartCall();
-  return result;
+::grpc::ClientAsyncReader< ::MeshReply>* MeshStream::Stub::PrepareAsyncStreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::MeshReply>::Create(channel_.get(), cq, rpcmethod_StreamMesh_, context, request, false, nullptr);
 }
 
 MeshStream::Service::Service() {
@@ -95,13 +88,13 @@ MeshStream::Service::Service() {
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MeshStream_method_names[1],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MeshStream::Service, ::MeshRequest, ::MeshReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< MeshStream::Service, ::MeshRequest, ::MeshReply>(
           [](MeshStream::Service* service,
              ::grpc::ServerContext* ctx,
              const ::MeshRequest* req,
-             ::MeshReply* resp) {
-               return service->StreamMesh(ctx, req, resp);
+             ::grpc::ServerWriter<::MeshReply>* writer) {
+               return service->StreamMesh(ctx, req, writer);
              }, this)));
 }
 
@@ -115,10 +108,10 @@ MeshStream::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status MeshStream::Service::StreamMesh(::grpc::ServerContext* context, const ::MeshRequest* request, ::MeshReply* response) {
+::grpc::Status MeshStream::Service::StreamMesh(::grpc::ServerContext* context, const ::MeshRequest* request, ::grpc::ServerWriter< ::MeshReply>* writer) {
   (void) context;
   (void) request;
-  (void) response;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

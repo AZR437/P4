@@ -19,14 +19,17 @@
     <Filter Include="Thread">
       <UniqueIdentifier>{1ecd87e5-c0b8-4087-91d7-99f4d2069de6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Client">
+      <UniqueIdentifier>{6c3bc7cc-e846-4e9d-bbe5-d18caa02b221}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Server">
+      <UniqueIdentifier>{09500700-94c4-4f23-86b9-d3e35add9d5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Managers">
+      <UniqueIdentifier>{7e5e696c-e982-4fd9-aa4f-9586fec75797}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="AUIScreen.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -34,9 +37,6 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="BaseRunner.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectManager.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Time.cpp">
@@ -50,12 +50,6 @@
     </ClCompile>
     <ClCompile Include="VFShaders.cpp">
       <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshManager.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="AGameObject.cpp">
       <Filter>GameObject</Filter>
@@ -87,6 +81,27 @@
     <ClCompile Include="MeshDataCache.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="SceneClient.cpp">
+      <Filter>System\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneServer.cpp">
+      <Filter>System\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshManager.cpp">
+      <Filter>System\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>System\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>System\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>System\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SceneData.proto">
@@ -94,9 +109,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UIManager.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="UINames.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -107,9 +119,6 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="BaseRunner.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
@@ -123,12 +132,6 @@
     </ClInclude>
     <ClInclude Include="VFShaders.h">
       <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshManager.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="AGameObject.h">
       <Filter>GameObject</Filter>
@@ -163,9 +166,29 @@
     <ClInclude Include="ThreadPool.h">
       <Filter>Thread</Filter>
     </ClInclude>
-    <ClInclude Include="MeshDataCache.h" />
     <ClInclude Include="PoolWorkerThread.h">
       <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshDataCache.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneClient.h">
+      <Filter>System\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneServer.h">
+      <Filter>System\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshManager.h">
+      <Filter>System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>System\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

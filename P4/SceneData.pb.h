@@ -232,14 +232,20 @@ class ValidationRequest final
   enum : int {
     kIDFieldNumber = 1,
   };
-  // int32 ID = 1;
+  // string ID = 1;
   void clear_id() ;
-  ::int32_t id() const;
-  void set_id(::int32_t value);
+  const std::string& id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_id(Arg_&& arg, Args_... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* value);
 
   private:
-  ::int32_t _internal_id() const;
-  void _internal_set_id(::int32_t value);
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
+      const std::string& value);
+  std::string* _internal_mutable_id();
 
   public:
   // @@protoc_insertion_point(class_scope:ValidationRequest)
@@ -248,7 +254,7 @@ class ValidationRequest final
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 1, 0,
-      0, 2>
+      28, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -265,7 +271,7 @@ class ValidationRequest final
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const ValidationRequest& from_msg);
-    ::int32_t id_;
+    ::google::protobuf::internal::ArenaStringPtr id_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -803,27 +809,22 @@ class MeshRequest final
 
   // accessors -------------------------------------------------------
   enum : int {
-    kMeshIDFieldNumber = 1,
-    kChunkIDFieldNumber = 2,
+    kFileNameFieldNumber = 1,
   };
-  // int32 meshID = 1;
-  void clear_meshid() ;
-  ::int32_t meshid() const;
-  void set_meshid(::int32_t value);
+  // string file_name = 1;
+  void clear_file_name() ;
+  const std::string& file_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_file_name(Arg_&& arg, Args_... args);
+  std::string* mutable_file_name();
+  PROTOBUF_NODISCARD std::string* release_file_name();
+  void set_allocated_file_name(std::string* value);
 
   private:
-  ::int32_t _internal_meshid() const;
-  void _internal_set_meshid(::int32_t value);
-
-  public:
-  // int32 chunkID = 2;
-  void clear_chunkid() ;
-  ::int32_t chunkid() const;
-  void set_chunkid(::int32_t value);
-
-  private:
-  ::int32_t _internal_chunkid() const;
-  void _internal_set_chunkid(::int32_t value);
+  const std::string& _internal_file_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_name(
+      const std::string& value);
+  std::string* _internal_mutable_file_name();
 
   public:
   // @@protoc_insertion_point(class_scope:MeshRequest)
@@ -831,8 +832,8 @@ class MeshRequest final
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      0, 2>
+      0, 1, 0,
+      29, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -849,8 +850,7 @@ class MeshRequest final
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const MeshRequest& from_msg);
-    ::int32_t meshid_;
-    ::int32_t chunkid_;
+    ::google::protobuf::internal::ArenaStringPtr file_name_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1452,67 +1452,42 @@ class MeshReply final
 
   // accessors -------------------------------------------------------
   enum : int {
-    kChunkVerticesFieldNumber = 5,
-    kMeshIDFieldNumber = 1,
-    kChunkIDFieldNumber = 2,
-    kNumChunksFieldNumber = 3,
-    kNumVerticesFieldNumber = 4,
+    kVerticesFieldNumber = 1,
+    kIndicesFieldNumber = 2,
   };
-  // repeated .Float3 chunkVertices = 5;
-  int chunkvertices_size() const;
+  // repeated .Float3 vertices = 1;
+  int vertices_size() const;
   private:
-  int _internal_chunkvertices_size() const;
+  int _internal_vertices_size() const;
 
   public:
-  void clear_chunkvertices() ;
-  ::Float3* mutable_chunkvertices(int index);
-  ::google::protobuf::RepeatedPtrField<::Float3>* mutable_chunkvertices();
+  void clear_vertices() ;
+  ::Float3* mutable_vertices(int index);
+  ::google::protobuf::RepeatedPtrField<::Float3>* mutable_vertices();
 
   private:
-  const ::google::protobuf::RepeatedPtrField<::Float3>& _internal_chunkvertices() const;
-  ::google::protobuf::RepeatedPtrField<::Float3>* _internal_mutable_chunkvertices();
+  const ::google::protobuf::RepeatedPtrField<::Float3>& _internal_vertices() const;
+  ::google::protobuf::RepeatedPtrField<::Float3>* _internal_mutable_vertices();
   public:
-  const ::Float3& chunkvertices(int index) const;
-  ::Float3* add_chunkvertices();
-  const ::google::protobuf::RepeatedPtrField<::Float3>& chunkvertices() const;
-  // int32 meshID = 1;
-  void clear_meshid() ;
-  ::int32_t meshid() const;
-  void set_meshid(::int32_t value);
-
+  const ::Float3& vertices(int index) const;
+  ::Float3* add_vertices();
+  const ::google::protobuf::RepeatedPtrField<::Float3>& vertices() const;
+  // repeated int32 indices = 2;
+  int indices_size() const;
   private:
-  ::int32_t _internal_meshid() const;
-  void _internal_set_meshid(::int32_t value);
+  int _internal_indices_size() const;
 
   public:
-  // int32 chunkID = 2;
-  void clear_chunkid() ;
-  ::int32_t chunkid() const;
-  void set_chunkid(::int32_t value);
+  void clear_indices() ;
+  ::int32_t indices(int index) const;
+  void set_indices(int index, ::int32_t value);
+  void add_indices(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& indices() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_indices();
 
   private:
-  ::int32_t _internal_chunkid() const;
-  void _internal_set_chunkid(::int32_t value);
-
-  public:
-  // int32 numChunks = 3;
-  void clear_numchunks() ;
-  ::int32_t numchunks() const;
-  void set_numchunks(::int32_t value);
-
-  private:
-  ::int32_t _internal_numchunks() const;
-  void _internal_set_numchunks(::int32_t value);
-
-  public:
-  // int32 numVertices = 4;
-  void clear_numvertices() ;
-  ::int32_t numvertices() const;
-  void set_numvertices(::int32_t value);
-
-  private:
-  ::int32_t _internal_numvertices() const;
-  void _internal_set_numvertices(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_indices() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_indices();
 
   public:
   // @@protoc_insertion_point(class_scope:MeshReply)
@@ -1520,7 +1495,7 @@ class MeshReply final
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 1,
+      1, 2, 1,
       0, 2>
       _table_;
 
@@ -1538,11 +1513,9 @@ class MeshReply final
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const MeshReply& from_msg);
-    ::google::protobuf::RepeatedPtrField< ::Float3 > chunkvertices_;
-    ::int32_t meshid_;
-    ::int32_t chunkid_;
-    ::int32_t numchunks_;
-    ::int32_t numvertices_;
+    ::google::protobuf::RepeatedPtrField< ::Float3 > vertices_;
+    ::google::protobuf::RepeatedField<::int32_t> indices_;
+    ::google::protobuf::internal::CachedSize _indices_cached_byte_size_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1566,26 +1539,52 @@ class MeshReply final
 
 // ValidationRequest
 
-// int32 ID = 1;
+// string ID = 1;
 inline void ValidationRequest::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_ = 0;
+  _impl_.id_.ClearToEmpty();
 }
-inline ::int32_t ValidationRequest::id() const {
+inline const std::string& ValidationRequest::id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:ValidationRequest.ID)
   return _internal_id();
 }
-inline void ValidationRequest::set_id(::int32_t value) {
-  _internal_set_id(value);
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ValidationRequest::set_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:ValidationRequest.ID)
 }
-inline ::int32_t ValidationRequest::_internal_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.id_;
+inline std::string* ValidationRequest::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:ValidationRequest.ID)
+  return _s;
 }
-inline void ValidationRequest::_internal_set_id(::int32_t value) {
+inline const std::string& ValidationRequest::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_.Get();
+}
+inline void ValidationRequest::_internal_set_id(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_ = value;
+  _impl_.id_.Set(value, GetArena());
+}
+inline std::string* ValidationRequest::_internal_mutable_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.id_.Mutable( GetArena());
+}
+inline std::string* ValidationRequest::release_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:ValidationRequest.ID)
+  return _impl_.id_.Release();
+}
+inline void ValidationRequest::set_allocated_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.id_.IsDefault()) {
+    _impl_.id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:ValidationRequest.ID)
 }
 
 // -------------------------------------------------------------------
@@ -1688,189 +1687,150 @@ inline void Float3::_internal_set_z(float value) {
 
 // MeshRequest
 
-// int32 meshID = 1;
-inline void MeshRequest::clear_meshid() {
+// string file_name = 1;
+inline void MeshRequest::clear_file_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.meshid_ = 0;
+  _impl_.file_name_.ClearToEmpty();
 }
-inline ::int32_t MeshRequest::meshid() const {
-  // @@protoc_insertion_point(field_get:MeshRequest.meshID)
-  return _internal_meshid();
+inline const std::string& MeshRequest::file_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:MeshRequest.file_name)
+  return _internal_file_name();
 }
-inline void MeshRequest::set_meshid(::int32_t value) {
-  _internal_set_meshid(value);
-  // @@protoc_insertion_point(field_set:MeshRequest.meshID)
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void MeshRequest::set_file_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.file_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:MeshRequest.file_name)
 }
-inline ::int32_t MeshRequest::_internal_meshid() const {
+inline std::string* MeshRequest::mutable_file_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_file_name();
+  // @@protoc_insertion_point(field_mutable:MeshRequest.file_name)
+  return _s;
+}
+inline const std::string& MeshRequest::_internal_file_name() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.meshid_;
+  return _impl_.file_name_.Get();
 }
-inline void MeshRequest::_internal_set_meshid(::int32_t value) {
+inline void MeshRequest::_internal_set_file_name(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.meshid_ = value;
+  _impl_.file_name_.Set(value, GetArena());
 }
-
-// int32 chunkID = 2;
-inline void MeshRequest::clear_chunkid() {
+inline std::string* MeshRequest::_internal_mutable_file_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.chunkid_ = 0;
+  return _impl_.file_name_.Mutable( GetArena());
 }
-inline ::int32_t MeshRequest::chunkid() const {
-  // @@protoc_insertion_point(field_get:MeshRequest.chunkID)
-  return _internal_chunkid();
-}
-inline void MeshRequest::set_chunkid(::int32_t value) {
-  _internal_set_chunkid(value);
-  // @@protoc_insertion_point(field_set:MeshRequest.chunkID)
-}
-inline ::int32_t MeshRequest::_internal_chunkid() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.chunkid_;
-}
-inline void MeshRequest::_internal_set_chunkid(::int32_t value) {
+inline std::string* MeshRequest::release_file_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.chunkid_ = value;
+  // @@protoc_insertion_point(field_release:MeshRequest.file_name)
+  return _impl_.file_name_.Release();
+}
+inline void MeshRequest::set_allocated_file_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.file_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.file_name_.IsDefault()) {
+    _impl_.file_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:MeshRequest.file_name)
 }
 
 // -------------------------------------------------------------------
 
 // MeshReply
 
-// int32 meshID = 1;
-inline void MeshReply::clear_meshid() {
+// repeated .Float3 vertices = 1;
+inline int MeshReply::_internal_vertices_size() const {
+  return _internal_vertices().size();
+}
+inline int MeshReply::vertices_size() const {
+  return _internal_vertices_size();
+}
+inline void MeshReply::clear_vertices() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.meshid_ = 0;
+  _impl_.vertices_.Clear();
 }
-inline ::int32_t MeshReply::meshid() const {
-  // @@protoc_insertion_point(field_get:MeshReply.meshID)
-  return _internal_meshid();
-}
-inline void MeshReply::set_meshid(::int32_t value) {
-  _internal_set_meshid(value);
-  // @@protoc_insertion_point(field_set:MeshReply.meshID)
-}
-inline ::int32_t MeshReply::_internal_meshid() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.meshid_;
-}
-inline void MeshReply::_internal_set_meshid(::int32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.meshid_ = value;
-}
-
-// int32 chunkID = 2;
-inline void MeshReply::clear_chunkid() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.chunkid_ = 0;
-}
-inline ::int32_t MeshReply::chunkid() const {
-  // @@protoc_insertion_point(field_get:MeshReply.chunkID)
-  return _internal_chunkid();
-}
-inline void MeshReply::set_chunkid(::int32_t value) {
-  _internal_set_chunkid(value);
-  // @@protoc_insertion_point(field_set:MeshReply.chunkID)
-}
-inline ::int32_t MeshReply::_internal_chunkid() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.chunkid_;
-}
-inline void MeshReply::_internal_set_chunkid(::int32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.chunkid_ = value;
-}
-
-// int32 numChunks = 3;
-inline void MeshReply::clear_numchunks() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.numchunks_ = 0;
-}
-inline ::int32_t MeshReply::numchunks() const {
-  // @@protoc_insertion_point(field_get:MeshReply.numChunks)
-  return _internal_numchunks();
-}
-inline void MeshReply::set_numchunks(::int32_t value) {
-  _internal_set_numchunks(value);
-  // @@protoc_insertion_point(field_set:MeshReply.numChunks)
-}
-inline ::int32_t MeshReply::_internal_numchunks() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.numchunks_;
-}
-inline void MeshReply::_internal_set_numchunks(::int32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.numchunks_ = value;
-}
-
-// int32 numVertices = 4;
-inline void MeshReply::clear_numvertices() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.numvertices_ = 0;
-}
-inline ::int32_t MeshReply::numvertices() const {
-  // @@protoc_insertion_point(field_get:MeshReply.numVertices)
-  return _internal_numvertices();
-}
-inline void MeshReply::set_numvertices(::int32_t value) {
-  _internal_set_numvertices(value);
-  // @@protoc_insertion_point(field_set:MeshReply.numVertices)
-}
-inline ::int32_t MeshReply::_internal_numvertices() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.numvertices_;
-}
-inline void MeshReply::_internal_set_numvertices(::int32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.numvertices_ = value;
-}
-
-// repeated .Float3 chunkVertices = 5;
-inline int MeshReply::_internal_chunkvertices_size() const {
-  return _internal_chunkvertices().size();
-}
-inline int MeshReply::chunkvertices_size() const {
-  return _internal_chunkvertices_size();
-}
-inline void MeshReply::clear_chunkvertices() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.chunkvertices_.Clear();
-}
-inline ::Float3* MeshReply::mutable_chunkvertices(int index)
+inline ::Float3* MeshReply::mutable_vertices(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:MeshReply.chunkVertices)
-  return _internal_mutable_chunkvertices()->Mutable(index);
+  // @@protoc_insertion_point(field_mutable:MeshReply.vertices)
+  return _internal_mutable_vertices()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::Float3>* MeshReply::mutable_chunkvertices()
+inline ::google::protobuf::RepeatedPtrField<::Float3>* MeshReply::mutable_vertices()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:MeshReply.chunkVertices)
+  // @@protoc_insertion_point(field_mutable_list:MeshReply.vertices)
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_chunkvertices();
+  return _internal_mutable_vertices();
 }
-inline const ::Float3& MeshReply::chunkvertices(int index) const
+inline const ::Float3& MeshReply::vertices(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:MeshReply.chunkVertices)
-  return _internal_chunkvertices().Get(index);
+  // @@protoc_insertion_point(field_get:MeshReply.vertices)
+  return _internal_vertices().Get(index);
 }
-inline ::Float3* MeshReply::add_chunkvertices() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::Float3* MeshReply::add_vertices() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::Float3* _add = _internal_mutable_chunkvertices()->Add();
-  // @@protoc_insertion_point(field_add:MeshReply.chunkVertices)
+  ::Float3* _add = _internal_mutable_vertices()->Add();
+  // @@protoc_insertion_point(field_add:MeshReply.vertices)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::Float3>& MeshReply::chunkvertices() const
+inline const ::google::protobuf::RepeatedPtrField<::Float3>& MeshReply::vertices() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:MeshReply.chunkVertices)
-  return _internal_chunkvertices();
+  // @@protoc_insertion_point(field_list:MeshReply.vertices)
+  return _internal_vertices();
 }
 inline const ::google::protobuf::RepeatedPtrField<::Float3>&
-MeshReply::_internal_chunkvertices() const {
+MeshReply::_internal_vertices() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.chunkvertices_;
+  return _impl_.vertices_;
 }
 inline ::google::protobuf::RepeatedPtrField<::Float3>*
-MeshReply::_internal_mutable_chunkvertices() {
+MeshReply::_internal_mutable_vertices() {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.chunkvertices_;
+  return &_impl_.vertices_;
+}
+
+// repeated int32 indices = 2;
+inline int MeshReply::_internal_indices_size() const {
+  return _internal_indices().size();
+}
+inline int MeshReply::indices_size() const {
+  return _internal_indices_size();
+}
+inline void MeshReply::clear_indices() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.indices_.Clear();
+}
+inline ::int32_t MeshReply::indices(int index) const {
+  // @@protoc_insertion_point(field_get:MeshReply.indices)
+  return _internal_indices().Get(index);
+}
+inline void MeshReply::set_indices(int index, ::int32_t value) {
+  _internal_mutable_indices()->Set(index, value);
+  // @@protoc_insertion_point(field_set:MeshReply.indices)
+}
+inline void MeshReply::add_indices(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_indices()->Add(value);
+  // @@protoc_insertion_point(field_add:MeshReply.indices)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& MeshReply::indices() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:MeshReply.indices)
+  return _internal_indices();
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* MeshReply::mutable_indices()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:MeshReply.indices)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_indices();
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>&
+MeshReply::_internal_indices() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.indices_;
+}
+inline ::google::protobuf::RepeatedField<::int32_t>* MeshReply::_internal_mutable_indices() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.indices_;
 }
 
 // -------------------------------------------------------------------

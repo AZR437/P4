@@ -27,7 +27,9 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 
 inline constexpr ValidationRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : id_{0},
+      : id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
@@ -102,8 +104,9 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr MeshRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : meshid_{0},
-        chunkid_{0},
+      : file_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
@@ -183,11 +186,9 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr MeshReply::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : chunkvertices_{},
-        meshid_{0},
-        chunkid_{0},
-        numchunks_{0},
-        numvertices_{0},
+      : vertices_{},
+        indices_{},
+        _indices_cached_byte_size_{0},
         _cached_size_{0} {}
 
 template <typename>
@@ -253,8 +254,7 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::MeshRequest, _impl_.meshid_),
-        PROTOBUF_FIELD_OFFSET(::MeshRequest, _impl_.chunkid_),
+        PROTOBUF_FIELD_OFFSET(::MeshRequest, _impl_.file_name_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::MeshReply, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -263,11 +263,8 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::MeshReply, _impl_.meshid_),
-        PROTOBUF_FIELD_OFFSET(::MeshReply, _impl_.chunkid_),
-        PROTOBUF_FIELD_OFFSET(::MeshReply, _impl_.numchunks_),
-        PROTOBUF_FIELD_OFFSET(::MeshReply, _impl_.numvertices_),
-        PROTOBUF_FIELD_OFFSET(::MeshReply, _impl_.chunkvertices_),
+        PROTOBUF_FIELD_OFFSET(::MeshReply, _impl_.vertices_),
+        PROTOBUF_FIELD_OFFSET(::MeshReply, _impl_.indices_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::SceneRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -296,9 +293,9 @@ static const ::_pbi::MigrationSchema
         {9, -1, -1, sizeof(::ValidationReply)},
         {18, -1, -1, sizeof(::Float3)},
         {29, -1, -1, sizeof(::MeshRequest)},
-        {39, -1, -1, sizeof(::MeshReply)},
-        {52, -1, -1, sizeof(::SceneRequest)},
-        {61, -1, -1, sizeof(::SceneReply)},
+        {38, -1, -1, sizeof(::MeshReply)},
+        {48, -1, -1, sizeof(::SceneRequest)},
+        {57, -1, -1, sizeof(::SceneReply)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::_ValidationRequest_default_instance_._instance,
@@ -312,27 +309,26 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_SceneData_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\017SceneData.proto\"\037\n\021ValidationRequest\022\n"
-    "\n\002ID\030\001 \001(\005\"!\n\017ValidationReply\022\016\n\006exists\030"
+    "\n\002ID\030\001 \001(\t\"!\n\017ValidationReply\022\016\n\006exists\030"
     "\001 \001(\010\")\n\006Float3\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\t\n"
-    "\001z\030\003 \001(\002\".\n\013MeshRequest\022\016\n\006meshID\030\001 \001(\005\022"
-    "\017\n\007chunkID\030\002 \001(\005\"t\n\tMeshReply\022\016\n\006meshID\030"
-    "\001 \001(\005\022\017\n\007chunkID\030\002 \001(\005\022\021\n\tnumChunks\030\003 \001("
-    "\005\022\023\n\013numVertices\030\004 \001(\005\022\036\n\rchunkVertices\030"
-    "\005 \003(\0132\007.Float3\"\037\n\014SceneRequest\022\017\n\007sceneI"
-    "D\030\001 \001(\005\"J\n\nSceneReply\022\017\n\007sceneID\030\001 \001(\005\022\017"
-    "\n\007meshIDs\030\002 \003(\005\022\032\n\tpositions\030\003 \003(\0132\007.Flo"
-    "at32n\n\nMeshStream\0226\n\014ValidateMesh\022\022.Vali"
-    "dationRequest\032\020.ValidationReply\"\000\022(\n\nStr"
-    "eamMesh\022\014.MeshRequest\032\n.MeshReply\"\0002o\n\tS"
-    "ceneLoad\0227\n\rValidateScene\022\022.ValidationRe"
-    "quest\032\020.ValidationReply\"\000\022)\n\tLoadScene\022\r"
-    ".SceneRequest\032\013.SceneReply\"\000b\006proto3"
+    "\001z\030\003 \001(\002\" \n\013MeshRequest\022\021\n\tfile_name\030\001 \001"
+    "(\t\"7\n\tMeshReply\022\031\n\010vertices\030\001 \003(\0132\007.Floa"
+    "t3\022\017\n\007indices\030\002 \003(\005\"\037\n\014SceneRequest\022\017\n\007s"
+    "ceneID\030\001 \001(\005\"J\n\nSceneReply\022\017\n\007sceneID\030\001 "
+    "\001(\005\022\017\n\007meshIDs\030\002 \003(\005\022\032\n\tpositions\030\003 \003(\0132"
+    "\007.Float32p\n\nMeshStream\0226\n\014ValidateMesh\022\022"
+    ".ValidationRequest\032\020.ValidationReply\"\000\022*"
+    "\n\nStreamMesh\022\014.MeshRequest\032\n.MeshReply\"\000"
+    "0\0012o\n\tSceneLoad\0227\n\rValidateScene\022\022.Valid"
+    "ationRequest\032\020.ValidationReply\"\000\022)\n\tLoad"
+    "Scene\022\r.SceneRequest\032\013.SceneReply\"\000b\006pro"
+    "to3"
 };
 static ::absl::once_flag descriptor_table_SceneData_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_SceneData_2eproto = {
     false,
     false,
-    636,
+    563,
     descriptor_table_protodef_SceneData_2eproto,
     "SceneData.proto",
     &descriptor_table_SceneData_2eproto_once,
@@ -360,19 +356,36 @@ ValidationRequest::ValidationRequest(::google::protobuf::Arena* arena)
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:ValidationRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE ValidationRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::ValidationRequest& from_msg)
+      : id_(arena, from.id_),
+        _cached_size_{0} {}
+
 ValidationRequest::ValidationRequest(
-    ::google::protobuf::Arena* arena, const ValidationRequest& from)
-    : ValidationRequest(arena) {
-  MergeFrom(from);
+    ::google::protobuf::Arena* arena,
+    const ValidationRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  ValidationRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:ValidationRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE ValidationRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
+      : id_(arena),
+        _cached_size_{0} {}
 
 inline void ValidationRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.id_ = {};
 }
 ValidationRequest::~ValidationRequest() {
   // @@protoc_insertion_point(destructor:ValidationRequest)
@@ -382,6 +395,7 @@ inline void ValidationRequest::SharedDtor(MessageLite& self) {
   ValidationRequest& this_ = static_cast<ValidationRequest&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.id_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -390,7 +404,7 @@ inline void* ValidationRequest::PlacementNew_(const void*, void* mem,
   return ::new (mem) ValidationRequest(arena);
 }
 constexpr auto ValidationRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(ValidationRequest),
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(ValidationRequest),
                                             alignof(ValidationRequest));
 }
 PROTOBUF_CONSTINIT
@@ -421,7 +435,7 @@ const ::google::protobuf::internal::ClassData* ValidationRequest::GetClassData()
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ValidationRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 28, 2> ValidationRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -439,18 +453,21 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ValidationRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::ValidationRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // int32 ID = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ValidationRequest, _impl_.id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ValidationRequest, _impl_.id_)}},
+    // string ID = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ValidationRequest, _impl_.id_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // int32 ID = 1;
+    // string ID = 1;
     {PROTOBUF_FIELD_OFFSET(ValidationRequest, _impl_.id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
+    "\21\2\0\0\0\0\0\0"
+    "ValidationRequest"
+    "ID"
   }},
 };
 
@@ -461,7 +478,7 @@ PROTOBUF_NOINLINE void ValidationRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.id_ = 0;
+  _impl_.id_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -480,11 +497,12 @@ PROTOBUF_NOINLINE void ValidationRequest::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // int32 ID = 1;
-          if (this_._internal_id() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<1>(
-                    stream, this_._internal_id(), target);
+          // string ID = 1;
+          if (!this_._internal_id().empty()) {
+            const std::string& _s = this_._internal_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "ValidationRequest.ID");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -511,10 +529,10 @@ PROTOBUF_NOINLINE void ValidationRequest::Clear() {
           (void)cached_has_bits;
 
            {
-            // int32 ID = 1;
-            if (this_._internal_id() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_id());
+            // string ID = 1;
+            if (!this_._internal_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_id());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -529,8 +547,8 @@ void ValidationRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_id() != 0) {
-    _this->_impl_.id_ = from._impl_.id_;
+  if (!from._internal_id().empty()) {
+    _this->_internal_set_id(from._internal_id());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -545,8 +563,10 @@ void ValidationRequest::CopyFrom(const ValidationRequest& from) {
 
 void ValidationRequest::InternalSwap(ValidationRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-        swap(_impl_.id_, other->_impl_.id_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
 }
 
 ::google::protobuf::Metadata ValidationRequest::GetMetadata() const {
@@ -1033,24 +1053,36 @@ MeshRequest::MeshRequest(::google::protobuf::Arena* arena)
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:MeshRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE MeshRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::MeshRequest& from_msg)
+      : file_name_(arena, from.file_name_),
+        _cached_size_{0} {}
+
 MeshRequest::MeshRequest(
-    ::google::protobuf::Arena* arena, const MeshRequest& from)
-    : MeshRequest(arena) {
-  MergeFrom(from);
+    ::google::protobuf::Arena* arena,
+    const MeshRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  MeshRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:MeshRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE MeshRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
+      : file_name_(arena),
+        _cached_size_{0} {}
 
 inline void MeshRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, meshid_),
-           0,
-           offsetof(Impl_, chunkid_) -
-               offsetof(Impl_, meshid_) +
-               sizeof(Impl_::chunkid_));
 }
 MeshRequest::~MeshRequest() {
   // @@protoc_insertion_point(destructor:MeshRequest)
@@ -1060,6 +1092,7 @@ inline void MeshRequest::SharedDtor(MessageLite& self) {
   MeshRequest& this_ = static_cast<MeshRequest&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.file_name_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -1068,7 +1101,7 @@ inline void* MeshRequest::PlacementNew_(const void*, void* mem,
   return ::new (mem) MeshRequest(arena);
 }
 constexpr auto MeshRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(MeshRequest),
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MeshRequest),
                                             alignof(MeshRequest));
 }
 PROTOBUF_CONSTINIT
@@ -1099,15 +1132,15 @@ const ::google::protobuf::internal::ClassData* MeshRequest::GetClassData() const
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> MeshRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 29, 2> MeshRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -1117,24 +1150,21 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> MeshRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::MeshRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // int32 chunkID = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MeshRequest, _impl_.chunkid_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(MeshRequest, _impl_.chunkid_)}},
-    // int32 meshID = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MeshRequest, _impl_.meshid_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MeshRequest, _impl_.meshid_)}},
+    // string file_name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MeshRequest, _impl_.file_name_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // int32 meshID = 1;
-    {PROTOBUF_FIELD_OFFSET(MeshRequest, _impl_.meshid_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 chunkID = 2;
-    {PROTOBUF_FIELD_OFFSET(MeshRequest, _impl_.chunkid_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // string file_name = 1;
+    {PROTOBUF_FIELD_OFFSET(MeshRequest, _impl_.file_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
+    "\13\11\0\0\0\0\0\0"
+    "MeshRequest"
+    "file_name"
   }},
 };
 
@@ -1145,9 +1175,7 @@ PROTOBUF_NOINLINE void MeshRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.meshid_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.chunkid_) -
-      reinterpret_cast<char*>(&_impl_.meshid_)) + sizeof(_impl_.chunkid_));
+  _impl_.file_name_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1166,18 +1194,12 @@ PROTOBUF_NOINLINE void MeshRequest::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // int32 meshID = 1;
-          if (this_._internal_meshid() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<1>(
-                    stream, this_._internal_meshid(), target);
-          }
-
-          // int32 chunkID = 2;
-          if (this_._internal_chunkid() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<2>(
-                    stream, this_._internal_chunkid(), target);
+          // string file_name = 1;
+          if (!this_._internal_file_name().empty()) {
+            const std::string& _s = this_._internal_file_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "MeshRequest.file_name");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1203,17 +1225,11 @@ PROTOBUF_NOINLINE void MeshRequest::Clear() {
           // Prevent compiler warnings about cached_has_bits being unused
           (void)cached_has_bits;
 
-          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // int32 meshID = 1;
-            if (this_._internal_meshid() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_meshid());
-            }
-            // int32 chunkID = 2;
-            if (this_._internal_chunkid() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_chunkid());
+            // string file_name = 1;
+            if (!this_._internal_file_name().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_file_name());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1228,11 +1244,8 @@ void MeshRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_meshid() != 0) {
-    _this->_impl_.meshid_ = from._impl_.meshid_;
-  }
-  if (from._internal_chunkid() != 0) {
-    _this->_impl_.chunkid_ = from._impl_.chunkid_;
+  if (!from._internal_file_name().empty()) {
+    _this->_internal_set_file_name(from._internal_file_name());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1247,13 +1260,10 @@ void MeshRequest::CopyFrom(const MeshRequest& from) {
 
 void MeshRequest::InternalSwap(MeshRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MeshRequest, _impl_.chunkid_)
-      + sizeof(MeshRequest::_impl_.chunkid_)
-      - PROTOBUF_FIELD_OFFSET(MeshRequest, _impl_.meshid_)>(
-          reinterpret_cast<char*>(&_impl_.meshid_),
-          reinterpret_cast<char*>(&other->_impl_.meshid_));
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_name_, &other->_impl_.file_name_, arena);
 }
 
 ::google::protobuf::Metadata MeshRequest::GetMetadata() const {
@@ -1277,7 +1287,9 @@ MeshReply::MeshReply(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE MeshReply::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::MeshReply& from_msg)
-      : chunkvertices_{visibility, arena, from.chunkvertices_},
+      : vertices_{visibility, arena, from.vertices_},
+        indices_{visibility, arena, from.indices_},
+        _indices_cached_byte_size_{0},
         _cached_size_{0} {}
 
 MeshReply::MeshReply(
@@ -1293,30 +1305,19 @@ MeshReply::MeshReply(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, meshid_),
-           reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, meshid_),
-           offsetof(Impl_, numvertices_) -
-               offsetof(Impl_, meshid_) +
-               sizeof(Impl_::numvertices_));
 
   // @@protoc_insertion_point(copy_constructor:MeshReply)
 }
 inline PROTOBUF_NDEBUG_INLINE MeshReply::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : chunkvertices_{visibility, arena},
+      : vertices_{visibility, arena},
+        indices_{visibility, arena},
+        _indices_cached_byte_size_{0},
         _cached_size_{0} {}
 
 inline void MeshReply::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, meshid_),
-           0,
-           offsetof(Impl_, numvertices_) -
-               offsetof(Impl_, meshid_) +
-               sizeof(Impl_::numvertices_));
 }
 MeshReply::~MeshReply() {
   // @@protoc_insertion_point(destructor:MeshReply)
@@ -1335,8 +1336,12 @@ inline void* MeshReply::PlacementNew_(const void*, void* mem,
 }
 constexpr auto MeshReply::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.chunkvertices_) +
-          decltype(MeshReply::_impl_.chunkvertices_)::
+      PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.vertices_) +
+          decltype(MeshReply::_impl_.vertices_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.indices_) +
+          decltype(MeshReply::_impl_.indices_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
   });
@@ -1377,15 +1382,15 @@ const ::google::protobuf::internal::ClassData* MeshReply::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 1, 0, 2> MeshReply::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> MeshReply::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
+    2,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -1395,42 +1400,21 @@ const ::_pbi::TcParseTable<3, 5, 1, 0, 2> MeshReply::_table_ = {
     ::_pbi::TcParser::GetTable<::MeshReply>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // int32 meshID = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MeshReply, _impl_.meshid_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.meshid_)}},
-    // int32 chunkID = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MeshReply, _impl_.chunkid_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.chunkid_)}},
-    // int32 numChunks = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MeshReply, _impl_.numchunks_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.numchunks_)}},
-    // int32 numVertices = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MeshReply, _impl_.numvertices_), 63>(),
-     {32, 63, 0, PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.numvertices_)}},
-    // repeated .Float3 chunkVertices = 5;
+    // repeated int32 indices = 2;
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.indices_)}},
+    // repeated .Float3 vertices = 1;
     {::_pbi::TcParser::FastMtR1,
-     {42, 63, 0, PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.chunkvertices_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.vertices_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // int32 meshID = 1;
-    {PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.meshid_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 chunkID = 2;
-    {PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.chunkid_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 numChunks = 3;
-    {PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.numchunks_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 numVertices = 4;
-    {PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.numvertices_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // repeated .Float3 chunkVertices = 5;
-    {PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.chunkvertices_), 0, 0,
+    // repeated .Float3 vertices = 1;
+    {PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.vertices_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated int32 indices = 2;
+    {PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.indices_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
   }}, {{
     {::_pbi::TcParser::GetTable<::Float3>()},
   }}, {{
@@ -1444,10 +1428,8 @@ PROTOBUF_NOINLINE void MeshReply::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.chunkvertices_.Clear();
-  ::memset(&_impl_.meshid_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.numvertices_) -
-      reinterpret_cast<char*>(&_impl_.meshid_)) + sizeof(_impl_.numvertices_));
+  _impl_.vertices_.Clear();
+  _impl_.indices_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1466,43 +1448,24 @@ PROTOBUF_NOINLINE void MeshReply::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // int32 meshID = 1;
-          if (this_._internal_meshid() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<1>(
-                    stream, this_._internal_meshid(), target);
-          }
-
-          // int32 chunkID = 2;
-          if (this_._internal_chunkid() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<2>(
-                    stream, this_._internal_chunkid(), target);
-          }
-
-          // int32 numChunks = 3;
-          if (this_._internal_numchunks() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<3>(
-                    stream, this_._internal_numchunks(), target);
-          }
-
-          // int32 numVertices = 4;
-          if (this_._internal_numvertices() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<4>(
-                    stream, this_._internal_numvertices(), target);
-          }
-
-          // repeated .Float3 chunkVertices = 5;
+          // repeated .Float3 vertices = 1;
           for (unsigned i = 0, n = static_cast<unsigned>(
-                                   this_._internal_chunkvertices_size());
+                                   this_._internal_vertices_size());
                i < n; i++) {
-            const auto& repfield = this_._internal_chunkvertices().Get(i);
+            const auto& repfield = this_._internal_vertices().Get(i);
             target =
                 ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                    5, repfield, repfield.GetCachedSize(),
+                    1, repfield, repfield.GetCachedSize(),
                     target, stream);
+          }
+
+          // repeated int32 indices = 2;
+          {
+            int byte_size = this_._impl_._indices_cached_byte_size_.Get();
+            if (byte_size > 0) {
+              target = stream->WriteInt32Packed(
+                  2, this_._internal_indices(), byte_size, target);
+            }
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1530,34 +1493,19 @@ PROTOBUF_NOINLINE void MeshReply::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated .Float3 chunkVertices = 5;
+            // repeated .Float3 vertices = 1;
             {
-              total_size += 1UL * this_._internal_chunkvertices_size();
-              for (const auto& msg : this_._internal_chunkvertices()) {
+              total_size += 1UL * this_._internal_vertices_size();
+              for (const auto& msg : this_._internal_vertices()) {
                 total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
               }
             }
-          }
-           {
-            // int32 meshID = 1;
-            if (this_._internal_meshid() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_meshid());
-            }
-            // int32 chunkID = 2;
-            if (this_._internal_chunkid() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_chunkid());
-            }
-            // int32 numChunks = 3;
-            if (this_._internal_numchunks() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_numchunks());
-            }
-            // int32 numVertices = 4;
-            if (this_._internal_numvertices() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_numvertices());
+            // repeated int32 indices = 2;
+            {
+              total_size +=
+                  ::_pbi::WireFormatLite::Int32SizeWithPackedTagSize(
+                      this_._internal_indices(), 1,
+                      this_._impl_._indices_cached_byte_size_);
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1572,20 +1520,9 @@ void MeshReply::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::googl
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_chunkvertices()->MergeFrom(
-      from._internal_chunkvertices());
-  if (from._internal_meshid() != 0) {
-    _this->_impl_.meshid_ = from._impl_.meshid_;
-  }
-  if (from._internal_chunkid() != 0) {
-    _this->_impl_.chunkid_ = from._impl_.chunkid_;
-  }
-  if (from._internal_numchunks() != 0) {
-    _this->_impl_.numchunks_ = from._impl_.numchunks_;
-  }
-  if (from._internal_numvertices() != 0) {
-    _this->_impl_.numvertices_ = from._impl_.numvertices_;
-  }
+  _this->_internal_mutable_vertices()->MergeFrom(
+      from._internal_vertices());
+  _this->_internal_mutable_indices()->MergeFrom(from._internal_indices());
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1600,13 +1537,8 @@ void MeshReply::CopyFrom(const MeshReply& from) {
 void MeshReply::InternalSwap(MeshReply* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.chunkvertices_.InternalSwap(&other->_impl_.chunkvertices_);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.numvertices_)
-      + sizeof(MeshReply::_impl_.numvertices_)
-      - PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.meshid_)>(
-          reinterpret_cast<char*>(&_impl_.meshid_),
-          reinterpret_cast<char*>(&other->_impl_.meshid_));
+  _impl_.vertices_.InternalSwap(&other->_impl_.vertices_);
+  _impl_.indices_.InternalSwap(&other->_impl_.indices_);
 }
 
 ::google::protobuf::Metadata MeshReply::GetMetadata() const {

@@ -140,8 +140,10 @@
     <ClCompile Include="MeshLoader.cpp" />
     <ClCompile Include="MeshManager.cpp" />
     <ClCompile Include="PoolWorkerThread.cpp" />
+    <ClCompile Include="SceneClient.cpp" />
     <ClCompile Include="SceneData.grpc.pb.cc" />
     <ClCompile Include="SceneData.pb.cc" />
+    <ClCompile Include="SceneServer.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="Time.cpp" />
@@ -166,8 +168,10 @@
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="MeshManager.h" />
     <ClInclude Include="PoolWorkerThread.h" />
+    <ClInclude Include="SceneClient.h" />
     <ClInclude Include="SceneData.grpc.pb.h" />
     <ClInclude Include="SceneData.pb.h" />
+    <ClInclude Include="SceneServer.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="ThreadPool.h" />
