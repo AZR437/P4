@@ -41,8 +41,7 @@ message MeshRequest
 // The response message containing the progress of the item loading
 message MeshReply 
 {
-	repeated Float3 vertices = 1; 
-	repeated int32 indices = 2;
+	bytes data = 1;
 	
 }
 

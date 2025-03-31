@@ -129,6 +129,33 @@ struct MeshRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MeshRequestDefaultTypeInternal _MeshRequest_default_instance_;
 
+inline constexpr MeshReply::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MeshReply::MeshReply(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct MeshReplyDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MeshReplyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MeshReplyDefaultTypeInternal() {}
+  union {
+    MeshReply _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MeshReplyDefaultTypeInternal _MeshReply_default_instance_;
+
 inline constexpr Float3::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : x_{0},
@@ -183,33 +210,6 @@ struct SceneReplyDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SceneReplyDefaultTypeInternal _SceneReply_default_instance_;
-
-inline constexpr MeshReply::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : vertices_{},
-        indices_{},
-        _indices_cached_byte_size_{0},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR MeshReply::MeshReply(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct MeshReplyDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MeshReplyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MeshReplyDefaultTypeInternal() {}
-  union {
-    MeshReply _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MeshReplyDefaultTypeInternal _MeshReply_default_instance_;
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_SceneData_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -263,8 +263,7 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::MeshReply, _impl_.vertices_),
-        PROTOBUF_FIELD_OFFSET(::MeshReply, _impl_.indices_),
+        PROTOBUF_FIELD_OFFSET(::MeshReply, _impl_.data_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::SceneRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -294,8 +293,8 @@ static const ::_pbi::MigrationSchema
         {18, -1, -1, sizeof(::Float3)},
         {29, -1, -1, sizeof(::MeshRequest)},
         {38, -1, -1, sizeof(::MeshReply)},
-        {48, -1, -1, sizeof(::SceneRequest)},
-        {57, -1, -1, sizeof(::SceneReply)},
+        {47, -1, -1, sizeof(::SceneRequest)},
+        {56, -1, -1, sizeof(::SceneReply)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::_ValidationRequest_default_instance_._instance,
@@ -312,23 +311,22 @@ const char descriptor_table_protodef_SceneData_2eproto[] ABSL_ATTRIBUTE_SECTION_
     "\n\002ID\030\001 \001(\t\"!\n\017ValidationReply\022\016\n\006exists\030"
     "\001 \001(\010\")\n\006Float3\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\t\n"
     "\001z\030\003 \001(\002\" \n\013MeshRequest\022\021\n\tfile_name\030\001 \001"
-    "(\t\"7\n\tMeshReply\022\031\n\010vertices\030\001 \003(\0132\007.Floa"
-    "t3\022\017\n\007indices\030\002 \003(\005\"\037\n\014SceneRequest\022\017\n\007s"
-    "ceneID\030\001 \001(\005\"J\n\nSceneReply\022\017\n\007sceneID\030\001 "
-    "\001(\005\022\017\n\007meshIDs\030\002 \003(\005\022\032\n\tpositions\030\003 \003(\0132"
-    "\007.Float32p\n\nMeshStream\0226\n\014ValidateMesh\022\022"
-    ".ValidationRequest\032\020.ValidationReply\"\000\022*"
-    "\n\nStreamMesh\022\014.MeshRequest\032\n.MeshReply\"\000"
-    "0\0012o\n\tSceneLoad\0227\n\rValidateScene\022\022.Valid"
-    "ationRequest\032\020.ValidationReply\"\000\022)\n\tLoad"
-    "Scene\022\r.SceneRequest\032\013.SceneReply\"\000b\006pro"
-    "to3"
+    "(\t\"\031\n\tMeshReply\022\014\n\004data\030\001 \001(\014\"\037\n\014SceneRe"
+    "quest\022\017\n\007sceneID\030\001 \001(\005\"J\n\nSceneReply\022\017\n\007"
+    "sceneID\030\001 \001(\005\022\017\n\007meshIDs\030\002 \003(\005\022\032\n\tpositi"
+    "ons\030\003 \003(\0132\007.Float32p\n\nMeshStream\0226\n\014Vali"
+    "dateMesh\022\022.ValidationRequest\032\020.Validatio"
+    "nReply\"\000\022*\n\nStreamMesh\022\014.MeshRequest\032\n.M"
+    "eshReply\"\0000\0012o\n\tSceneLoad\0227\n\rValidateSce"
+    "ne\022\022.ValidationRequest\032\020.ValidationReply"
+    "\"\000\022)\n\tLoadScene\022\r.SceneRequest\032\013.SceneRe"
+    "ply\"\000b\006proto3"
 };
 static ::absl::once_flag descriptor_table_SceneData_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_SceneData_2eproto = {
     false,
     false,
-    563,
+    533,
     descriptor_table_protodef_SceneData_2eproto,
     "SceneData.proto",
     &descriptor_table_SceneData_2eproto_once,
@@ -1287,9 +1285,7 @@ MeshReply::MeshReply(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE MeshReply::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::MeshReply& from_msg)
-      : vertices_{visibility, arena, from.vertices_},
-        indices_{visibility, arena, from.indices_},
-        _indices_cached_byte_size_{0},
+      : data_(arena, from.data_),
         _cached_size_{0} {}
 
 MeshReply::MeshReply(
@@ -1311,9 +1307,7 @@ MeshReply::MeshReply(
 inline PROTOBUF_NDEBUG_INLINE MeshReply::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : vertices_{visibility, arena},
-        indices_{visibility, arena},
-        _indices_cached_byte_size_{0},
+      : data_(arena),
         _cached_size_{0} {}
 
 inline void MeshReply::SharedCtor(::_pb::Arena* arena) {
@@ -1327,6 +1321,7 @@ inline void MeshReply::SharedDtor(MessageLite& self) {
   MeshReply& this_ = static_cast<MeshReply&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.data_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -1335,24 +1330,8 @@ inline void* MeshReply::PlacementNew_(const void*, void* mem,
   return ::new (mem) MeshReply(arena);
 }
 constexpr auto MeshReply::InternalNewImpl_() {
-  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.vertices_) +
-          decltype(MeshReply::_impl_.vertices_)::
-              InternalGetArenaOffset(
-                  ::google::protobuf::Message::internal_visibility()),
-      PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.indices_) +
-          decltype(MeshReply::_impl_.indices_)::
-              InternalGetArenaOffset(
-                  ::google::protobuf::Message::internal_visibility()),
-  });
-  if (arena_bits.has_value()) {
-    return ::google::protobuf::internal::MessageCreator::ZeroInit(
-        sizeof(MeshReply), alignof(MeshReply), *arena_bits);
-  } else {
-    return ::google::protobuf::internal::MessageCreator(&MeshReply::PlacementNew_,
-                                 sizeof(MeshReply),
-                                 alignof(MeshReply));
-  }
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MeshReply),
+                                            alignof(MeshReply));
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
@@ -1382,17 +1361,17 @@ const ::google::protobuf::internal::ClassData* MeshReply::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 0, 2> MeshReply::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> MeshReply::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -1400,24 +1379,18 @@ const ::_pbi::TcParseTable<1, 2, 1, 0, 2> MeshReply::_table_ = {
     ::_pbi::TcParser::GetTable<::MeshReply>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // repeated int32 indices = 2;
-    {::_pbi::TcParser::FastV32P1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.indices_)}},
-    // repeated .Float3 vertices = 1;
-    {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.vertices_)}},
+    // bytes data = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.data_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // repeated .Float3 vertices = 1;
-    {PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.vertices_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated int32 indices = 2;
-    {PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.indices_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::Float3>()},
-  }}, {{
+    // bytes data = 1;
+    {PROTOBUF_FIELD_OFFSET(MeshReply, _impl_.data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
   }},
 };
 
@@ -1428,8 +1401,7 @@ PROTOBUF_NOINLINE void MeshReply::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.vertices_.Clear();
-  _impl_.indices_.Clear();
+  _impl_.data_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1448,24 +1420,10 @@ PROTOBUF_NOINLINE void MeshReply::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // repeated .Float3 vertices = 1;
-          for (unsigned i = 0, n = static_cast<unsigned>(
-                                   this_._internal_vertices_size());
-               i < n; i++) {
-            const auto& repfield = this_._internal_vertices().Get(i);
-            target =
-                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                    1, repfield, repfield.GetCachedSize(),
-                    target, stream);
-          }
-
-          // repeated int32 indices = 2;
-          {
-            int byte_size = this_._impl_._indices_cached_byte_size_.Get();
-            if (byte_size > 0) {
-              target = stream->WriteInt32Packed(
-                  2, this_._internal_indices(), byte_size, target);
-            }
+          // bytes data = 1;
+          if (!this_._internal_data().empty()) {
+            const std::string& _s = this_._internal_data();
+            target = stream->WriteBytesMaybeAliased(1, _s, target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1491,21 +1449,11 @@ PROTOBUF_NOINLINE void MeshReply::Clear() {
           // Prevent compiler warnings about cached_has_bits being unused
           (void)cached_has_bits;
 
-          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated .Float3 vertices = 1;
-            {
-              total_size += 1UL * this_._internal_vertices_size();
-              for (const auto& msg : this_._internal_vertices()) {
-                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
-              }
-            }
-            // repeated int32 indices = 2;
-            {
-              total_size +=
-                  ::_pbi::WireFormatLite::Int32SizeWithPackedTagSize(
-                      this_._internal_indices(), 1,
-                      this_._impl_._indices_cached_byte_size_);
+            // bytes data = 1;
+            if (!this_._internal_data().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                              this_._internal_data());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1520,9 +1468,9 @@ void MeshReply::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::googl
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_vertices()->MergeFrom(
-      from._internal_vertices());
-  _this->_internal_mutable_indices()->MergeFrom(from._internal_indices());
+  if (!from._internal_data().empty()) {
+    _this->_internal_set_data(from._internal_data());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1536,9 +1484,10 @@ void MeshReply::CopyFrom(const MeshReply& from) {
 
 void MeshReply::InternalSwap(MeshReply* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.vertices_.InternalSwap(&other->_impl_.vertices_);
-  _impl_.indices_.InternalSwap(&other->_impl_.indices_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
 }
 
 ::google::protobuf::Metadata MeshReply::GetMetadata() const {
