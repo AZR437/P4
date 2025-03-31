@@ -107,6 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,18 +133,27 @@
   <ItemGroup>
     <ClCompile Include="AGameObject.cpp" />
     <ClCompile Include="BaseRunner.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CustomStyles.cpp" />
+    <ClCompile Include="DirLight.cpp" />
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="IETThread.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshDataCache.cpp" />
     <ClCompile Include="MeshLoader.cpp" />
     <ClCompile Include="MeshManager.cpp" />
+    <ClCompile Include="OrthoCamera.cpp" />
+    <ClCompile Include="PerspectiveCamera.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="PoolWorkerThread.cpp" />
     <ClCompile Include="SceneClient.cpp" />
     <ClCompile Include="SceneData.grpc.pb.cc" />
     <ClCompile Include="SceneData.pb.cc" />
     <ClCompile Include="SceneServer.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
+    <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="Time.cpp" />
@@ -158,20 +168,29 @@
   <ItemGroup>
     <ClInclude Include="AGameObject.h" />
     <ClInclude Include="BaseRunner.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CustomStyles.h" />
+    <ClInclude Include="DirLight.h" />
     <ClInclude Include="EBO.h" />
     <ClInclude Include="IETThread.h" />
     <ClInclude Include="IExecutionEvent.h" />
     <ClInclude Include="IWorkerAction.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshDataCache.h" />
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="MeshManager.h" />
+    <ClInclude Include="OrthoCamera.h" />
+    <ClInclude Include="PerspectiveCamera.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="PoolWorkerThread.h" />
     <ClInclude Include="SceneClient.h" />
     <ClInclude Include="SceneData.grpc.pb.h" />
     <ClInclude Include="SceneData.pb.h" />
     <ClInclude Include="SceneServer.h" />
+    <ClInclude Include="ShaderManager.h" />
+    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="SpotLight.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="ThreadPool.h" />
@@ -185,7 +204,19 @@
     <ClInclude Include="VFShaders.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Default.frag">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="Default.vert">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
     <None Include="SceneData.proto" />
+    <None Include="Skybox.frag">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="Skybox.vert">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

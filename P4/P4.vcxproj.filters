@@ -31,6 +31,9 @@
     <Filter Include="System\Mesh">
       <UniqueIdentifier>{4d2d5f63-ca8b-4c71-990e-7cc9261c7902}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{e02f93bd-22ac-4938-b54b-5797fc090f3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AUIScreen.cpp">
@@ -105,10 +108,49 @@
     <ClCompile Include="MeshDataCache.cpp">
       <Filter>System\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="DirLight.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="OrthoCamera.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="PerspectiveCamera.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLight.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderManager.cpp">
+      <Filter>System\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SceneData.proto">
       <Filter>Proto</Filter>
+    </None>
+    <None Include="Default.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Default.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Skybox.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Skybox.vert">
+      <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +234,33 @@
     </ClInclude>
     <ClInclude Include="MeshDataCache.h">
       <Filter>System\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="DirLight.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="OrthoCamera.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="PerspectiveCamera.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLight.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderManager.h">
+      <Filter>System\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
