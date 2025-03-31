@@ -28,6 +28,9 @@
     <Filter Include="System\Managers">
       <UniqueIdentifier>{7e5e696c-e982-4fd9-aa4f-9586fec75797}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Mesh">
+      <UniqueIdentifier>{4d2d5f63-ca8b-4c71-990e-7cc9261c7902}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AUIScreen.cpp">
@@ -66,9 +69,6 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="MeshLoader.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="IETThread.cpp">
       <Filter>Thread</Filter>
     </ClCompile>
@@ -77,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="PoolWorkerThread.cpp">
       <Filter>Thread</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshDataCache.cpp">
-      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="SceneClient.cpp">
       <Filter>System\Client</Filter>
@@ -101,6 +98,12 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshLoader.cpp">
+      <Filter>System\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshDataCache.cpp">
+      <Filter>System\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,9 +154,6 @@
     <ClInclude Include="Mesh.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="MeshLoader.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="IETThread.h">
       <Filter>Thread</Filter>
     </ClInclude>
@@ -168,9 +168,6 @@
     </ClInclude>
     <ClInclude Include="PoolWorkerThread.h">
       <Filter>Thread</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshDataCache.h">
-      <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="SceneClient.h">
       <Filter>System\Client</Filter>
@@ -189,6 +186,12 @@
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshLoader.h">
+      <Filter>System\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshDataCache.h">
+      <Filter>System\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
