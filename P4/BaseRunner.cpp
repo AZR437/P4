@@ -37,7 +37,7 @@ BaseRunner::BaseRunner()
     if (!glfwInit())
         exit(0);
 
-    this->window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Cao, Cordero, ShuTu", NULL, NULL);
+    this->window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Arquillo, Cordero", NULL, NULL);
     if (!this->window)
     {
         glfwTerminate();

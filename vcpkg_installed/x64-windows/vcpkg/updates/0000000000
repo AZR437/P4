@@ -1,8 +1,9 @@
-Package: imgui
-Version: 1.91.5
+Package: nlohmann-json
+Version: 3.11.3
+Port-Version: 1
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: cc2a9bd47a4eb781c06ebedb5ee83ecbaa8369489b6db487fe2ebb95c5d32cf3
-Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
-Status: purge ok half-installed
+Abi: afedfcc07db9a188699b13461c87d73ce341175f70e653951382e20bb750a728
+Description: JSON for Modern C++
+Status: install ok half-installed

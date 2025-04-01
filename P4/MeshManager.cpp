@@ -12,6 +12,7 @@ Mesh* MeshManager::getMesh(String meshName)
 MeshManager::MeshManager()
 {
     this->cache = new MeshDataCache();
+    this->vao = new VAO();
     this->threadPool = new ThreadPool("MeshLoaderPool", 8);
     this->threadPool->startScheduler();
 
@@ -38,9 +39,9 @@ MeshManager* MeshManager::getInstance() {
     return sharedInstance;
 }
 
-void MeshManager::loadMeshDataAsync(String path)
+void MeshManager::loadMeshDataAsync(String name,String data)
 {
-    MeshLoader* meshLoader = new MeshLoader(path, this->cache);
+    MeshLoader* meshLoader = new MeshLoader(name, data, this->cache);
     this->threadPool->scheduleTask(meshLoader);
 }
 

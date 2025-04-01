@@ -1,13 +1,13 @@
-//#include "SceneServer.h"
-//#include "SceneClient.h"
+#include "SceneServer.h"
+#include "SceneClient.h"
 #include "BaseRunner.h"
 
 #define Client
 #ifdef Server
 int main()
 {
-	//SceneServer server;
-	server.run();
+	SceneServer server;
+	server.start();
 	while (true)
 	{
 
@@ -17,8 +17,9 @@ int main()
 #else
 int main()
 {
-	//SceneClient::runClient();
+	
 	BaseRunner baseRunner = BaseRunner();
+	SceneClient::runClient();
 	baseRunner.run();
 
 	return 0;

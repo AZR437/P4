@@ -2,28 +2,18 @@ syntax = "proto3";
 
 service MeshStream
 {
-	//checks if mesh exist
-	rpc ValidateMesh(ValidationRequest) returns(ValidationReply) {}
+	/
 	//Loads an item
 	rpc StreamMesh(MeshRequest) returns(stream MeshReply) {}
 }
 
 service SceneLoad
 {	
-	//checks if scene exist
-	rpc ValidateScene(ValidationRequest) returns(ValidationReply) {}
+	
 	//Loads a scene
 	rpc LoadScene(SceneRequest) returns(SceneReply) {}
 }
 
-message ValidationRequest
-{
-	string ID = 1;
-}
-message ValidationReply
-{
-	bool exists = 1;
-}
 
 message Float3 
 {
@@ -47,12 +37,12 @@ message MeshReply
 
 message SceneRequest 
 {
-	int32 sceneID = 1;
+	string sceneID = 1;
 }
 
 message SceneReply
 {
-	int32 sceneID = 1;
-	repeated int32 meshIDs = 2;
+	string sceneID = 1;
+	repeated string meshIDs = 2;
 	repeated Float3 positions = 3;
 }

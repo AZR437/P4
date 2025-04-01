@@ -5,9 +5,10 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-MeshLoader::MeshLoader(std::string path, MeshDataCache* cache)
+MeshLoader::MeshLoader(std::string name, std::string data, MeshDataCache* cache)
 {
-    this->path = "C:/Users/theas/Documents/Acads/P4/P4/Assets" + path;
+    this->name = name;
+    this->data = data;
     this->cache = cache;
 }
 
@@ -18,6 +19,7 @@ MeshLoader::~MeshLoader()
 
 void MeshLoader::onStartTask()
 {
+    std::istringstream objStream(this->data);
     tinyobj::attrib_t attributes;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> material;
@@ -29,7 +31,7 @@ void MeshLoader::onStartTask()
         &material,
         &warning,
         &error,
-        this->path.c_str()
+        &objStream
     );
 
     if (!success)
@@ -111,8 +113,8 @@ void MeshLoader::onStartTask()
             }
         }
 
-        this->cache->cacheMeshData(this->path, vertexData);
-        MeshManager::getInstance()->loadMeshFromCache(this->path);
+        this->cache->cacheMeshData(this->name, vertexData);
+        MeshManager::getInstance()->loadMeshFromCache(this->name);
     }
 
     delete this;

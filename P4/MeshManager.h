@@ -17,7 +17,7 @@ public:
     typedef std::unordered_map<String, Mesh*> HashTable;
 
     static MeshManager* getInstance();
-    void loadMeshDataAsync(String path);
+    void loadMeshDataAsync(String name, String data);
     void loadMeshFromCache(String path);
     Mesh* getMesh(String path);
 

@@ -10,14 +10,15 @@
 class MeshLoader : public IWorkerAction
 {
 public:
-	MeshLoader(std::string path, MeshDataCache* cache);
+	MeshLoader(std::string name, std::string data, MeshDataCache* cache);
 	~MeshLoader();
 
 public:
 	virtual void onStartTask() override;
 
 private:
-	std::string path;
+	std::string name;
+	std::string data;
 	MeshDataCache* cache;
 };
 

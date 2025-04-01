@@ -7,6 +7,7 @@
 #include <grpcpp/health_check_service_interface.h>
 #include "MeshLoader.h"
 #include <fstream>
+
 SceneServer::SceneServer()
 {
 }
@@ -15,7 +16,7 @@ void SceneServer::run()
 	RunServer(50051);
 }
 
-grpc::Status SceneServer::StreamMesh(grpc::ServerContext* context, const MeshRequest* request, grpc::ServerWriter<MeshReply>* writer)
+grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const MeshRequest* request, grpc::ServerWriter<MeshReply>* writer)
 {
 	std::string path = "C:/Users/theas/Documents/Acads/P4/P4/Assets/";
 	std::ifstream file(path + request->file_name(), std::ios::in);
@@ -36,12 +37,14 @@ grpc::Status SceneServer::StreamMesh(grpc::ServerContext* context, const MeshReq
    
     return grpc::Status::OK;
 }
-
-
+grpc::Status SceneLoadImpl::LoadScene(grpc::ServerContext* context, const SceneRequest* request, SceneReply* reply)
+{
+	return grpc::Status::OK;
+}
 void SceneServer::RunServer(uint16_t port)
 {
 	std::string serverAddress = absl::StrFormat("localhost:%d", port);
-	SceneServer service;
+	MeshStreamImpl service;
 
 	grpc::EnableDefaultHealthCheckService(true);
 	grpc::reflection::InitProtoReflectionServerBuilderPlugin();

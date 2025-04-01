@@ -4,15 +4,21 @@
 #include "SceneData.grpc.pb.h"
 #include "IETThread.h"
 #include "ThreadPool.h"
-class SceneServer final: public MeshStream::Service, public IETThread
+class MeshStreamImpl final :public MeshStream::Service
 {
-private:
-	ThreadPool* threadPool;
+	grpc::Status StreamMesh(grpc::ServerContext* context, const MeshRequest* request, grpc::ServerWriter<MeshReply>* writer) override;
+};
+class SceneLoadImpl final :public SceneLoad::Service
+{
+	grpc::Status LoadScene(grpc::ServerContext* context, const SceneRequest* request, SceneReply* reply) override;
+};
+class SceneServer final: public IETThread
+{
 public:
 	SceneServer();
 
 	void run() override;
-	grpc::Status StreamMesh(grpc::ServerContext* context, const MeshRequest* request, grpc::ServerWriter<MeshReply>* writer) override;
+	
 	static void RunServer(uint16_t port);
 };
 
