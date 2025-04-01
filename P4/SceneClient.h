@@ -14,6 +14,14 @@ public:
 private:
 	std::unique_ptr<MeshStream::Stub> stub_;
 };
+class SceneLoadClient
+{
+public:
+	SceneLoadClient(std::shared_ptr<grpc::ChannelInterface> channel);
+	std::string LoadScene(std::string sceneName);
+private:
+	std::unique_ptr<SceneLoad::Stub> stub_;
+};
 class SceneClient
 {
 public:

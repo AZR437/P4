@@ -30,12 +30,46 @@ std::string StreamMeshClient::StreamMesh(std::string objName)
     return "Loading of OBJ Data Done";
 }
 
+
+
+SceneLoadClient::SceneLoadClient(std::shared_ptr<grpc::ChannelInterface> channel)
+{
+    this->stub_ = SceneLoad::NewStub(channel);
+}
+
+std::string SceneLoadClient::LoadScene(std::string sceneName)
+{
+    SceneRequest request;
+    request.set_sceneid(sceneName);
+
+    SceneReply reply;
+    ClientContext context;
+
+    Status status = this->stub_->LoadScene(&context, request, &reply);
+    if (status.ok()) {
+        std::cout << "Loaded Scene: " << sceneName << std::endl;
+        std::cout << "Meshes in scene:" << std::endl;
+        for (int i = 0; i < reply.meshids_size(); ++i) {
+            std::string mesh_id = reply.meshids(i);
+            std::cout << "Mesh ID: " << mesh_id << " at Position: "
+                << "x: " << reply.positions(i).x() << ", "
+                << "y: " << reply.positions(i).y() << ", "
+                << "z: " << reply.positions(i).z() << std::endl;
+            StreamMeshClient streamMeshClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
+            std::string reply = streamMeshClient.StreamMesh(mesh_id);
+            std::cout << "Mesh received: " << reply << std::endl;
+        }
+
+        return "Scene Loading done";  
+    }
+    else
+    {
+        return "Scene Loading failed";
+    }
+}
 void SceneClient::runClient()
 {
-    StreamMeshClient streamMeshClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
-
-    std::string obj("Bunny");
-    std::string reply = streamMeshClient.StreamMesh(obj + ".obj");
-    std::cout << "Mesh received: " << reply << std::endl;
+   SceneLoadClient client(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
+   client.LoadScene("Scene_1");
 
 }

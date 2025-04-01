@@ -18,8 +18,8 @@ void SceneServer::run()
 
 grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const MeshRequest* request, grpc::ServerWriter<MeshReply>* writer)
 {
-	std::string path = "C:/Users/theas/Documents/Acads/P4/P4/Assets/";
-	std::ifstream file(path + request->file_name(), std::ios::in);
+	std::string path = "C:/Users/theas/Documents/Acads/P4/P4/Assets/" + request->file_name() + ".obj";
+	std::ifstream file(path, std::ios::in);
 	if (!file.is_open()) {
 		return grpc::Status(grpc::StatusCode::NOT_FOUND, "File not found");
 	}
@@ -37,22 +37,62 @@ grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const Mesh
    
     return grpc::Status::OK;
 }
+bool SceneLoadImpl::loadSceneFromFile(const std::string& scene_id, std::vector<std::string>& meshIDs, std::vector<Position>& positions)
+{
+	std::string path = "C:/Users/theas/Documents/Acads/P4/P4/Scenes/" + scene_id + ".json";
+	std::ifstream file(path, std::ios::in);
+	if (!file.is_open()) {
+		std::cerr << "Failed to open scene file: " << path << std::endl;
+		return false;
+	}
+
+	json j;
+	file >> j;
+
+	meshIDs = j["meshIDs"].get<std::vector<std::string>>();
+
+	positions.clear();
+	for (const auto& pos : j["positions"]) {
+		positions.push_back({ pos["x"], pos["y"], pos["z"] });
+	}
+	return true;
+}
 grpc::Status SceneLoadImpl::LoadScene(grpc::ServerContext* context, const SceneRequest* request, SceneReply* reply)
 {
+	std::vector<std::string> meshIDs;
+	std::vector<Position> positions;
+	if (!loadSceneFromFile(request->sceneid(), meshIDs, positions)) {
+		return grpc::Status(grpc::StatusCode::NOT_FOUND, "Scene not found");
+	}
+
+	for (const auto& meshID : meshIDs) {
+		reply->add_meshids(meshID);
+	}
+
+	for (const auto& pos : positions) {
+		Float3* position = reply->add_positions();
+		position->set_x(pos.x);
+		position->set_y(pos.y);
+		position->set_z(pos.z);
+	}
+
 	return grpc::Status::OK;
 }
 void SceneServer::RunServer(uint16_t port)
 {
 	std::string serverAddress = absl::StrFormat("localhost:%d", port);
-	MeshStreamImpl service;
+	MeshStreamImpl mesh_service;
+	SceneLoadImpl scene_load_impl;
 
 	grpc::EnableDefaultHealthCheckService(true);
 	grpc::reflection::InitProtoReflectionServerBuilderPlugin();
+
 	grpc::ServerBuilder builder;
 
 	builder.AddListeningPort(serverAddress, grpc::InsecureServerCredentials());
 
-	builder.RegisterService(&service);
+	builder.RegisterService(&mesh_service);
+	builder.RegisterService(&scene_load_impl);
 	// Finally assemble the server.
 	std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
 	std::cout << "Server listening on " << serverAddress << std::endl;

@@ -17,7 +17,6 @@ int main()
 #else
 int main()
 {
-	
 	BaseRunner baseRunner = BaseRunner();
 	SceneClient::runClient();
 	baseRunner.run();
