@@ -2,7 +2,6 @@
 #include <vector>
 #include <glad/glad.h>
 #include "VFShaders.h"
-#include "Camera.h"
 
 class Skybox
 {
@@ -43,12 +42,8 @@ private:
 
 public:
     Skybox(VFShaders* Shaders, GLuint* texture);
+    void draw();
 
-public:
-    void draw(Camera* Cam);
-    void buffer();
-
-public:
     void setShaders(VFShaders* Shaders);
 
     std::vector<GLfloat> getVertices();

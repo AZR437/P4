@@ -7,6 +7,7 @@ public:
 	typedef std::vector<AUIScreen*> UIList;
 	typedef std::unordered_map<std::string, AUIScreen*> UITable;
 
+	static UIManager* getInstance();
 	static void initialize(GLFWwindow* window);
 	static void destroy();
 	void newFrame();
@@ -18,7 +19,6 @@ public:
 
 private:
 	UIManager(GLFWwindow* window);
-	~UIManager();
 	UIManager(UIManager const&) {};
 	UIManager& operator=(UIManager const&) {};
 

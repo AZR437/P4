@@ -49,6 +49,12 @@ GLuint TextureManager::load(const char* path, bool flipVert) {
     return this->textureMap[path];
 }
 
+GLuint TextureManager::loadSkybox(const char* directory)
+{
+
+    return GLuint();
+}
+
 TextureManager* TextureManager::sharedInstance = NULL;
 
 TextureManager* TextureManager::getInstance() {

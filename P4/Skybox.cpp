@@ -1,20 +1,22 @@
 #include "Skybox.h"
 #include "iostream"
+#include "CameraManager.h"
 
 Skybox::Skybox(VFShaders* Shaders, GLuint* texture) {
     this->texture = texture;
     this->Shaders = Shaders;
 }
 
-void Skybox::draw(Camera* Cam) {
+void Skybox::draw() {
+    Camera* cam = CameraManager::getInstance()->getCamera();
     glm::mat4 view = glm::mat4(1.0f);
-    view = glm::mat4(glm::mat3(Cam->getView()));
+    view = glm::mat4(glm::mat3(cam->getView()));
 
-    this->Shaders->setMat4("projection", Cam->getProjection());
+    this->Shaders->setMat4("projection", cam->getProjection());
     this->Shaders->setMat4("view", view);
-}
 
-void Skybox::buffer() {
+    //bind VAO
+
     glDepthMask(GL_FALSE);
     glDepthFunc(GL_LEQUAL);
 

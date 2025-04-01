@@ -196,3 +196,13 @@ Multi-Arch: same
 Description: Build with docking support
 Status: install ok installed
 
+Package: nlohmann-json
+Version: 3.11.3
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: afedfcc07db9a188699b13461c87d73ce341175f70e653951382e20bb750a728
+Description: JSON for Modern C++
+Status: install ok installed
+

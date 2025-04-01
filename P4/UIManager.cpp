@@ -4,7 +4,7 @@
 #include "imgui_impl_opengl3.h"
 //#include "../GraphicsEngine/GraphicsEngine.h"
 //#include "ProfilerScreen.h"
-//#include "MenuScreen.h"
+#include "MenuScreen.h"
 //#include "InspectorScreen.h"
 //#include "OutlinerScreen.h"
 //#include "CameraViewportScreen.h"
@@ -16,6 +16,11 @@
 //#include "HUDScreen.h"
 
 UIManager* UIManager::instance = NULL;
+
+UIManager* UIManager::getInstance()
+{
+	return instance;
+}
 
 void UIManager::initialize(GLFWwindow* window)
 {
@@ -52,7 +57,7 @@ void UIManager::drawAllUI()
 	for (int i = 0; i < this->uiList.size(); i++)
 	{
 		if (this->uiList[i]->enabled)
-			this->uiList[i]->DrawUI();
+			this->uiList[i]->drawUI();
 	}
 
 	ImGui::Render();
@@ -101,9 +106,9 @@ UIManager::UIManager(GLFWwindow* window)
 
 	UINames uiNames;
 
-	//MenuScreen* menuScreen = new MenuScreen();
-	//this->uiTable[uiNames.MENU_SCREEN] = menuScreen;
-	//this->uiList.push_back(menuScreen);
+	MenuScreen* menuScreen = new MenuScreen();
+	this->uiTable[uiNames.MENU_SCREEN] = menuScreen;
+	this->uiList.push_back(menuScreen);
 
 	//HUDScreen* hudScreen = new HUDScreen();
 	//this->uiTable[uiNames.HUD_SCREEN] = hudScreen;
@@ -144,9 +149,4 @@ UIManager::UIManager(GLFWwindow* window)
 	//ConsoleScreen* consoleScreen = new ConsoleScreen();
 	//this->uiTable[uiNames.CONSOLE_SCREEN] = consoleScreen;
 	//this->uiList.push_back(consoleScreen);	
-}
-
-UIManager::~UIManager()
-{
-
 }

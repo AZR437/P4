@@ -3,7 +3,7 @@ Version: 0.1.36
 Depends: egl-registry, opengl-registry, vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: e3ea1f6dbafb9ef79cc9b7988dd7932bd43f6af0d707a7dc6455cdd9c46b4f77
+Abi: 11b8fae687174fd94dd834a88fbaf622e6bdebe56dc65ac183ecd695ca402c59
 Description: Multi-Language Vulkan/GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs.
 Default-Features: loader
 

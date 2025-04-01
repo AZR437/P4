@@ -34,6 +34,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{e02f93bd-22ac-4938-b54b-5797fc090f3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Utility">
+      <UniqueIdentifier>{5419d6e0-aaaf-43e3-810b-dda73c526e60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AUIScreen.cpp">
@@ -135,28 +138,34 @@
     <ClCompile Include="ShaderManager.cpp">
       <Filter>System\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="MenuScreen.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>System\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtils.cpp">
+      <Filter>System\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SceneData.proto">
       <Filter>Proto</Filter>
     </None>
-    <None Include="Default.frag">
+    <None Include="Shaders\Default.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Default.vert">
+    <None Include="Shaders\Default.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Skybox.frag">
+    <None Include="Shaders\Skybox.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Skybox.vert">
+    <None Include="Shaders\Skybox.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UINames.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="AUIScreen.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -261,6 +270,18 @@
     </ClInclude>
     <ClInclude Include="ShaderManager.h">
       <Filter>System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="UINames.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScreen.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtils.h">
+      <Filter>System\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

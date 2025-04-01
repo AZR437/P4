@@ -10,7 +10,7 @@ AUIScreen::~AUIScreen()
 
 }
 
-std::string AUIScreen::GetName()
+std::string AUIScreen::getName()
 {
     return this->name;
 }

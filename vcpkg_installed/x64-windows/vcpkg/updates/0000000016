@@ -1,0 +1,8 @@
+Package: grpc
+Version: 1.68.1
+Depends: abseil, c-ares, openssl, protobuf, re2, utf8-range, vcpkg-cmake, vcpkg-cmake-config, zlib
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 1a47bfd311c248d8f5108b1e64f95eeb32c8b7c06d66c0b0e669dbd66686e7de
+Description: gRPC is a modern, open source, high-performance remote procedure call (RPC) framework that can run anywhere. gRPC enables client and server applications to communicate transparently, and simplifies the building of connected systems.
+Status: purge ok not-installed

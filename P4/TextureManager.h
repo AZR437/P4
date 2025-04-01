@@ -11,6 +11,7 @@ public:
 
     static TextureManager* getInstance();
     GLuint load(const char* path, bool flipVert = false);
+    GLuint loadSkybox(const char* directory);
 
 private:
     TextureManager() {}

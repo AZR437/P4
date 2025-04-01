@@ -1,0 +1,8 @@
+Package: protobuf
+Version: 5.29.1
+Depends: abseil, utf8-range, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 91ede8cb58ecff48af2c13cb6a0bc35cf2c8354df10f21ceae38d65a6a2072ab
+Description: Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data.
+Status: install ok half-installed

@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/abseil-x64-windows-20240722.0-7f28b015-23f6-4ebb-8d2a-3d457b327296",
-  "name": "abseil:x64-windows@20240722.0 e12a12fa2aab38a251a87b605265f2461e8a6f96c325d21d110a2f1d22948291",
+  "documentNamespace": "https://spdx.org/spdxdocs/abseil-x64-windows-20240722.0-a57ca947-540d-4917-bf70-3f99d69328f0",
+  "name": "abseil:x64-windows@20240722.0 34c81711c98725672a87ee5bab953d8e4585dcca00692f522e21c9cbf2176c48",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-2024-12-09-1005b78fa1bf1dde1a20c2734cba4ea61ca94d9a"
     ],
-    "created": "2025-03-25T05:36:44Z"
+    "created": "2025-04-01T08:59:06Z"
   },
   "relationships": [
     {
@@ -59,7 +59,7 @@
     {
       "name": "abseil:x64-windows",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "e12a12fa2aab38a251a87b605265f2461e8a6f96c325d21d110a2f1d22948291",
+      "versionInfo": "34c81711c98725672a87ee5bab953d8e4585dcca00692f522e21c9cbf2176c48",
       "downloadLocation": "NONE",
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
@@ -83,7 +83,7 @@
   ],
   "files": [
     {
-      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/95ed5fee53b8698ac2cc6687f470e6fa76474a3a/portfile.cmake",
+      "fileName": "./C:/Users/vaugh/AppData/Local/vcpkg/registries/git-trees/95ed5fee53b8698ac2cc6687f470e6fa76474a3a/portfile.cmake",
       "SPDXID": "SPDXRef-file-0",
       "checksums": [
         {
@@ -95,7 +95,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./C:/Users/theas/AppData/Local/vcpkg/registries/git-trees/95ed5fee53b8698ac2cc6687f470e6fa76474a3a/vcpkg.json",
+      "fileName": "./C:/Users/vaugh/AppData/Local/vcpkg/registries/git-trees/95ed5fee53b8698ac2cc6687f470e6fa76474a3a/vcpkg.json",
       "SPDXID": "SPDXRef-file-1",
       "checksums": [
         {

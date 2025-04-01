@@ -3,5 +3,5 @@ Version: 2.0.0rc13
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 70b496050e4fcd4532429194692995e982fa6c1ff5659c906221308c7387f22b
+Abi: d8c8c955780167d06ca465dab6a6ee6490f81234c6deabbb1a9f39a715a83e6c
 Description: Tiny but powerful single file wavefront obj loader

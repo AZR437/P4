@@ -3,4 +3,4 @@ Version: 2024-09-22
 Depends: vcpkg-cmake
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 4f9f9ac22e94fe8c4179ac97d36745a09baaac03ac4e395c78c8849568a1eb40
+Abi: 4ba37bf03c5e5abf9d9a7499f17bf171277c77e1e556769846adca66195b8e58

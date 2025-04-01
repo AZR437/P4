@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <unordered_map>
+#include <iostream>
 #include "VFShaders.h"
 
 class ShaderManager
@@ -10,9 +11,10 @@ public:
     typedef std::unordered_map<String, VFShaders*> HashTable;
 
     static ShaderManager* getInstance();
-    bool load();
+    void load(String name, String vertPath, String fragPath);
+    void loadAll();
 
-    VFShaders* getShaders();
+    VFShaders* getShaders(String name);
 
 private:
     ShaderManager() {}
