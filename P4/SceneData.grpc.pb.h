@@ -33,14 +33,6 @@ class MeshStream final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // checks if mesh exist
-    virtual ::grpc::Status ValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest& request, ::ValidationReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>> AsyncValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>>(AsyncValidateMeshRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>> PrepareAsyncValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>>(PrepareAsyncValidateMeshRaw(context, request, cq));
-    }
     // Loads an item
     std::unique_ptr< ::grpc::ClientReaderInterface< ::MeshReply>> StreamMesh(::grpc::ClientContext* context, const ::MeshRequest& request) {
       return std::unique_ptr< ::grpc::ClientReaderInterface< ::MeshReply>>(StreamMeshRaw(context, request));
@@ -54,9 +46,6 @@ class MeshStream final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // checks if mesh exist
-      virtual void ValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // Loads an item
       virtual void StreamMesh(::grpc::ClientContext* context, const ::MeshRequest* request, ::grpc::ClientReadReactor< ::MeshReply>* reactor) = 0;
     };
@@ -64,8 +53,6 @@ class MeshStream final {
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>* AsyncValidateMeshRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>* PrepareAsyncValidateMeshRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientReaderInterface< ::MeshReply>* StreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::MeshReply>* AsyncStreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::MeshReply>* PrepareAsyncStreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -73,13 +60,6 @@ class MeshStream final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status ValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest& request, ::ValidationReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::ValidationReply>> AsyncValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::ValidationReply>>(AsyncValidateMeshRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::ValidationReply>> PrepareAsyncValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::ValidationReply>>(PrepareAsyncValidateMeshRaw(context, request, cq));
-    }
     std::unique_ptr< ::grpc::ClientReader< ::MeshReply>> StreamMesh(::grpc::ClientContext* context, const ::MeshRequest& request) {
       return std::unique_ptr< ::grpc::ClientReader< ::MeshReply>>(StreamMeshRaw(context, request));
     }
@@ -92,8 +72,6 @@ class MeshStream final {
     class async final :
       public StubInterface::async_interface {
      public:
-      void ValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, std::function<void(::grpc::Status)>) override;
-      void ValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, ::grpc::ClientUnaryReactor* reactor) override;
       void StreamMesh(::grpc::ClientContext* context, const ::MeshRequest* request, ::grpc::ClientReadReactor< ::MeshReply>* reactor) override;
      private:
       friend class Stub;
@@ -106,12 +84,9 @@ class MeshStream final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::ValidationReply>* AsyncValidateMeshRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::ValidationReply>* PrepareAsyncValidateMeshRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientReader< ::MeshReply>* StreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request) override;
     ::grpc::ClientAsyncReader< ::MeshReply>* AsyncStreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReader< ::MeshReply>* PrepareAsyncStreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_ValidateMesh_;
     const ::grpc::internal::RpcMethod rpcmethod_StreamMesh_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -120,30 +95,8 @@ class MeshStream final {
    public:
     Service();
     virtual ~Service();
-    // checks if mesh exist
-    virtual ::grpc::Status ValidateMesh(::grpc::ServerContext* context, const ::ValidationRequest* request, ::ValidationReply* response);
     // Loads an item
     virtual ::grpc::Status StreamMesh(::grpc::ServerContext* context, const ::MeshRequest* request, ::grpc::ServerWriter< ::MeshReply>* writer);
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_ValidateMesh : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_ValidateMesh() {
-      ::grpc::Service::MarkMethodAsync(0);
-    }
-    ~WithAsyncMethod_ValidateMesh() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ValidateMesh(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestValidateMesh(::grpc::ServerContext* context, ::ValidationRequest* request, ::grpc::ServerAsyncResponseWriter< ::ValidationReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
   };
   template <class BaseClass>
   class WithAsyncMethod_StreamMesh : public BaseClass {
@@ -151,7 +104,7 @@ class MeshStream final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_StreamMesh() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(0);
     }
     ~WithAsyncMethod_StreamMesh() override {
       BaseClassMustBeDerivedFromService(this);
@@ -162,44 +115,17 @@ class MeshStream final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStreamMesh(::grpc::ServerContext* context, ::MeshRequest* request, ::grpc::ServerAsyncWriter< ::MeshReply>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(1, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_ValidateMesh<WithAsyncMethod_StreamMesh<Service > > AsyncService;
-  template <class BaseClass>
-  class WithCallbackMethod_ValidateMesh : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_ValidateMesh() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::ValidationRequest, ::ValidationReply>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::ValidationRequest* request, ::ValidationReply* response) { return this->ValidateMesh(context, request, response); }));}
-    void SetMessageAllocatorFor_ValidateMesh(
-        ::grpc::MessageAllocator< ::ValidationRequest, ::ValidationReply>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::ValidationRequest, ::ValidationReply>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_ValidateMesh() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ValidateMesh(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ValidateMesh(
-      ::grpc::CallbackServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/)  { return nullptr; }
-  };
+  typedef WithAsyncMethod_StreamMesh<Service > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_StreamMesh : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_StreamMesh() {
-      ::grpc::Service::MarkMethodCallback(1,
+      ::grpc::Service::MarkMethodCallback(0,
           new ::grpc::internal::CallbackServerStreamingHandler< ::MeshRequest, ::MeshReply>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::MeshRequest* request) { return this->StreamMesh(context, request); }));
@@ -215,32 +141,15 @@ class MeshStream final {
     virtual ::grpc::ServerWriteReactor< ::MeshReply>* StreamMesh(
       ::grpc::CallbackServerContext* /*context*/, const ::MeshRequest* /*request*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_ValidateMesh<WithCallbackMethod_StreamMesh<Service > > CallbackService;
+  typedef WithCallbackMethod_StreamMesh<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
-  template <class BaseClass>
-  class WithGenericMethod_ValidateMesh : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_ValidateMesh() {
-      ::grpc::Service::MarkMethodGeneric(0);
-    }
-    ~WithGenericMethod_ValidateMesh() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ValidateMesh(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
   template <class BaseClass>
   class WithGenericMethod_StreamMesh : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_StreamMesh() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(0);
     }
     ~WithGenericMethod_StreamMesh() override {
       BaseClassMustBeDerivedFromService(this);
@@ -252,32 +161,12 @@ class MeshStream final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_ValidateMesh : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_ValidateMesh() {
-      ::grpc::Service::MarkMethodRaw(0);
-    }
-    ~WithRawMethod_ValidateMesh() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ValidateMesh(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestValidateMesh(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_StreamMesh : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_StreamMesh() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(0);
     }
     ~WithRawMethod_StreamMesh() override {
       BaseClassMustBeDerivedFromService(this);
@@ -288,30 +177,8 @@ class MeshStream final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStreamMesh(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(1, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
     }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_ValidateMesh : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_ValidateMesh() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ValidateMesh(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_ValidateMesh() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ValidateMesh(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ValidateMesh(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_StreamMesh : public BaseClass {
@@ -319,7 +186,7 @@ class MeshStream final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_StreamMesh() {
-      ::grpc::Service::MarkMethodRawCallback(1,
+      ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->StreamMesh(context, request); }));
@@ -335,41 +202,14 @@ class MeshStream final {
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* StreamMesh(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_ValidateMesh : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_ValidateMesh() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::ValidationRequest, ::ValidationReply>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::ValidationRequest, ::ValidationReply>* streamer) {
-                       return this->StreamedValidateMesh(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_ValidateMesh() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status ValidateMesh(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedValidateMesh(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::ValidationRequest,::ValidationReply>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_ValidateMesh<Service > StreamedUnaryService;
+  typedef Service StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_StreamMesh : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithSplitStreamingMethod_StreamMesh() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::MeshRequest, ::MeshReply>(
             [this](::grpc::ServerContext* context,
@@ -391,7 +231,7 @@ class MeshStream final {
     virtual ::grpc::Status StreamedStreamMesh(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::MeshRequest,::MeshReply>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_StreamMesh<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_ValidateMesh<WithSplitStreamingMethod_StreamMesh<Service > > StreamedService;
+  typedef WithSplitStreamingMethod_StreamMesh<Service > StreamedService;
 };
 
 class SceneLoad final {
@@ -402,14 +242,6 @@ class SceneLoad final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // checks if scene exist
-    virtual ::grpc::Status ValidateScene(::grpc::ClientContext* context, const ::ValidationRequest& request, ::ValidationReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>> AsyncValidateScene(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>>(AsyncValidateSceneRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>> PrepareAsyncValidateScene(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>>(PrepareAsyncValidateSceneRaw(context, request, cq));
-    }
     // Loads a scene
     virtual ::grpc::Status LoadScene(::grpc::ClientContext* context, const ::SceneRequest& request, ::SceneReply* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SceneReply>> AsyncLoadScene(::grpc::ClientContext* context, const ::SceneRequest& request, ::grpc::CompletionQueue* cq) {
@@ -421,9 +253,6 @@ class SceneLoad final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // checks if scene exist
-      virtual void ValidateScene(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ValidateScene(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // Loads a scene
       virtual void LoadScene(::grpc::ClientContext* context, const ::SceneRequest* request, ::SceneReply* response, std::function<void(::grpc::Status)>) = 0;
       virtual void LoadScene(::grpc::ClientContext* context, const ::SceneRequest* request, ::SceneReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -432,21 +261,12 @@ class SceneLoad final {
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>* AsyncValidateSceneRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::ValidationReply>* PrepareAsyncValidateSceneRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::SceneReply>* AsyncLoadSceneRaw(::grpc::ClientContext* context, const ::SceneRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::SceneReply>* PrepareAsyncLoadSceneRaw(::grpc::ClientContext* context, const ::SceneRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status ValidateScene(::grpc::ClientContext* context, const ::ValidationRequest& request, ::ValidationReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::ValidationReply>> AsyncValidateScene(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::ValidationReply>>(AsyncValidateSceneRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::ValidationReply>> PrepareAsyncValidateScene(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::ValidationReply>>(PrepareAsyncValidateSceneRaw(context, request, cq));
-    }
     ::grpc::Status LoadScene(::grpc::ClientContext* context, const ::SceneRequest& request, ::SceneReply* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SceneReply>> AsyncLoadScene(::grpc::ClientContext* context, const ::SceneRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SceneReply>>(AsyncLoadSceneRaw(context, request, cq));
@@ -457,8 +277,6 @@ class SceneLoad final {
     class async final :
       public StubInterface::async_interface {
      public:
-      void ValidateScene(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, std::function<void(::grpc::Status)>) override;
-      void ValidateScene(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, ::grpc::ClientUnaryReactor* reactor) override;
       void LoadScene(::grpc::ClientContext* context, const ::SceneRequest* request, ::SceneReply* response, std::function<void(::grpc::Status)>) override;
       void LoadScene(::grpc::ClientContext* context, const ::SceneRequest* request, ::SceneReply* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
@@ -472,11 +290,8 @@ class SceneLoad final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::ValidationReply>* AsyncValidateSceneRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::ValidationReply>* PrepareAsyncValidateSceneRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::SceneReply>* AsyncLoadSceneRaw(::grpc::ClientContext* context, const ::SceneRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::SceneReply>* PrepareAsyncLoadSceneRaw(::grpc::ClientContext* context, const ::SceneRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_ValidateScene_;
     const ::grpc::internal::RpcMethod rpcmethod_LoadScene_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -485,30 +300,8 @@ class SceneLoad final {
    public:
     Service();
     virtual ~Service();
-    // checks if scene exist
-    virtual ::grpc::Status ValidateScene(::grpc::ServerContext* context, const ::ValidationRequest* request, ::ValidationReply* response);
     // Loads a scene
     virtual ::grpc::Status LoadScene(::grpc::ServerContext* context, const ::SceneRequest* request, ::SceneReply* response);
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_ValidateScene : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_ValidateScene() {
-      ::grpc::Service::MarkMethodAsync(0);
-    }
-    ~WithAsyncMethod_ValidateScene() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ValidateScene(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestValidateScene(::grpc::ServerContext* context, ::ValidationRequest* request, ::grpc::ServerAsyncResponseWriter< ::ValidationReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
   };
   template <class BaseClass>
   class WithAsyncMethod_LoadScene : public BaseClass {
@@ -516,7 +309,7 @@ class SceneLoad final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_LoadScene() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(0);
     }
     ~WithAsyncMethod_LoadScene() override {
       BaseClassMustBeDerivedFromService(this);
@@ -527,50 +320,23 @@ class SceneLoad final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestLoadScene(::grpc::ServerContext* context, ::SceneRequest* request, ::grpc::ServerAsyncResponseWriter< ::SceneReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_ValidateScene<WithAsyncMethod_LoadScene<Service > > AsyncService;
-  template <class BaseClass>
-  class WithCallbackMethod_ValidateScene : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_ValidateScene() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::ValidationRequest, ::ValidationReply>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::ValidationRequest* request, ::ValidationReply* response) { return this->ValidateScene(context, request, response); }));}
-    void SetMessageAllocatorFor_ValidateScene(
-        ::grpc::MessageAllocator< ::ValidationRequest, ::ValidationReply>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::ValidationRequest, ::ValidationReply>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_ValidateScene() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ValidateScene(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ValidateScene(
-      ::grpc::CallbackServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/)  { return nullptr; }
-  };
+  typedef WithAsyncMethod_LoadScene<Service > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_LoadScene : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_LoadScene() {
-      ::grpc::Service::MarkMethodCallback(1,
+      ::grpc::Service::MarkMethodCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::SceneRequest, ::SceneReply>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::SceneRequest* request, ::SceneReply* response) { return this->LoadScene(context, request, response); }));}
     void SetMessageAllocatorFor_LoadScene(
         ::grpc::MessageAllocator< ::SceneRequest, ::SceneReply>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::SceneRequest, ::SceneReply>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -585,32 +351,15 @@ class SceneLoad final {
     virtual ::grpc::ServerUnaryReactor* LoadScene(
       ::grpc::CallbackServerContext* /*context*/, const ::SceneRequest* /*request*/, ::SceneReply* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_ValidateScene<WithCallbackMethod_LoadScene<Service > > CallbackService;
+  typedef WithCallbackMethod_LoadScene<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
-  template <class BaseClass>
-  class WithGenericMethod_ValidateScene : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_ValidateScene() {
-      ::grpc::Service::MarkMethodGeneric(0);
-    }
-    ~WithGenericMethod_ValidateScene() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ValidateScene(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
   template <class BaseClass>
   class WithGenericMethod_LoadScene : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_LoadScene() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(0);
     }
     ~WithGenericMethod_LoadScene() override {
       BaseClassMustBeDerivedFromService(this);
@@ -622,32 +371,12 @@ class SceneLoad final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_ValidateScene : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_ValidateScene() {
-      ::grpc::Service::MarkMethodRaw(0);
-    }
-    ~WithRawMethod_ValidateScene() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ValidateScene(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestValidateScene(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_LoadScene : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_LoadScene() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(0);
     }
     ~WithRawMethod_LoadScene() override {
       BaseClassMustBeDerivedFromService(this);
@@ -658,30 +387,8 @@ class SceneLoad final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestLoadScene(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_ValidateScene : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_ValidateScene() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ValidateScene(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_ValidateScene() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ValidateScene(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ValidateScene(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_LoadScene : public BaseClass {
@@ -689,7 +396,7 @@ class SceneLoad final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_LoadScene() {
-      ::grpc::Service::MarkMethodRawCallback(1,
+      ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->LoadScene(context, request, response); }));
@@ -706,39 +413,12 @@ class SceneLoad final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_ValidateScene : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_ValidateScene() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::ValidationRequest, ::ValidationReply>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::ValidationRequest, ::ValidationReply>* streamer) {
-                       return this->StreamedValidateScene(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_ValidateScene() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status ValidateScene(::grpc::ServerContext* /*context*/, const ::ValidationRequest* /*request*/, ::ValidationReply* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedValidateScene(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::ValidationRequest,::ValidationReply>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_LoadScene : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_LoadScene() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::SceneRequest, ::SceneReply>(
             [this](::grpc::ServerContext* context,
@@ -759,9 +439,9 @@ class SceneLoad final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedLoadScene(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::SceneRequest,::SceneReply>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_ValidateScene<WithStreamedUnaryMethod_LoadScene<Service > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_LoadScene<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_ValidateScene<WithStreamedUnaryMethod_LoadScene<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_LoadScene<Service > StreamedService;
 };
 
 

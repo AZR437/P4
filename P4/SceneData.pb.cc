@@ -25,61 +25,11 @@ namespace _pb = ::google::protobuf;
 namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 
-inline constexpr ValidationRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR ValidationRequest::ValidationRequest(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct ValidationRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ValidationRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ValidationRequestDefaultTypeInternal() {}
-  union {
-    ValidationRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ValidationRequestDefaultTypeInternal _ValidationRequest_default_instance_;
-
-inline constexpr ValidationReply::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : exists_{false},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR ValidationReply::ValidationReply(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct ValidationReplyDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ValidationReplyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ValidationReplyDefaultTypeInternal() {}
-  union {
-    ValidationReply _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ValidationReplyDefaultTypeInternal _ValidationReply_default_instance_;
-
 inline constexpr SceneRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : sceneid_{0},
+      : sceneid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
@@ -186,9 +136,10 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr SceneReply::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : meshids_{},
-        _meshids_cached_byte_size_{0},
         positions_{},
-        sceneid_{0},
+        sceneid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
@@ -217,24 +168,6 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t
     TableStruct_SceneData_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::ValidationRequest, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::ValidationRequest, _impl_.id_),
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::ValidationReply, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::ValidationReply, _impl_.exists_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::Float3, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -288,17 +221,13 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::ValidationRequest)},
-        {9, -1, -1, sizeof(::ValidationReply)},
-        {18, -1, -1, sizeof(::Float3)},
-        {29, -1, -1, sizeof(::MeshRequest)},
-        {38, -1, -1, sizeof(::MeshReply)},
-        {47, -1, -1, sizeof(::SceneRequest)},
-        {56, -1, -1, sizeof(::SceneReply)},
+        {0, -1, -1, sizeof(::Float3)},
+        {11, -1, -1, sizeof(::MeshRequest)},
+        {20, -1, -1, sizeof(::MeshReply)},
+        {29, -1, -1, sizeof(::SceneRequest)},
+        {38, -1, -1, sizeof(::SceneReply)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
-    &::_ValidationRequest_default_instance_._instance,
-    &::_ValidationReply_default_instance_._instance,
     &::_Float3_default_instance_._instance,
     &::_MeshRequest_default_instance_._instance,
     &::_MeshReply_default_instance_._instance,
@@ -307,475 +236,33 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_SceneData_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\017SceneData.proto\"\037\n\021ValidationRequest\022\n"
-    "\n\002ID\030\001 \001(\t\"!\n\017ValidationReply\022\016\n\006exists\030"
-    "\001 \001(\010\")\n\006Float3\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\t\n"
-    "\001z\030\003 \001(\002\" \n\013MeshRequest\022\021\n\tfile_name\030\001 \001"
-    "(\t\"\031\n\tMeshReply\022\014\n\004data\030\001 \001(\014\"\037\n\014SceneRe"
-    "quest\022\017\n\007sceneID\030\001 \001(\005\"J\n\nSceneReply\022\017\n\007"
-    "sceneID\030\001 \001(\005\022\017\n\007meshIDs\030\002 \003(\005\022\032\n\tpositi"
-    "ons\030\003 \003(\0132\007.Float32p\n\nMeshStream\0226\n\014Vali"
-    "dateMesh\022\022.ValidationRequest\032\020.Validatio"
-    "nReply\"\000\022*\n\nStreamMesh\022\014.MeshRequest\032\n.M"
-    "eshReply\"\0000\0012o\n\tSceneLoad\0227\n\rValidateSce"
-    "ne\022\022.ValidationRequest\032\020.ValidationReply"
-    "\"\000\022)\n\tLoadScene\022\r.SceneRequest\032\013.SceneRe"
-    "ply\"\000b\006proto3"
+    "\n\017SceneData.proto\")\n\006Float3\022\t\n\001x\030\001 \001(\002\022\t"
+    "\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001(\002\" \n\013MeshRequest\022\021\n\tf"
+    "ile_name\030\001 \001(\t\"\031\n\tMeshReply\022\014\n\004data\030\001 \001("
+    "\014\"\037\n\014SceneRequest\022\017\n\007sceneID\030\001 \001(\t\"J\n\nSc"
+    "eneReply\022\017\n\007sceneID\030\001 \001(\t\022\017\n\007meshIDs\030\002 \003"
+    "(\t\022\032\n\tpositions\030\003 \003(\0132\007.Float328\n\nMeshSt"
+    "ream\022*\n\nStreamMesh\022\014.MeshRequest\032\n.MeshR"
+    "eply\"\0000\00126\n\tSceneLoad\022)\n\tLoadScene\022\r.Sce"
+    "neRequest\032\013.SceneReply\"\000b\006proto3"
 };
 static ::absl::once_flag descriptor_table_SceneData_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_SceneData_2eproto = {
     false,
     false,
-    533,
+    352,
     descriptor_table_protodef_SceneData_2eproto,
     "SceneData.proto",
     &descriptor_table_SceneData_2eproto_once,
     nullptr,
     0,
-    7,
+    5,
     schemas,
     file_default_instances,
     TableStruct_SceneData_2eproto::offsets,
     file_level_enum_descriptors_SceneData_2eproto,
     file_level_service_descriptors_SceneData_2eproto,
 };
-// ===================================================================
-
-class ValidationRequest::_Internal {
- public:
-};
-
-ValidationRequest::ValidationRequest(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:ValidationRequest)
-}
-inline PROTOBUF_NDEBUG_INLINE ValidationRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::ValidationRequest& from_msg)
-      : id_(arena, from.id_),
-        _cached_size_{0} {}
-
-ValidationRequest::ValidationRequest(
-    ::google::protobuf::Arena* arena,
-    const ValidationRequest& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  ValidationRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-
-  // @@protoc_insertion_point(copy_constructor:ValidationRequest)
-}
-inline PROTOBUF_NDEBUG_INLINE ValidationRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : id_(arena),
-        _cached_size_{0} {}
-
-inline void ValidationRequest::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-}
-ValidationRequest::~ValidationRequest() {
-  // @@protoc_insertion_point(destructor:ValidationRequest)
-  SharedDtor(*this);
-}
-inline void ValidationRequest::SharedDtor(MessageLite& self) {
-  ValidationRequest& this_ = static_cast<ValidationRequest&>(self);
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.id_.Destroy();
-  this_._impl_.~Impl_();
-}
-
-inline void* ValidationRequest::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) ValidationRequest(arena);
-}
-constexpr auto ValidationRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(ValidationRequest),
-                                            alignof(ValidationRequest));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull ValidationRequest::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_ValidationRequest_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &ValidationRequest::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<ValidationRequest>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &ValidationRequest::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<ValidationRequest>(), &ValidationRequest::ByteSizeLong,
-            &ValidationRequest::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(ValidationRequest, _impl_._cached_size_),
-        false,
-    },
-    &ValidationRequest::kDescriptorMethods,
-    &descriptor_table_SceneData_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* ValidationRequest::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 28, 2> ValidationRequest::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::ValidationRequest>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // string ID = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ValidationRequest, _impl_.id_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string ID = 1;
-    {PROTOBUF_FIELD_OFFSET(ValidationRequest, _impl_.id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\21\2\0\0\0\0\0\0"
-    "ValidationRequest"
-    "ID"
-  }},
-};
-
-PROTOBUF_NOINLINE void ValidationRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:ValidationRequest)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.id_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* ValidationRequest::_InternalSerialize(
-            const MessageLite& base, ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const ValidationRequest& this_ = static_cast<const ValidationRequest&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* ValidationRequest::_InternalSerialize(
-            ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const ValidationRequest& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:ValidationRequest)
-          ::uint32_t cached_has_bits = 0;
-          (void)cached_has_bits;
-
-          // string ID = 1;
-          if (!this_._internal_id().empty()) {
-            const std::string& _s = this_._internal_id();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "ValidationRequest.ID");
-            target = stream->WriteStringMaybeAliased(1, _s, target);
-          }
-
-          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-            target =
-                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-          }
-          // @@protoc_insertion_point(serialize_to_array_end:ValidationRequest)
-          return target;
-        }
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t ValidationRequest::ByteSizeLong(const MessageLite& base) {
-          const ValidationRequest& this_ = static_cast<const ValidationRequest&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t ValidationRequest::ByteSizeLong() const {
-          const ValidationRequest& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:ValidationRequest)
-          ::size_t total_size = 0;
-
-          ::uint32_t cached_has_bits = 0;
-          // Prevent compiler warnings about cached_has_bits being unused
-          (void)cached_has_bits;
-
-           {
-            // string ID = 1;
-            if (!this_._internal_id().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_id());
-            }
-          }
-          return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                                     &this_._impl_._cached_size_);
-        }
-
-void ValidationRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<ValidationRequest*>(&to_msg);
-  auto& from = static_cast<const ValidationRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ValidationRequest)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_id().empty()) {
-    _this->_internal_set_id(from._internal_id());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void ValidationRequest::CopyFrom(const ValidationRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:ValidationRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void ValidationRequest::InternalSwap(ValidationRequest* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
-}
-
-::google::protobuf::Metadata ValidationRequest::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class ValidationReply::_Internal {
- public:
-};
-
-ValidationReply::ValidationReply(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:ValidationReply)
-}
-ValidationReply::ValidationReply(
-    ::google::protobuf::Arena* arena, const ValidationReply& from)
-    : ValidationReply(arena) {
-  MergeFrom(from);
-}
-inline PROTOBUF_NDEBUG_INLINE ValidationReply::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
-
-inline void ValidationReply::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.exists_ = {};
-}
-ValidationReply::~ValidationReply() {
-  // @@protoc_insertion_point(destructor:ValidationReply)
-  SharedDtor(*this);
-}
-inline void ValidationReply::SharedDtor(MessageLite& self) {
-  ValidationReply& this_ = static_cast<ValidationReply&>(self);
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.~Impl_();
-}
-
-inline void* ValidationReply::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) ValidationReply(arena);
-}
-constexpr auto ValidationReply::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(ValidationReply),
-                                            alignof(ValidationReply));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull ValidationReply::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_ValidationReply_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &ValidationReply::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<ValidationReply>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &ValidationReply::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<ValidationReply>(), &ValidationReply::ByteSizeLong,
-            &ValidationReply::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(ValidationReply, _impl_._cached_size_),
-        false,
-    },
-    &ValidationReply::kDescriptorMethods,
-    &descriptor_table_SceneData_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* ValidationReply::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ValidationReply::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::ValidationReply>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // bool exists = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ValidationReply, _impl_.exists_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ValidationReply, _impl_.exists_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // bool exists = 1;
-    {PROTOBUF_FIELD_OFFSET(ValidationReply, _impl_.exists_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
-
-PROTOBUF_NOINLINE void ValidationReply::Clear() {
-// @@protoc_insertion_point(message_clear_start:ValidationReply)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.exists_ = false;
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* ValidationReply::_InternalSerialize(
-            const MessageLite& base, ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const ValidationReply& this_ = static_cast<const ValidationReply&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* ValidationReply::_InternalSerialize(
-            ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const ValidationReply& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:ValidationReply)
-          ::uint32_t cached_has_bits = 0;
-          (void)cached_has_bits;
-
-          // bool exists = 1;
-          if (this_._internal_exists() != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteBoolToArray(
-                1, this_._internal_exists(), target);
-          }
-
-          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-            target =
-                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-          }
-          // @@protoc_insertion_point(serialize_to_array_end:ValidationReply)
-          return target;
-        }
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t ValidationReply::ByteSizeLong(const MessageLite& base) {
-          const ValidationReply& this_ = static_cast<const ValidationReply&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t ValidationReply::ByteSizeLong() const {
-          const ValidationReply& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:ValidationReply)
-          ::size_t total_size = 0;
-
-          ::uint32_t cached_has_bits = 0;
-          // Prevent compiler warnings about cached_has_bits being unused
-          (void)cached_has_bits;
-
-           {
-            // bool exists = 1;
-            if (this_._internal_exists() != 0) {
-              total_size += 2;
-            }
-          }
-          return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                                     &this_._impl_._cached_size_);
-        }
-
-void ValidationReply::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<ValidationReply*>(&to_msg);
-  auto& from = static_cast<const ValidationReply&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ValidationReply)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_exists() != 0) {
-    _this->_impl_.exists_ = from._impl_.exists_;
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void ValidationReply::CopyFrom(const ValidationReply& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:ValidationReply)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void ValidationReply::InternalSwap(ValidationReply* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-        swap(_impl_.exists_, other->_impl_.exists_);
-}
-
-::google::protobuf::Metadata ValidationReply::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
 // ===================================================================
 
 class Float3::_Internal {
@@ -1508,19 +995,36 @@ SceneRequest::SceneRequest(::google::protobuf::Arena* arena)
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:SceneRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE SceneRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::SceneRequest& from_msg)
+      : sceneid_(arena, from.sceneid_),
+        _cached_size_{0} {}
+
 SceneRequest::SceneRequest(
-    ::google::protobuf::Arena* arena, const SceneRequest& from)
-    : SceneRequest(arena) {
-  MergeFrom(from);
+    ::google::protobuf::Arena* arena,
+    const SceneRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SceneRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:SceneRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE SceneRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
+      : sceneid_(arena),
+        _cached_size_{0} {}
 
 inline void SceneRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.sceneid_ = {};
 }
 SceneRequest::~SceneRequest() {
   // @@protoc_insertion_point(destructor:SceneRequest)
@@ -1530,6 +1034,7 @@ inline void SceneRequest::SharedDtor(MessageLite& self) {
   SceneRequest& this_ = static_cast<SceneRequest&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.sceneid_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -1538,7 +1043,7 @@ inline void* SceneRequest::PlacementNew_(const void*, void* mem,
   return ::new (mem) SceneRequest(arena);
 }
 constexpr auto SceneRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(SceneRequest),
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(SceneRequest),
                                             alignof(SceneRequest));
 }
 PROTOBUF_CONSTINIT
@@ -1569,7 +1074,7 @@ const ::google::protobuf::internal::ClassData* SceneRequest::GetClassData() cons
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> SceneRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 28, 2> SceneRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1587,18 +1092,21 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> SceneRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::SceneRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // int32 sceneID = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SceneRequest, _impl_.sceneid_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SceneRequest, _impl_.sceneid_)}},
+    // string sceneID = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SceneRequest, _impl_.sceneid_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // int32 sceneID = 1;
+    // string sceneID = 1;
     {PROTOBUF_FIELD_OFFSET(SceneRequest, _impl_.sceneid_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
+    "\14\7\0\0\0\0\0\0"
+    "SceneRequest"
+    "sceneID"
   }},
 };
 
@@ -1609,7 +1117,7 @@ PROTOBUF_NOINLINE void SceneRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.sceneid_ = 0;
+  _impl_.sceneid_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1628,11 +1136,12 @@ PROTOBUF_NOINLINE void SceneRequest::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // int32 sceneID = 1;
-          if (this_._internal_sceneid() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<1>(
-                    stream, this_._internal_sceneid(), target);
+          // string sceneID = 1;
+          if (!this_._internal_sceneid().empty()) {
+            const std::string& _s = this_._internal_sceneid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "SceneRequest.sceneID");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1659,10 +1168,10 @@ PROTOBUF_NOINLINE void SceneRequest::Clear() {
           (void)cached_has_bits;
 
            {
-            // int32 sceneID = 1;
-            if (this_._internal_sceneid() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_sceneid());
+            // string sceneID = 1;
+            if (!this_._internal_sceneid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_sceneid());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1677,8 +1186,8 @@ void SceneRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::go
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_sceneid() != 0) {
-    _this->_impl_.sceneid_ = from._impl_.sceneid_;
+  if (!from._internal_sceneid().empty()) {
+    _this->_internal_set_sceneid(from._internal_sceneid());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1693,8 +1202,10 @@ void SceneRequest::CopyFrom(const SceneRequest& from) {
 
 void SceneRequest::InternalSwap(SceneRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-        swap(_impl_.sceneid_, other->_impl_.sceneid_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.sceneid_, &other->_impl_.sceneid_, arena);
 }
 
 ::google::protobuf::Metadata SceneRequest::GetMetadata() const {
@@ -1719,8 +1230,8 @@ inline PROTOBUF_NDEBUG_INLINE SceneReply::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::SceneReply& from_msg)
       : meshids_{visibility, arena, from.meshids_},
-        _meshids_cached_byte_size_{0},
         positions_{visibility, arena, from.positions_},
+        sceneid_(arena, from.sceneid_),
         _cached_size_{0} {}
 
 SceneReply::SceneReply(
@@ -1736,7 +1247,6 @@ SceneReply::SceneReply(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.sceneid_ = from._impl_.sceneid_;
 
   // @@protoc_insertion_point(copy_constructor:SceneReply)
 }
@@ -1744,13 +1254,12 @@ inline PROTOBUF_NDEBUG_INLINE SceneReply::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : meshids_{visibility, arena},
-        _meshids_cached_byte_size_{0},
         positions_{visibility, arena},
+        sceneid_(arena),
         _cached_size_{0} {}
 
 inline void SceneReply::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.sceneid_ = {};
 }
 SceneReply::~SceneReply() {
   // @@protoc_insertion_point(destructor:SceneReply)
@@ -1760,6 +1269,7 @@ inline void SceneReply::SharedDtor(MessageLite& self) {
   SceneReply& this_ = static_cast<SceneReply&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.sceneid_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -1779,7 +1289,7 @@ constexpr auto SceneReply::InternalNewImpl_() {
                   ::google::protobuf::Message::internal_visibility()),
   });
   if (arena_bits.has_value()) {
-    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
         sizeof(SceneReply), alignof(SceneReply), *arena_bits);
   } else {
     return ::google::protobuf::internal::MessageCreator(&SceneReply::PlacementNew_,
@@ -1815,7 +1325,7 @@ const ::google::protobuf::internal::ClassData* SceneReply::GetClassData() const 
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 0, 2> SceneReply::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 33, 2> SceneReply::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1834,11 +1344,11 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> SceneReply::_table_ = {
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // int32 sceneID = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SceneReply, _impl_.sceneid_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.sceneid_)}},
-    // repeated int32 meshIDs = 2;
-    {::_pbi::TcParser::FastV32P1,
+    // string sceneID = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.sceneid_)}},
+    // repeated string meshIDs = 2;
+    {::_pbi::TcParser::FastUR1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.meshids_)}},
     // repeated .Float3 positions = 3;
     {::_pbi::TcParser::FastMtR1,
@@ -1846,18 +1356,22 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> SceneReply::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // int32 sceneID = 1;
+    // string sceneID = 1;
     {PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.sceneid_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // repeated int32 meshIDs = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string meshIDs = 2;
     {PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.meshids_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
     // repeated .Float3 positions = 3;
     {PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.positions_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::Float3>()},
   }}, {{
+    "\12\7\7\0\0\0\0\0"
+    "SceneReply"
+    "sceneID"
+    "meshIDs"
   }},
 };
 
@@ -1870,7 +1384,7 @@ PROTOBUF_NOINLINE void SceneReply::Clear() {
 
   _impl_.meshids_.Clear();
   _impl_.positions_.Clear();
-  _impl_.sceneid_ = 0;
+  _impl_.sceneid_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1889,20 +1403,20 @@ PROTOBUF_NOINLINE void SceneReply::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // int32 sceneID = 1;
-          if (this_._internal_sceneid() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<1>(
-                    stream, this_._internal_sceneid(), target);
+          // string sceneID = 1;
+          if (!this_._internal_sceneid().empty()) {
+            const std::string& _s = this_._internal_sceneid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "SceneReply.sceneID");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
-          // repeated int32 meshIDs = 2;
-          {
-            int byte_size = this_._impl_._meshids_cached_byte_size_.Get();
-            if (byte_size > 0) {
-              target = stream->WriteInt32Packed(
-                  2, this_._internal_meshids(), byte_size, target);
-            }
+          // repeated string meshIDs = 2;
+          for (int i = 0, n = this_._internal_meshids_size(); i < n; ++i) {
+            const auto& s = this_._internal_meshids().Get(i);
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "SceneReply.meshIDs");
+            target = stream->WriteString(2, s, target);
           }
 
           // repeated .Float3 positions = 3;
@@ -1941,12 +1455,14 @@ PROTOBUF_NOINLINE void SceneReply::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated int32 meshIDs = 2;
+            // repeated string meshIDs = 2;
             {
               total_size +=
-                  ::_pbi::WireFormatLite::Int32SizeWithPackedTagSize(
-                      this_._internal_meshids(), 1,
-                      this_._impl_._meshids_cached_byte_size_);
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_meshids().size());
+              for (int i = 0, n = this_._internal_meshids().size(); i < n; ++i) {
+                total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+                    this_._internal_meshids().Get(i));
+              }
             }
             // repeated .Float3 positions = 3;
             {
@@ -1957,10 +1473,10 @@ PROTOBUF_NOINLINE void SceneReply::Clear() {
             }
           }
            {
-            // int32 sceneID = 1;
-            if (this_._internal_sceneid() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_sceneid());
+            // string sceneID = 1;
+            if (!this_._internal_sceneid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_sceneid());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1978,8 +1494,8 @@ void SceneReply::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goog
   _this->_internal_mutable_meshids()->MergeFrom(from._internal_meshids());
   _this->_internal_mutable_positions()->MergeFrom(
       from._internal_positions());
-  if (from._internal_sceneid() != 0) {
-    _this->_impl_.sceneid_ = from._impl_.sceneid_;
+  if (!from._internal_sceneid().empty()) {
+    _this->_internal_set_sceneid(from._internal_sceneid());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1994,10 +1510,12 @@ void SceneReply::CopyFrom(const SceneReply& from) {
 
 void SceneReply::InternalSwap(SceneReply* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.meshids_.InternalSwap(&other->_impl_.meshids_);
   _impl_.positions_.InternalSwap(&other->_impl_.positions_);
-        swap(_impl_.sceneid_, other->_impl_.sceneid_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.sceneid_, &other->_impl_.sceneid_, arena);
 }
 
 ::google::protobuf::Metadata SceneReply::GetMetadata() const {

@@ -2,7 +2,6 @@ syntax = "proto3";
 
 service MeshStream
 {
-	/
 	//Loads an item
 	rpc StreamMesh(MeshRequest) returns(stream MeshReply) {}
 }

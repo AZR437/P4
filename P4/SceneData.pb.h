@@ -66,12 +66,6 @@ extern SceneReplyDefaultTypeInternal _SceneReply_default_instance_;
 class SceneRequest;
 struct SceneRequestDefaultTypeInternal;
 extern SceneRequestDefaultTypeInternal _SceneRequest_default_instance_;
-class ValidationReply;
-struct ValidationReplyDefaultTypeInternal;
-extern ValidationReplyDefaultTypeInternal _ValidationReply_default_instance_;
-class ValidationRequest;
-struct ValidationRequestDefaultTypeInternal;
-extern ValidationRequestDefaultTypeInternal _ValidationRequest_default_instance_;
 namespace google {
 namespace protobuf {
 }  // namespace protobuf
@@ -81,394 +75,6 @@ namespace protobuf {
 // ===================================================================
 
 
-// -------------------------------------------------------------------
-
-class ValidationRequest final
-    : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:ValidationRequest) */ {
- public:
-  inline ValidationRequest() : ValidationRequest(nullptr) {}
-  ~ValidationRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(ValidationRequest* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(ValidationRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR ValidationRequest(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline ValidationRequest(const ValidationRequest& from) : ValidationRequest(nullptr, from) {}
-  inline ValidationRequest(ValidationRequest&& from) noexcept
-      : ValidationRequest(nullptr, std::move(from)) {}
-  inline ValidationRequest& operator=(const ValidationRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ValidationRequest& operator=(ValidationRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ValidationRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ValidationRequest* internal_default_instance() {
-    return reinterpret_cast<const ValidationRequest*>(
-        &_ValidationRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 0;
-  friend void swap(ValidationRequest& a, ValidationRequest& b) { a.Swap(&b); }
-  inline void Swap(ValidationRequest* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ValidationRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ValidationRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<ValidationRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ValidationRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const ValidationRequest& from) { ValidationRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(ValidationRequest* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "ValidationRequest"; }
-
- protected:
-  explicit ValidationRequest(::google::protobuf::Arena* arena);
-  ValidationRequest(::google::protobuf::Arena* arena, const ValidationRequest& from);
-  ValidationRequest(::google::protobuf::Arena* arena, ValidationRequest&& from) noexcept
-      : ValidationRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kIDFieldNumber = 1,
-  };
-  // string ID = 1;
-  void clear_id() ;
-  const std::string& id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_id(Arg_&& arg, Args_... args);
-  std::string* mutable_id();
-  PROTOBUF_NODISCARD std::string* release_id();
-  void set_allocated_id(std::string* value);
-
-  private:
-  const std::string& _internal_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
-      const std::string& value);
-  std::string* _internal_mutable_id();
-
-  public:
-  // @@protoc_insertion_point(class_scope:ValidationRequest)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      28, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const ValidationRequest& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr id_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_SceneData_2eproto;
-};
-// -------------------------------------------------------------------
-
-class ValidationReply final
-    : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:ValidationReply) */ {
- public:
-  inline ValidationReply() : ValidationReply(nullptr) {}
-  ~ValidationReply() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(ValidationReply* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(ValidationReply));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR ValidationReply(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline ValidationReply(const ValidationReply& from) : ValidationReply(nullptr, from) {}
-  inline ValidationReply(ValidationReply&& from) noexcept
-      : ValidationReply(nullptr, std::move(from)) {}
-  inline ValidationReply& operator=(const ValidationReply& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ValidationReply& operator=(ValidationReply&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ValidationReply& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ValidationReply* internal_default_instance() {
-    return reinterpret_cast<const ValidationReply*>(
-        &_ValidationReply_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 1;
-  friend void swap(ValidationReply& a, ValidationReply& b) { a.Swap(&b); }
-  inline void Swap(ValidationReply* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ValidationReply* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ValidationReply* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<ValidationReply>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ValidationReply& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const ValidationReply& from) { ValidationReply::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(ValidationReply* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "ValidationReply"; }
-
- protected:
-  explicit ValidationReply(::google::protobuf::Arena* arena);
-  ValidationReply(::google::protobuf::Arena* arena, const ValidationReply& from);
-  ValidationReply(::google::protobuf::Arena* arena, ValidationReply&& from) noexcept
-      : ValidationReply(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kExistsFieldNumber = 1,
-  };
-  // bool exists = 1;
-  void clear_exists() ;
-  bool exists() const;
-  void set_exists(bool value);
-
-  private:
-  bool _internal_exists() const;
-  void _internal_set_exists(bool value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:ValidationReply)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const ValidationReply& from_msg);
-    bool exists_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_SceneData_2eproto;
-};
 // -------------------------------------------------------------------
 
 class SceneRequest final
@@ -531,7 +137,7 @@ class SceneRequest final
     return reinterpret_cast<const SceneRequest*>(
         &_SceneRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(SceneRequest& a, SceneRequest& b) { a.Swap(&b); }
   inline void Swap(SceneRequest* other) {
     if (other == this) return;
@@ -620,14 +226,20 @@ class SceneRequest final
   enum : int {
     kSceneIDFieldNumber = 1,
   };
-  // int32 sceneID = 1;
+  // string sceneID = 1;
   void clear_sceneid() ;
-  ::int32_t sceneid() const;
-  void set_sceneid(::int32_t value);
+  const std::string& sceneid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_sceneid(Arg_&& arg, Args_... args);
+  std::string* mutable_sceneid();
+  PROTOBUF_NODISCARD std::string* release_sceneid();
+  void set_allocated_sceneid(std::string* value);
 
   private:
-  ::int32_t _internal_sceneid() const;
-  void _internal_set_sceneid(::int32_t value);
+  const std::string& _internal_sceneid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_sceneid(
+      const std::string& value);
+  std::string* _internal_mutable_sceneid();
 
   public:
   // @@protoc_insertion_point(class_scope:SceneRequest)
@@ -636,7 +248,7 @@ class SceneRequest final
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 1, 0,
-      0, 2>
+      28, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -653,7 +265,7 @@ class SceneRequest final
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const SceneRequest& from_msg);
-    ::int32_t sceneid_;
+    ::google::protobuf::internal::ArenaStringPtr sceneid_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -722,7 +334,7 @@ class MeshRequest final
     return reinterpret_cast<const MeshRequest*>(
         &_MeshRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(MeshRequest& a, MeshRequest& b) { a.Swap(&b); }
   inline void Swap(MeshRequest* other) {
     if (other == this) return;
@@ -919,7 +531,7 @@ class MeshReply final
     return reinterpret_cast<const MeshReply*>(
         &_MeshReply_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(MeshReply& a, MeshReply& b) { a.Swap(&b); }
   inline void Swap(MeshReply* other) {
     if (other == this) return;
@@ -1116,7 +728,7 @@ class Float3 final
     return reinterpret_cast<const Float3*>(
         &_Float3_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 0;
   friend void swap(Float3& a, Float3& b) { a.Swap(&b); }
   inline void Swap(Float3* other) {
     if (other == this) return;
@@ -1331,7 +943,7 @@ class SceneReply final
     return reinterpret_cast<const SceneReply*>(
         &_SceneReply_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(SceneReply& a, SceneReply& b) { a.Swap(&b); }
   inline void Swap(SceneReply* other) {
     if (other == this) return;
@@ -1422,22 +1034,26 @@ class SceneReply final
     kPositionsFieldNumber = 3,
     kSceneIDFieldNumber = 1,
   };
-  // repeated int32 meshIDs = 2;
+  // repeated string meshIDs = 2;
   int meshids_size() const;
   private:
   int _internal_meshids_size() const;
 
   public:
   void clear_meshids() ;
-  ::int32_t meshids(int index) const;
-  void set_meshids(int index, ::int32_t value);
-  void add_meshids(::int32_t value);
-  const ::google::protobuf::RepeatedField<::int32_t>& meshids() const;
-  ::google::protobuf::RepeatedField<::int32_t>* mutable_meshids();
+  const std::string& meshids(int index) const;
+  std::string* mutable_meshids(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_meshids(int index, Arg_&& value, Args_... args);
+  std::string* add_meshids();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_meshids(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& meshids() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_meshids();
 
   private:
-  const ::google::protobuf::RepeatedField<::int32_t>& _internal_meshids() const;
-  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_meshids();
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_meshids() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_meshids();
 
   public:
   // repeated .Float3 positions = 3;
@@ -1457,14 +1073,20 @@ class SceneReply final
   const ::Float3& positions(int index) const;
   ::Float3* add_positions();
   const ::google::protobuf::RepeatedPtrField<::Float3>& positions() const;
-  // int32 sceneID = 1;
+  // string sceneID = 1;
   void clear_sceneid() ;
-  ::int32_t sceneid() const;
-  void set_sceneid(::int32_t value);
+  const std::string& sceneid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_sceneid(Arg_&& arg, Args_... args);
+  std::string* mutable_sceneid();
+  PROTOBUF_NODISCARD std::string* release_sceneid();
+  void set_allocated_sceneid(std::string* value);
 
   private:
-  ::int32_t _internal_sceneid() const;
-  void _internal_set_sceneid(::int32_t value);
+  const std::string& _internal_sceneid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_sceneid(
+      const std::string& value);
+  std::string* _internal_mutable_sceneid();
 
   public:
   // @@protoc_insertion_point(class_scope:SceneReply)
@@ -1473,7 +1095,7 @@ class SceneReply final
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 1,
-      0, 2>
+      33, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -1490,10 +1112,9 @@ class SceneReply final
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const SceneReply& from_msg);
-    ::google::protobuf::RepeatedField<::int32_t> meshids_;
-    ::google::protobuf::internal::CachedSize _meshids_cached_byte_size_;
+    ::google::protobuf::RepeatedPtrField<std::string> meshids_;
     ::google::protobuf::RepeatedPtrField< ::Float3 > positions_;
-    ::int32_t sceneid_;
+    ::google::protobuf::internal::ArenaStringPtr sceneid_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1513,84 +1134,6 @@ class SceneReply final
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// ValidationRequest
-
-// string ID = 1;
-inline void ValidationRequest::clear_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_.ClearToEmpty();
-}
-inline const std::string& ValidationRequest::id() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:ValidationRequest.ID)
-  return _internal_id();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ValidationRequest::set_id(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:ValidationRequest.ID)
-}
-inline std::string* ValidationRequest::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_id();
-  // @@protoc_insertion_point(field_mutable:ValidationRequest.ID)
-  return _s;
-}
-inline const std::string& ValidationRequest::_internal_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.id_.Get();
-}
-inline void ValidationRequest::_internal_set_id(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_.Set(value, GetArena());
-}
-inline std::string* ValidationRequest::_internal_mutable_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.id_.Mutable( GetArena());
-}
-inline std::string* ValidationRequest::release_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:ValidationRequest.ID)
-  return _impl_.id_.Release();
-}
-inline void ValidationRequest::set_allocated_id(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.id_.IsDefault()) {
-    _impl_.id_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:ValidationRequest.ID)
-}
-
-// -------------------------------------------------------------------
-
-// ValidationReply
-
-// bool exists = 1;
-inline void ValidationReply::clear_exists() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.exists_ = false;
-}
-inline bool ValidationReply::exists() const {
-  // @@protoc_insertion_point(field_get:ValidationReply.exists)
-  return _internal_exists();
-}
-inline void ValidationReply::set_exists(bool value) {
-  _internal_set_exists(value);
-  // @@protoc_insertion_point(field_set:ValidationReply.exists)
-}
-inline bool ValidationReply::_internal_exists() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.exists_;
-}
-inline void ValidationReply::_internal_set_exists(bool value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.exists_ = value;
-}
-
 // -------------------------------------------------------------------
 
 // Float3
@@ -1769,55 +1312,107 @@ inline void MeshReply::set_allocated_data(std::string* value) {
 
 // SceneRequest
 
-// int32 sceneID = 1;
+// string sceneID = 1;
 inline void SceneRequest::clear_sceneid() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.sceneid_ = 0;
+  _impl_.sceneid_.ClearToEmpty();
 }
-inline ::int32_t SceneRequest::sceneid() const {
+inline const std::string& SceneRequest::sceneid() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:SceneRequest.sceneID)
   return _internal_sceneid();
 }
-inline void SceneRequest::set_sceneid(::int32_t value) {
-  _internal_set_sceneid(value);
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SceneRequest::set_sceneid(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sceneid_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:SceneRequest.sceneID)
 }
-inline ::int32_t SceneRequest::_internal_sceneid() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.sceneid_;
+inline std::string* SceneRequest::mutable_sceneid() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_sceneid();
+  // @@protoc_insertion_point(field_mutable:SceneRequest.sceneID)
+  return _s;
 }
-inline void SceneRequest::_internal_set_sceneid(::int32_t value) {
+inline const std::string& SceneRequest::_internal_sceneid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.sceneid_.Get();
+}
+inline void SceneRequest::_internal_set_sceneid(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.sceneid_ = value;
+  _impl_.sceneid_.Set(value, GetArena());
+}
+inline std::string* SceneRequest::_internal_mutable_sceneid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.sceneid_.Mutable( GetArena());
+}
+inline std::string* SceneRequest::release_sceneid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:SceneRequest.sceneID)
+  return _impl_.sceneid_.Release();
+}
+inline void SceneRequest::set_allocated_sceneid(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sceneid_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.sceneid_.IsDefault()) {
+    _impl_.sceneid_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:SceneRequest.sceneID)
 }
 
 // -------------------------------------------------------------------
 
 // SceneReply
 
-// int32 sceneID = 1;
+// string sceneID = 1;
 inline void SceneReply::clear_sceneid() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.sceneid_ = 0;
+  _impl_.sceneid_.ClearToEmpty();
 }
-inline ::int32_t SceneReply::sceneid() const {
+inline const std::string& SceneReply::sceneid() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:SceneReply.sceneID)
   return _internal_sceneid();
 }
-inline void SceneReply::set_sceneid(::int32_t value) {
-  _internal_set_sceneid(value);
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SceneReply::set_sceneid(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sceneid_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:SceneReply.sceneID)
 }
-inline ::int32_t SceneReply::_internal_sceneid() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.sceneid_;
+inline std::string* SceneReply::mutable_sceneid() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_sceneid();
+  // @@protoc_insertion_point(field_mutable:SceneReply.sceneID)
+  return _s;
 }
-inline void SceneReply::_internal_set_sceneid(::int32_t value) {
+inline const std::string& SceneReply::_internal_sceneid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.sceneid_.Get();
+}
+inline void SceneReply::_internal_set_sceneid(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.sceneid_ = value;
+  _impl_.sceneid_.Set(value, GetArena());
+}
+inline std::string* SceneReply::_internal_mutable_sceneid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.sceneid_.Mutable( GetArena());
+}
+inline std::string* SceneReply::release_sceneid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:SceneReply.sceneID)
+  return _impl_.sceneid_.Release();
+}
+inline void SceneReply::set_allocated_sceneid(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sceneid_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.sceneid_.IsDefault()) {
+    _impl_.sceneid_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:SceneReply.sceneID)
 }
 
-// repeated int32 meshIDs = 2;
+// repeated string meshIDs = 2;
 inline int SceneReply::_internal_meshids_size() const {
   return _internal_meshids().size();
 }
@@ -1828,36 +1423,55 @@ inline void SceneReply::clear_meshids() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.meshids_.Clear();
 }
-inline ::int32_t SceneReply::meshids(int index) const {
+inline std::string* SceneReply::add_meshids() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  std::string* _s = _internal_mutable_meshids()->Add();
+  // @@protoc_insertion_point(field_add_mutable:SceneReply.meshIDs)
+  return _s;
+}
+inline const std::string& SceneReply::meshids(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:SceneReply.meshIDs)
   return _internal_meshids().Get(index);
 }
-inline void SceneReply::set_meshids(int index, ::int32_t value) {
-  _internal_mutable_meshids()->Set(index, value);
+inline std::string* SceneReply::mutable_meshids(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:SceneReply.meshIDs)
+  return _internal_mutable_meshids()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void SceneReply::set_meshids(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_meshids()->Mutable(index),
+      std::forward<Arg_>(value), args... );
   // @@protoc_insertion_point(field_set:SceneReply.meshIDs)
 }
-inline void SceneReply::add_meshids(::int32_t value) {
+template <typename Arg_, typename... Args_>
+inline void SceneReply::add_meshids(Arg_&& value, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_meshids()->Add(value);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_meshids(),
+                               std::forward<Arg_>(value),
+                               args... );
   // @@protoc_insertion_point(field_add:SceneReply.meshIDs)
 }
-inline const ::google::protobuf::RepeatedField<::int32_t>& SceneReply::meshids() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+SceneReply::meshids() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_list:SceneReply.meshIDs)
   return _internal_meshids();
 }
-inline ::google::protobuf::RepeatedField<::int32_t>* SceneReply::mutable_meshids()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+SceneReply::mutable_meshids() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_list:SceneReply.meshIDs)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_meshids();
 }
-inline const ::google::protobuf::RepeatedField<::int32_t>&
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
 SceneReply::_internal_meshids() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.meshids_;
 }
-inline ::google::protobuf::RepeatedField<::int32_t>* SceneReply::_internal_mutable_meshids() {
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+SceneReply::_internal_mutable_meshids() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.meshids_;
 }

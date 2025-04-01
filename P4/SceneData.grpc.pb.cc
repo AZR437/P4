@@ -21,7 +21,6 @@
 #include <grpcpp/support/sync_stream.h>
 
 static const char* MeshStream_method_names[] = {
-  "/MeshStream/ValidateMesh",
   "/MeshStream/StreamMesh",
 };
 
@@ -32,32 +31,8 @@ std::unique_ptr< MeshStream::Stub> MeshStream::NewStub(const std::shared_ptr< ::
 }
 
 MeshStream::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_ValidateMesh_(MeshStream_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StreamMesh_(MeshStream_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  : channel_(channel), rpcmethod_StreamMesh_(MeshStream_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   {}
-
-::grpc::Status MeshStream::Stub::ValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest& request, ::ValidationReply* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::ValidationRequest, ::ValidationReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ValidateMesh_, context, request, response);
-}
-
-void MeshStream::Stub::async::ValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::ValidationRequest, ::ValidationReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ValidateMesh_, context, request, response, std::move(f));
-}
-
-void MeshStream::Stub::async::ValidateMesh(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ValidateMesh_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::ValidationReply>* MeshStream::Stub::PrepareAsyncValidateMeshRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::ValidationReply, ::ValidationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ValidateMesh_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::ValidationReply>* MeshStream::Stub::AsyncValidateMeshRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncValidateMeshRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
 
 ::grpc::ClientReader< ::MeshReply>* MeshStream::Stub::StreamMeshRaw(::grpc::ClientContext* context, const ::MeshRequest& request) {
   return ::grpc::internal::ClientReaderFactory< ::MeshReply>::Create(channel_.get(), rpcmethod_StreamMesh_, context, request);
@@ -78,16 +53,6 @@ void MeshStream::Stub::async::StreamMesh(::grpc::ClientContext* context, const :
 MeshStream::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MeshStream_method_names[0],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MeshStream::Service, ::ValidationRequest, ::ValidationReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](MeshStream::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::ValidationRequest* req,
-             ::ValidationReply* resp) {
-               return service->ValidateMesh(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      MeshStream_method_names[1],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< MeshStream::Service, ::MeshRequest, ::MeshReply>(
           [](MeshStream::Service* service,
@@ -101,13 +66,6 @@ MeshStream::Service::Service() {
 MeshStream::Service::~Service() {
 }
 
-::grpc::Status MeshStream::Service::ValidateMesh(::grpc::ServerContext* context, const ::ValidationRequest* request, ::ValidationReply* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
 ::grpc::Status MeshStream::Service::StreamMesh(::grpc::ServerContext* context, const ::MeshRequest* request, ::grpc::ServerWriter< ::MeshReply>* writer) {
   (void) context;
   (void) request;
@@ -117,7 +75,6 @@ MeshStream::Service::~Service() {
 
 
 static const char* SceneLoad_method_names[] = {
-  "/SceneLoad/ValidateScene",
   "/SceneLoad/LoadScene",
 };
 
@@ -128,32 +85,8 @@ std::unique_ptr< SceneLoad::Stub> SceneLoad::NewStub(const std::shared_ptr< ::gr
 }
 
 SceneLoad::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_ValidateScene_(SceneLoad_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_LoadScene_(SceneLoad_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_LoadScene_(SceneLoad_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
-
-::grpc::Status SceneLoad::Stub::ValidateScene(::grpc::ClientContext* context, const ::ValidationRequest& request, ::ValidationReply* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::ValidationRequest, ::ValidationReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ValidateScene_, context, request, response);
-}
-
-void SceneLoad::Stub::async::ValidateScene(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::ValidationRequest, ::ValidationReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ValidateScene_, context, request, response, std::move(f));
-}
-
-void SceneLoad::Stub::async::ValidateScene(::grpc::ClientContext* context, const ::ValidationRequest* request, ::ValidationReply* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ValidateScene_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::ValidationReply>* SceneLoad::Stub::PrepareAsyncValidateSceneRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::ValidationReply, ::ValidationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ValidateScene_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::ValidationReply>* SceneLoad::Stub::AsyncValidateSceneRaw(::grpc::ClientContext* context, const ::ValidationRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncValidateSceneRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
 
 ::grpc::Status SceneLoad::Stub::LoadScene(::grpc::ClientContext* context, const ::SceneRequest& request, ::SceneReply* response) {
   return ::grpc::internal::BlockingUnaryCall< ::SceneRequest, ::SceneReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_LoadScene_, context, request, response);
@@ -182,16 +115,6 @@ SceneLoad::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       SceneLoad_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< SceneLoad::Service, ::ValidationRequest, ::ValidationReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](SceneLoad::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::ValidationRequest* req,
-             ::ValidationReply* resp) {
-               return service->ValidateScene(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      SceneLoad_method_names[1],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< SceneLoad::Service, ::SceneRequest, ::SceneReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](SceneLoad::Service* service,
              ::grpc::ServerContext* ctx,
@@ -202,13 +125,6 @@ SceneLoad::Service::Service() {
 }
 
 SceneLoad::Service::~Service() {
-}
-
-::grpc::Status SceneLoad::Service::ValidateScene(::grpc::ServerContext* context, const ::ValidationRequest* request, ::ValidationReply* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status SceneLoad::Service::LoadScene(::grpc::ServerContext* context, const ::SceneRequest* request, ::SceneReply* response) {
