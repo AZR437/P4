@@ -150,9 +150,11 @@
     <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="PoolWorkerThread.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneClient.cpp" />
     <ClCompile Include="SceneData.grpc.pb.cc" />
     <ClCompile Include="SceneData.pb.cc" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneServer.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="Skybox.cpp" />
@@ -191,9 +193,11 @@
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="PoolWorkerThread.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneClient.h" />
     <ClInclude Include="SceneData.grpc.pb.h" />
     <ClInclude Include="SceneData.pb.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneServer.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Skybox.h" />

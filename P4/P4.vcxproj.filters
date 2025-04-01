@@ -150,6 +150,12 @@
     <ClCompile Include="Input.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>System\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SceneData.proto">
@@ -287,6 +293,12 @@
       <Filter>System\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
       <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
