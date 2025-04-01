@@ -1,20 +1,21 @@
 #pragma once
-#include "iostream"
-#include "chrono"
-#include "ctime"
+#include <iostream>
+#include <chrono>
+#include <ctime>
 
 class BaseRunner;
 
 class Time
 {
 public:
-	static Time* getInstance();
+	static void initialize();
+	static void destroy();
 
-	double getTime();
-	double getDeltaTime();
-	double getUnscaledTime();
-	double getUnscaledDeltaTime();
-	void setTimeScale(double timeScale);
+	static double getTime();
+	static double getDeltaTime();
+	static double getUnscaledTime();
+	static double getUnscaledDeltaTime();
+	static void setTimeScale(double timeScale);
 
 private:
 	Time() {};
@@ -31,8 +32,8 @@ private:
 	double unscaledDeltaTime = 0.0;
 	double timeScale = 1.0;
 
-	void logFrameStart();
-	void logFrameEnd();
+	static void logFrameStart();
+	static void logFrameEnd();
 
 	friend class BaseRunner;
 };

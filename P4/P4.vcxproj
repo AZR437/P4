@@ -139,6 +139,7 @@
     <ClCompile Include="DirLight.cpp" />
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="IETThread.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="EBO.h" />
     <ClInclude Include="IETThread.h" />
     <ClInclude Include="IExecutionEvent.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="IWorkerAction.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="MenuScreen.h" />

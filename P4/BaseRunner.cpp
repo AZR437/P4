@@ -1,38 +1,9 @@
 #include "BaseRunner.h"
 #include "GameObjectManager.h"
 #include "UIManager.h"
-#include "Time.h"
 #include "ShaderManager.h"
-
-void keyCallback(
-    GLFWwindow* window,
-    int key,
-    int scancode,
-    int action,
-    int mod
-)
-{
-
-}
-
-void mouseButtonCallback(
-    GLFWwindow* window,
-    int button,
-    int action,
-    int mods
-)
-{
-
-}
-
-void cursorPosCallback(
-    GLFWwindow* window,
-    double xPos,
-    double yPos
-)
-{
-
-}
+#include "Time.h"
+#include "Input.h"
 
 BaseRunner::BaseRunner()
 {
@@ -54,11 +25,8 @@ BaseRunner::BaseRunner()
 
     glEnable(GL_DEPTH_TEST);
 
-
-    glfwSetKeyCallback(this->window, keyCallback);
-    glfwSetCursorPosCallback(this->window, cursorPosCallback);
-    glfwSetMouseButtonCallback(this->window, mouseButtonCallback);
-
+    Time::initialize();
+    Input::initialize(this->window);
     UIManager::initialize(this->window);
 
     ShaderManager::getInstance()->load("Default", "Shaders/Default.vert", "Shaders/Default.frag");
@@ -74,7 +42,7 @@ void BaseRunner::run()
 {
     while (!glfwWindowShouldClose(this->window))
     {
-        Time::getInstance()->logFrameStart();
+        Time::logFrameStart();
         this->processEvents();
         this->update();
         this->render();
@@ -82,7 +50,7 @@ void BaseRunner::run()
         glfwSwapBuffers(this->window);
         glfwPollEvents();
 
-        Time::getInstance()->logFrameEnd();
+        Time::logFrameEnd();
     }
 
     glfwTerminate();
@@ -90,7 +58,8 @@ void BaseRunner::run()
 
 void BaseRunner::processEvents()
 {
-
+    if (Input::isKey(GLFW_KEY_W))
+        std::cout << "W" << "\n";
 }
 
 void BaseRunner::update()

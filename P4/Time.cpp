@@ -2,54 +2,54 @@
 
 Time* Time::sharedInstance = NULL;
 
-Time* Time::getInstance()
+void Time::initialize()
 {
-    if (sharedInstance == NULL)
-    {
-        sharedInstance = new Time();
-    }
+    sharedInstance = new Time();
+}
 
-    return sharedInstance;
+void Time::destroy()
+{
+    delete sharedInstance;
 }
 
 void Time::logFrameStart()
 {
-    this->start = std::chrono::system_clock::now();
+    sharedInstance->start = std::chrono::system_clock::now();
 }
 
 void Time::logFrameEnd()
 {
-    this->end = std::chrono::system_clock::now();
-    std::chrono::duration<double> elapsedSeconds = this->end - this->start;
+    sharedInstance->end = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsedSeconds = sharedInstance->end - sharedInstance->start;
 
-    this->unscaledDeltaTime = elapsedSeconds.count();
-    this->deltaTime = elapsedSeconds.count() * this->timeScale;
+    sharedInstance->unscaledDeltaTime = elapsedSeconds.count();
+    sharedInstance->deltaTime = elapsedSeconds.count() * sharedInstance->timeScale;
 
-    this->time += this->deltaTime;
-    this->unscaledTime += this->unscaledDeltaTime;
+    sharedInstance->time += sharedInstance->deltaTime;
+    sharedInstance->unscaledTime += sharedInstance->unscaledDeltaTime;
 }
 
 double Time::getTime()
 {
-    return this->time;
+    return sharedInstance->time;
 }
 
 double Time::getDeltaTime()
 {
-    return this->deltaTime;
+    return sharedInstance->deltaTime;
 }
 
 double Time::getUnscaledTime()
 {
-    return this->unscaledTime;
+    return sharedInstance->unscaledTime;
 }
 
 double Time::getUnscaledDeltaTime()
 {
-    return this->unscaledDeltaTime;
+    return sharedInstance->unscaledDeltaTime;
 }
 
 void Time::setTimeScale(double timeScale)
 {
-    this->timeScale = timeScale;
+    sharedInstance->timeScale = timeScale;
 }
