@@ -2,18 +2,8 @@
 #include "CustomStyles.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-//#include "../GraphicsEngine/GraphicsEngine.h"
-//#include "ProfilerScreen.h"
 #include "MenuScreen.h"
-//#include "InspectorScreen.h"
-//#include "OutlinerScreen.h"
-//#include "CameraViewportScreen.h"
-//#include "CreditsScreen.h"
-//#include "ColorPickerScreen.h"
-//#include "ScenePlayOptionsScreen.h"
-//#include "ActionsScreen.h"
-//#include "ConsoleScreen.h"
-//#include "HUDScreen.h"
+#include "ScenePickerScreen.h"
 
 UIManager* UIManager::instance = NULL;
 
@@ -106,47 +96,12 @@ UIManager::UIManager(GLFWwindow* window)
 
 	UINames uiNames;
 
-	MenuScreen* menuScreen = new MenuScreen();
-	this->uiTable[uiNames.MENU_SCREEN] = menuScreen;
-	this->uiList.push_back(menuScreen);
+	//MenuScreen* menuScreen = new MenuScreen();
+	//this->uiTable[uiNames.MENU_SCREEN] = menuScreen;
+	//this->uiList.push_back(menuScreen);
+	
+	ScenePickerScreen* scenePickerScreen = new ScenePickerScreen();
+	this->uiTable[uiNames.SCENE_PICKER_SCREEN] = scenePickerScreen;
+	this->uiList.push_back(scenePickerScreen);
 
-	//HUDScreen* hudScreen = new HUDScreen();
-	//this->uiTable[uiNames.HUD_SCREEN] = hudScreen;
-	//this->uiList.push_back(hudScreen);
-
-	//ProfilerScreen* profilerScreen = new ProfilerScreen();
-	//this->uiTable[uiNames.PROFILER_SCREEN] = profilerScreen;
-	//this->uiList.push_back(profilerScreen);
-
-	//OutlinerScreen* outlinerScreen = new OutlinerScreen();
-	//this->uiTable[uiNames.OUTLINER_SCREEN] = outlinerScreen;
-	//this->uiList.push_back(outlinerScreen);
-
-	//InspectorScreen* inspectorScreen = new InspectorScreen();
-	//this->uiTable[uiNames.INSPECTOR_SCREEN] = inspectorScreen;
-	//this->uiList.push_back(inspectorScreen);
-
-	//CameraViewportScreen* cameraViewportScreen = new CameraViewportScreen();
-	//this->uiTable[uiNames.CAMERA_VIEWPORT_SCREEN] = cameraViewportScreen;
-	//this->uiList.push_back(cameraViewportScreen);
-
-	//CreditsScreen* creditsScreen = new CreditsScreen();
-	//this->uiTable[uiNames.CREDITS_SCREEN] = creditsScreen;
-	//this->uiList.push_back(creditsScreen);
-
-	//ColorPickerScreen* colorPickerScreen = new ColorPickerScreen();
-	//this->uiTable[uiNames.COLOR_PICKER_SCREEN] = colorPickerScreen;
-	//this->uiList.push_back(colorPickerScreen);
-	//
-	//ScenePlayOptionsScreen* scenePlayOptionsScreen = new ScenePlayOptionsScreen();
-	//this->uiTable[uiNames.SCENE_PLAY_OPTIONS_SCREEN] = scenePlayOptionsScreen;
-	//this->uiList.push_back(scenePlayOptionsScreen);
-	//
-	//ActionsScreen* actionsScreen = new ActionsScreen();
-	//this->uiTable[uiNames.ACTIONS_SCREEN] = actionsScreen;
-	//this->uiList.push_back(actionsScreen);
-	//
-	//ConsoleScreen* consoleScreen = new ConsoleScreen();
-	//this->uiTable[uiNames.CONSOLE_SCREEN] = consoleScreen;
-	//this->uiList.push_back(consoleScreen);	
 }
