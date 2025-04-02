@@ -6,6 +6,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "Skybox.h"
+
 class BaseRunner
 {
 public:
@@ -24,5 +26,6 @@ private:
 
 private:
     GLFWwindow* window;
+    Skybox* skybox;
 };
 

@@ -4,6 +4,7 @@
 #include "SpotLight.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <iostream>
 
 VFShaders::VFShaders(std::string vertPath, std::string fragPath) {
     this->shaderProgram = glCreateProgram();

@@ -5,11 +5,12 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-MeshLoader::MeshLoader(std::string name, std::string data, MeshDataCache* cache)
+MeshLoader::MeshLoader(std::string name, std::string data, MeshDataCache* cache, IExecutionEvent* execEvent)
 {
     this->name = name;
     this->data = data;
     this->cache = cache;
+    this->execEvent = execEvent;
 }
 
 MeshLoader::~MeshLoader()
@@ -115,6 +116,7 @@ void MeshLoader::onStartTask()
 
         this->cache->cacheMeshData(this->name, vertexData);
         MeshManager::getInstance()->loadMeshFromCache(this->name);
+        if (this->execEvent) this->execEvent->onFinishedExecution();
     }
 
     delete this;

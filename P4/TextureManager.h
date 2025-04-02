@@ -10,7 +10,7 @@ public:
     typedef std::unordered_map<String, GLuint> HashTable;
 
     static TextureManager* getInstance();
-    GLuint getTexture(String name);
+    GLuint* getTexture(String name);
     void load(String name, const char* path, bool flipVert = false);
     void loadSkybox(String name, const char* directory);
 

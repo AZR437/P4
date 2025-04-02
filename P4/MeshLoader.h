@@ -7,10 +7,11 @@
 #include "IWorkerAction.h"
 #include "MeshDataCache.h"
 
+class IExecutionEvent;
 class MeshLoader : public IWorkerAction
 {
 public:
-	MeshLoader(std::string name, std::string data, MeshDataCache* cache);
+	MeshLoader(std::string name, std::string data, MeshDataCache* cache, IExecutionEvent* execEvent);
 	~MeshLoader();
 
 public:
@@ -20,5 +21,6 @@ private:
 	std::string name;
 	std::string data;
 	MeshDataCache* cache;
+	IExecutionEvent* execEvent;
 };
 

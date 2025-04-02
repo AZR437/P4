@@ -1,7 +1,9 @@
 #pragma once
 #include <vector>
 #include "VFShaders.h"
-#include "Mesh.h"
+#include "VAO.h"
+#include "VBO.h"
+#include "EBO.h"
 
 class Skybox
 {
@@ -37,18 +39,21 @@ private:
         6,2,3
     };
 
-    Mesh* mesh;
-    VFShaders* Shaders;
+    VAO* vao;
+    VBO* vbo;
+    EBO* ebo;
+
+    VFShaders* shaders;
     GLuint* texture;
 
 public:
-    Skybox(Mesh* mesh, VFShaders* Shaders, GLuint* texture);
+    Skybox(VFShaders* shaders, GLuint* texture);
     void draw();
 
     void setShaders(VFShaders* Shaders);
 
+private:
     std::vector<GLfloat> getVertices();
-
     std::vector<GLuint> getIndices();
 
 };

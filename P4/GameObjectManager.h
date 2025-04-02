@@ -16,7 +16,7 @@ class GameObjectManager
 		int activeObjects();
 		void processInput();
 		void update();
-		void draw(GLFWwindow* window);
+		void draw();
 		void addObject(AGameObject* gameObject);
 		void deleteObject(AGameObject* gameObject);
 		void deleteObjectByName(AGameObject::String name);

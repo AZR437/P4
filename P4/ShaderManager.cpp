@@ -38,5 +38,5 @@ void ShaderManager::loadAll()
 VFShaders* ShaderManager::getShaders(String name)
 {
     
-    return nullptr;
+    return this->shaderMap[name];
 }

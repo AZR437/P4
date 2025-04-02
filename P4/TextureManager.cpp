@@ -1,5 +1,6 @@
 #include "TextureManager.h"
 #include <filesystem>
+#include <iostream>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -78,6 +79,7 @@ void TextureManager::load(const char* path, bool flipVert, GLenum target)
     );
 
     stbi_image_free(data);
+    std::cout << "[TextureManager] Loaded: " << path << "\n";
 }
 
 TextureManager* TextureManager::sharedInstance = NULL;
@@ -89,7 +91,7 @@ TextureManager* TextureManager::getInstance() {
     return sharedInstance;
 }
 
-GLuint TextureManager::getTexture(String name)
+GLuint* TextureManager::getTexture(String name)
 {
-    return this->textureMap[name];
+    return &this->textureMap[name];
 }

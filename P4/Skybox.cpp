@@ -2,10 +2,26 @@
 #include "iostream"
 #include "CameraManager.h"
 
-Skybox::Skybox(Mesh* mesh, VFShaders* Shaders, GLuint* texture) {
-    this->mesh = mesh;
+Skybox::Skybox(VFShaders* shaders, GLuint* texture) {
     this->texture = texture;
-    this->Shaders = Shaders;
+    this->shaders = shaders;
+
+    int dims[]{ 3 };
+
+    this->vao = new VAO;
+    this->vbo = new VBO;
+    this->ebo = new EBO;
+
+    this->vao->bind();
+
+    this->vbo->bind();
+    this->vbo->bufferData(this->getVertices());
+    this->vao->createPointers(dims, 1);
+
+    this->ebo->bind();
+    this->ebo->bufferData(this->getIndices());
+
+    this->vao->unbind();
 }
 
 void Skybox::draw() {
@@ -13,10 +29,10 @@ void Skybox::draw() {
     glm::mat4 view = glm::mat4(1.0f);
     view = glm::mat4(glm::mat3(cam->getView()));
 
-    this->Shaders->setMat4("projection", cam->getProjection());
-    this->Shaders->setMat4("view", view);
+    this->shaders->setMat4("projection", cam->getProjection());
+    this->shaders->setMat4("view", view);
 
-    //bind VAO
+    this->vao->bind();
 
     glDepthMask(GL_FALSE);
     glDepthFunc(GL_LEQUAL);
@@ -30,8 +46,8 @@ void Skybox::draw() {
     glDepthFunc(GL_LESS);
 }
 
-void Skybox::setShaders(VFShaders* Shaders) {
-    this->Shaders = Shaders;
+void Skybox::setShaders(VFShaders* shaders) {
+    this->shaders = shaders;
 }
 
 std::vector<GLfloat> Skybox::getVertices() {

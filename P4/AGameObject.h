@@ -3,7 +3,6 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
 class AGameObject

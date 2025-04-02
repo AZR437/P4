@@ -51,7 +51,7 @@ void GameObjectManager::update()
 }
 
 //draws the object if it contains a sprite
-void GameObjectManager::draw(GLFWwindow* window) {
+void GameObjectManager::draw() {
 	for (int i = 0; i < this->gameObjectList.size(); i++) {
 		if (this->gameObjectList[i]->getEnabled())
 			this->gameObjectList[i]->draw();

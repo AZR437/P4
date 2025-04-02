@@ -4,6 +4,10 @@
 #include "ShaderManager.h"
 #include "Time.h"
 #include "Input.h"
+#include "LightManager.h"
+#include "DirLight.h"
+#include "TextureManager.h"
+#include "MeshManager.h"
 
 BaseRunner::BaseRunner()
 {
@@ -31,6 +35,16 @@ BaseRunner::BaseRunner()
 
     ShaderManager::getInstance()->load("Default", "Shaders/Default.vert", "Shaders/Default.frag");
     ShaderManager::getInstance()->load("Skybox", "Shaders/Skybox.vert", "Shaders/Skybox.frag");
+
+    LightManager::getInstance()->addLight(new DirLight(glm::vec3(1.0f)));
+    TextureManager::getInstance()->loadSkybox("NightSky", "Skybox");
+
+    VFShaders* skyShaders = ShaderManager::getInstance()->getShaders("Skybox");
+    GLuint* skyTex = TextureManager::getInstance()->getTexture("NightSky");
+    std::cout << *skyTex << "\n";
+    this->skybox = new Skybox(skyShaders, skyTex);
+    
+    //MeshManager::getInstance()->loadMeshDataAsync("Bunny", );
 }
 
 BaseRunner::~BaseRunner()
@@ -74,9 +88,10 @@ void BaseRunner::render()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     //glfwGetFramebufferSize(window, &display_w, &display_h);
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-    glClearColor(0.1f, 0.0f, 0.005f, 1.0f);
+    //glClearColor(0.1f, 0.0f, 0.005f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    GameObjectManager::getInstance()->draw(this->window);
+    this->skybox->draw();
+    GameObjectManager::getInstance()->draw();
     UIManager::getInstance()->drawAllUI();
 }
