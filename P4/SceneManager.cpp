@@ -33,10 +33,19 @@ void SceneManager::destroyScene(String name, bool destroyObjects)
         {
             GameObjectManager::getInstance()->deleteObject(gameObject);
         }
+        auto it = sceneTransforms.find(name);
+
+        if (it != sceneTransforms.end()) {
+          
+            it->second.clear();
+
+            sceneTransforms.erase(it);
+        }
     }
 
     delete this->sceneMap[name];
     this->sceneMap.erase(name);
+
 }
 
 Scene* SceneManager::getScene(String name)
