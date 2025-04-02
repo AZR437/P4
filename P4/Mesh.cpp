@@ -17,6 +17,11 @@ Mesh::~Mesh()
     delete this->vbo;
 }
 
+void Mesh::bind()
+{
+    this->vao->bind();
+}
+
 void Mesh::draw()
 {
     this->vao->bind();

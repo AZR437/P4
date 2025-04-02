@@ -54,7 +54,7 @@ void GameObjectManager::update()
 void GameObjectManager::draw(GLFWwindow* window) {
 	for (int i = 0; i < this->gameObjectList.size(); i++) {
 		if (this->gameObjectList[i]->getEnabled())
-			this->gameObjectList[i]->draw(window);
+			this->gameObjectList[i]->draw();
 	}
 }
 

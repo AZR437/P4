@@ -2,7 +2,8 @@
 #include "iostream"
 #include "CameraManager.h"
 
-Skybox::Skybox(VFShaders* Shaders, GLuint* texture) {
+Skybox::Skybox(Mesh* mesh, VFShaders* Shaders, GLuint* texture) {
+    this->mesh = mesh;
     this->texture = texture;
     this->Shaders = Shaders;
 }

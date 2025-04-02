@@ -1,14 +1,52 @@
 #include "TextureManager.h"
+#include <filesystem>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-GLuint TextureManager::load(const char* path, bool flipVert) {
-    if (this->textureMap.find(path) != this->textureMap.end())
-        return this->textureMap[path];
+void TextureManager::load(String name, const char* path, bool flipVert)
+{
+    GLuint textureID;
+    glGenTextures(1, &textureID);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    this->textureMap[name] = textureID;
 
+    this->load(path, flipVert, GL_TEXTURE_2D);
+    glGenerateMipmap(GL_TEXTURE_2D);
+}
+
+void TextureManager::loadSkybox(String name, const char* directory)
+{
+    GLuint textureID;
+    glGenTextures(1, &textureID);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+    this->textureMap[name] = textureID;
+
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    int i = 0;
+    for (const auto& entry : std::filesystem::directory_iterator(directory))
+    {
+        if (std::filesystem::is_regular_file(entry.status()))
+        {
+            String path = entry.path().string();
+            this->load(path.c_str(), false, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
+            i++;
+        }
+    }
+}
+
+void TextureManager::load(const char* path, bool flipVert, GLenum target)
+{
     stbi_set_flip_vertically_on_load(flipVert);
-    
+
     int imgWidth;
     int imgHeight;
     int colorChannels;
@@ -27,12 +65,8 @@ GLuint TextureManager::load(const char* path, bool flipVert) {
     else if (colorChannels > 3)
         channels = GL_RGBA;
 
-    glGenTextures(1, &this->textureMap[path]);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, this->textureMap[path]);
-
     glTexImage2D(
-        GL_TEXTURE_2D,
+        target,
         0,
         channels,
         imgWidth,
@@ -44,15 +78,6 @@ GLuint TextureManager::load(const char* path, bool flipVert) {
     );
 
     stbi_image_free(data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    return this->textureMap[path];
-}
-
-GLuint TextureManager::loadSkybox(const char* directory)
-{
-
-    return GLuint();
 }
 
 TextureManager* TextureManager::sharedInstance = NULL;
@@ -62,4 +87,9 @@ TextureManager* TextureManager::getInstance() {
         sharedInstance = new TextureManager();
 
     return sharedInstance;
+}
+
+GLuint TextureManager::getTexture(String name)
+{
+    return this->textureMap[name];
 }

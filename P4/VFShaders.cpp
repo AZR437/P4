@@ -1,4 +1,9 @@
 #include "VFShaders.h"
+#include "DirLight.h"
+#include "PointLight.h"
+#include "SpotLight.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 VFShaders::VFShaders(std::string vertPath, std::string fragPath) {
     this->shaderProgram = glCreateProgram();
@@ -39,6 +44,45 @@ void VFShaders::setTexture(const GLchar* varName, GLuint* texture, GLenum active
     glActiveTexture(active);
     glBindTexture(type, *texture);
     glUniform1i(textureLoc, unit);
+}
+
+void VFShaders::setLights(std::vector<Light*>& lights)
+{
+    for (auto light : lights)
+    {
+        std::string lightPos = light->getType() + ".position";
+
+        std::string diffCol = light->getType() + ".diffuseCol";
+        std::string ambiCol = light->getType() + ".ambientCol";
+        std::string specCol = light->getType() + ".specularCol";
+
+        std::string ambiStr = light->getType() + ".ambientStr";
+        std::string specStr = light->getType() + ".specularStr";
+
+        std::string shine = light->getType() + ".shininess";
+
+        this->setVec3(lightPos.c_str(), light->getPosition());
+        this->setVec3(diffCol.c_str(), light->getDiffuseCol());
+        this->setVec3(ambiCol.c_str(), light->getAmbientCol());
+        this->setVec3(specCol.c_str(), light->getSpecularCol());
+
+        this->setFloat(ambiStr.c_str(), light->getAmbientStr());
+        this->setFloat(specStr.c_str(), light->getSpecularStr());
+
+        this->setFloat(shine.c_str(), light->getShininess());
+
+        if (light->getType() == "PLight")
+        {
+            PointLight* PLight = (PointLight*)light;
+            std::string con = light->getType() + ".con";
+            std::string lin = light->getType() + ".lin";
+            std::string quad = light->getType() + ".quad";
+
+            this->setFloat(con.c_str(), PLight->getConstant());
+            this->setFloat(lin.c_str(), PLight->getLinear());
+            this->setFloat(quad.c_str(), PLight->getQuadratic());
+        }
+    }
 }
 
 void VFShaders::createShader(std::string path, GLenum shaderType) {

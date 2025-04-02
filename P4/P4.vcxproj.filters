@@ -156,6 +156,12 @@
     <ClCompile Include="Scene.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="MeshObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="LightManager.cpp">
+      <Filter>System\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SceneData.proto">
@@ -300,6 +306,12 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="LightManager.h">
+      <Filter>System\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

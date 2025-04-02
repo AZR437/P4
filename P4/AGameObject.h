@@ -4,36 +4,41 @@
 #include <unordered_map>
 #include <vector>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 
 class AGameObject
 {
-	public:
-		typedef std::string String;
-		AGameObject(String name);
-		~AGameObject();
-		virtual void initialize() = 0;
-		//virtual void processInput(sf::Event event) = 0;
-		virtual void update() = 0;
-		virtual void draw(GLFWwindow* targetWindow);
-		String getName();
-		bool getEnabled() const;
-		virtual void setEnabled(bool enabled);
+public:
+	typedef std::string String;
+	AGameObject(String name);
+	~AGameObject();
+	virtual void initialize() = 0;
+	virtual void update() = 0;
+	virtual void draw() = 0;
+	String getName();
+	bool getEnabled() const;
+	virtual void setEnabled(bool enabled);
+	virtual void setPriority(int priority);
 
-		virtual void setPosition(float x, float y);
-		virtual void setScale(float x, float y);
-		virtual void setPriority(int priority);
+public:
+	void translate(glm::vec3 translation);
+	void translate(float x, float y, float z);
+	void scale(glm::vec3 escalation);
+	void scale(float x, float y, float z);
+	void scale(float scalar);
+	void rotate(float theta, glm::vec3 axis);
+	void rotate(float theta, float x, float y, float z);
 
-		//virtual sf::FloatRect getLocalBounds();
-		//virtual sf::Vector2f getPosition();
-		//virtual sf::Vector2f getScale();
-		virtual int getPriority();
+public:
+	void setPosition(glm::vec3 position);
+	glm::mat4 getTransformation();
+	glm::vec3 getPosition();
+	virtual int getPriority();
 
-	protected:
-		String name;
-		bool enabled = true;
-
-		int priority = 0;
-		float posX = 0.0f; float posY = 0.0f;
-		float scaleX = 1.0f; float scaleY = 1.0f;
+protected:
+	String name;
+	bool enabled = true;
+	glm::mat4 transformation;
+	int priority = 0;
 };
 

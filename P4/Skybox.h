@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include <glad/glad.h>
 #include "VFShaders.h"
+#include "Mesh.h"
 
 class Skybox
 {
@@ -37,11 +37,12 @@ private:
         6,2,3
     };
 
+    Mesh* mesh;
     VFShaders* Shaders;
     GLuint* texture;
 
 public:
-    Skybox(VFShaders* Shaders, GLuint* texture);
+    Skybox(Mesh* mesh, VFShaders* Shaders, GLuint* texture);
     void draw();
 
     void setShaders(VFShaders* Shaders);
