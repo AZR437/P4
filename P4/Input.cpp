@@ -29,7 +29,14 @@ void Input::mouseButtonCallback(
     int mods
 )
 {
-
+    if (action == GLFW_PRESS)
+    {
+        sharedInstance->mouseState[button] = true;
+    }
+    else if (action == GLFW_RELEASE)
+    {
+        sharedInstance->mouseState[button] = false;
+    }
 }
 
 void Input::cursorPosCallback(
@@ -56,6 +63,15 @@ void Input::update()
         ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow) ||
         ImGui::IsAnyItemHovered()) return;
 
+    if (sharedInstance->mouseState != sharedInstance->oldMouseState)
+    {
+
+    }
+
+    if (sharedInstance->keyState != sharedInstance->oldKeyState)
+    {
+
+    }
 }
 
 void Input::destroy()
@@ -83,6 +99,21 @@ void Input::showCursor(bool show)
     //::ShowCursor(show);
 }
 
+bool Input::isMouseButton(int button)
+{
+    return sharedInstance->mouseState[button];
+}
+
+bool Input::isMouseButtonDown(int button)
+{
+    return false;
+}
+
+bool Input::isMouseButtonUp(int button)
+{
+    return false;
+}
+
 bool Input::isKey(int key)
 {
     return sharedInstance->keyState[key];
@@ -90,24 +121,12 @@ bool Input::isKey(int key)
 
 bool Input::isKeyDown(int key)
 {
-
-    bool isKeyDown = false;
-    //if ((this->keysState[key] & 0x80) &&
-    //    this->keysState[key] != this->oldKeysState[key])
-    //    isKeyDown = true;
-
-    return isKeyDown;
+    return false;
 }
 
 bool Input::isKeyUp(int key)
 {
-
-    bool isKeyUp = false;
-    //if (!(this->keysState[key] & 0x80) &&
-    //    this->keysState[key] != this->oldKeysState[key])
-    //    isKeyUp = true;
-
-    return isKeyUp;
+    return false;
 }
 
 bool Input::getEnabled()

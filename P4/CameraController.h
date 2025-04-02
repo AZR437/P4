@@ -12,7 +12,13 @@ public:
 	void draw() override;
 
 private:
+	void rotate();
+	void move();
+
+private:
 	Camera* camera;
-	float speed = 100.0f;
+	float moveSpeed = 100.0f;
+	float rotSpeed = 1.0f;
+	glm::vec2 lastMousePos = glm::vec2(0.0f);
 };
 

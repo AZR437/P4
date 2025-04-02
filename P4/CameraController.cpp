@@ -22,6 +22,40 @@ void CameraController::initialize()
 
 void CameraController::update()
 {
+	this->rotate();
+	this->move();
+}
+
+void CameraController::draw()
+{
+
+}
+
+void CameraController::rotate()
+{
+	glm::vec2 mousePos = Input::getCursorPosition();
+	if (Input::isMouseButton(GLFW_MOUSE_BUTTON_RIGHT))
+	{
+		if (mousePos != this->lastMousePos)
+		{
+			//glm::vec2 lastMousePos = this->lastMousePos;
+			glm::vec2 deltaMousePos = mousePos - this->lastMousePos;
+			this->lastMousePos = mousePos;
+
+			float swivelTheta = deltaMousePos.x * this->rotSpeed * Time::getDeltaTime();
+			float tiltTheta = deltaMousePos.y * this->rotSpeed * Time::getDeltaTime();
+
+			this->camera->swivel(swivelTheta, glm::vec3(0.0f, 1.0f, 0.0f));
+			this->camera->tilt(tiltTheta, glm::vec3(1.0f, 0.0f, 0.0f));
+
+			//Input::setCursorPosition(lastMousePos);
+		}
+	}
+	else this->lastMousePos = mousePos;
+}
+
+void CameraController::move()
+{
 	glm::vec3 velocity(0.0f);
 	if (Input::isKey(GLFW_KEY_W))
 	{
@@ -41,19 +75,22 @@ void CameraController::update()
 		velocity.x = -1.0f;
 	}
 	
+	if (Input::isKey(GLFW_KEY_E))
+	{
+		velocity.y = 1.0f;
+	}
+	else if (Input::isKey(GLFW_KEY_Q))
+	{
+		velocity.y = -1.0f;
+	}
+
 	if (velocity != glm::vec3(0.0f))
 	{
 		velocity = glm::normalize(velocity);
-		velocity *= this->speed * Time::getDeltaTime();
-		this->translate(velocity);
+		velocity *= this->moveSpeed * Time::getDeltaTime();
+		this->camera->move(velocity.z, velocity.x, velocity.y);
 
-		glm::vec3 pos = this->getPosition();
-		this->camera->setPosition(pos);
+		glm::vec3 pos = this->camera->getPosition();
 		std::cout << "Cam Position: (" << pos.x << ", " << pos.y << ", " << pos.z << ")\n";
 	}
-}
-
-void CameraController::draw()
-{
-
 }

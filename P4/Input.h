@@ -17,6 +17,10 @@ public:
 	static void setCursorPosition(const glm::vec2& position);
 	static void showCursor(bool show);
 
+	static bool isMouseButton(int button);
+	static bool isMouseButtonDown(int button);
+	static bool isMouseButtonUp(int button);
+
 	static bool isKey(int key);
 	static bool isKeyDown(int key);
 	static bool isKeyUp(int key);
@@ -56,6 +60,9 @@ private:
 	GLFWwindow* window;
 
 	std::bitset<GLFW_KEY_LAST> keyState;
+	std::bitset<GLFW_KEY_LAST> oldKeyState;
+	std::bitset<GLFW_MOUSE_BUTTON_LAST> mouseState;
+	std::bitset<GLFW_MOUSE_BUTTON_LAST> oldMouseState;
 	glm::vec2 cursorPos;
 	bool enabled = true;
 };
