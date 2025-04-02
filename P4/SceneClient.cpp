@@ -16,9 +16,6 @@ std::string StreamMeshClient::StreamMesh(std::string objName)
 
     context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(10));
 
-    std::unique_ptr<grpc::ClientReader<MeshReply>> reader(
-        stub_->StreamMesh(&context, request));
-
     std::string objData;
     MeshReply meshReply;
     int retries = 3;
@@ -26,6 +23,10 @@ std::string StreamMeshClient::StreamMesh(std::string objName)
 
     while (retries > 0 && !success)
     {
+
+        std::unique_ptr<grpc::ClientReader<MeshReply>> reader(
+            stub_->StreamMesh(&context, request));
+
         while (reader->Read(&meshReply))
         {
             objData.append(meshReply.data());

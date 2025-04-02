@@ -7,8 +7,15 @@
 #include <grpcpp/health_check_service_interface.h>
 #include "MeshLoader.h"
 #include <fstream>
+#include "csignal"
+std::atomic<bool> server_running(true);
 
-SceneServer::SceneServer()
+void signalHandler(int signum) {
+	std::cout << "Interrupt signal (" << signum << ") received. Shutting down gracefully..." << std::endl;
+	server_running = false;
+}
+
+SceneServer::SceneServer():scene_load_impl(this)
 {
 }
 void SceneServer::run()
@@ -27,15 +34,34 @@ grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const Mesh
 	const size_t chunkSize = 1024;
 	char buffer[chunkSize];
 
-	while (!file.read(buffer, chunkSize))
-	{
-		MeshReply meshReply;
-		meshReply.set_data(buffer,file.gcount());
-		writer->Write(meshReply);
+	try {
+		while (!file.read(buffer, chunkSize))
+		{
+			MeshReply meshReply;
+			meshReply.set_data(buffer, file.gcount());
+			if (!writer->Write(meshReply)) {
+				std::cerr << "Error: Failed to send mesh data to client" << std::endl;
+				return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to stream data");
+			}
+		}
+	}
+	catch (const std::exception& e) {
+		std::cerr << "Exception while streaming mesh: " << e.what() << std::endl;
+		return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to stream mesh");
 	}
    
-   
     return grpc::Status::OK;
+}
+bool SceneLoadImpl::retryLoadSceneFromFile(const std::string& scene_id, std::vector<std::string>& meshIDs, std::vector<Position>& positions, std::vector<Scale>& scales, int retries)
+{
+	for (int i = 0; i < retries; ++i) {
+		if (loadSceneFromFile(scene_id, meshIDs, positions, scales)) {
+			return true;
+		}
+		std::cerr << "Retrying to load scene file, attempt " << i + 1 << " of " << retries << "...\n";
+		this->server_->sleep(1000);
+	}
+	return false;
 }
 bool SceneLoadImpl::loadSceneFromFile(const std::string& scene_id, std::vector<std::string>& meshIDs, std::vector<Position>& positions, std::vector<Scale>& scales)
 {
@@ -46,18 +72,24 @@ bool SceneLoadImpl::loadSceneFromFile(const std::string& scene_id, std::vector<s
 		return false;
 	}
 
-	json j;
-	file >> j;
+	try {
+		json j;
+		file >> j;
 
-	meshIDs = j["meshIDs"].get<std::vector<std::string>>();
+		meshIDs = j["meshIDs"].get<std::vector<std::string>>();
 
-	positions.clear();
-	scales.clear();
-	for (const auto& pos : j["positions"]) {
-		positions.push_back({ pos["x"], pos["y"], pos["z"] });
+		positions.clear();
+		scales.clear();
+		for (const auto& pos : j["positions"]) {
+			positions.push_back({ pos["x"], pos["y"], pos["z"] });
+		}
+		for (const auto& scale : j["scales"]) {
+			scales.push_back({ scale["x"], scale["y"], scale["z"] });
+		}
 	}
-	for (const auto& scale : j["scales"]) {
-		scales.push_back({ scale["x"], scale["y"], scale["z"] });
+	catch (const std::exception& e) {
+		std::cerr << "Exception while loading scene file: " << e.what() << std::endl;
+		return false;
 	}
 	return true;
 }
@@ -66,7 +98,8 @@ grpc::Status SceneLoadImpl::LoadScene(grpc::ServerContext* context, const SceneR
 	std::vector<std::string> meshIDs;
 	std::vector<Position> positions;
 	std::vector<Scale> scales;
-	if (!loadSceneFromFile(request->sceneid(), meshIDs, positions, scales)) {
+
+	if (!retryLoadSceneFromFile(request->sceneid(), meshIDs, positions, scales)) {
 		return grpc::Status(grpc::StatusCode::NOT_FOUND, "Scene not found");
 	}
 
@@ -96,7 +129,7 @@ void SceneServer::RunServer(uint16_t port)
 {
 	std::string serverAddress = absl::StrFormat("localhost:%d", port);
 	MeshStreamImpl mesh_service;
-	SceneLoadImpl scene_load_impl;
+	
 
 	grpc::EnableDefaultHealthCheckService(true);
 	grpc::reflection::InitProtoReflectionServerBuilderPlugin();
@@ -110,6 +143,14 @@ void SceneServer::RunServer(uint16_t port)
 	// Finally assemble the server.
 	std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
 	std::cout << "Server listening on " << serverAddress << std::endl;
+	signal(SIGINT, signalHandler);
 
+	while (server_running) {
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+	}
+
+	std::cout << "Shutting down the server..." << std::endl;
+	server->Shutdown();
 	server->Wait();
+	std::cout << "Server has been shut down." << std::endl;
 }
