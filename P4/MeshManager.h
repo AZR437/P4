@@ -9,6 +9,7 @@
 #include "Mesh.h"
 #include "ThreadPool.h"
 
+class IExecutionEvent;
 class MeshDataCache;
 class MeshManager
 {
@@ -17,7 +18,12 @@ public:
     typedef std::unordered_map<String, Mesh*> HashTable;
 
     static MeshManager* getInstance();
-    void loadMeshDataAsync(String name, String data);
+    void loadMeshDataAsync(
+        String name,
+        String dataPath,
+        IExecutionEvent* execEvent,
+        bool isData = false
+    );
     void loadMeshFromCache(String path);
     Mesh* getMesh(String path);
 

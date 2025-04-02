@@ -39,9 +39,14 @@ MeshManager* MeshManager::getInstance() {
     return sharedInstance;
 }
 
-void MeshManager::loadMeshDataAsync(String name,String data)
+void MeshManager::loadMeshDataAsync(
+    String name,
+    String dataPath,
+    IExecutionEvent* execEvent,
+    bool isData
+)
 {
-    MeshLoader* meshLoader = new MeshLoader(name, data, this->cache);
+    MeshLoader* meshLoader = new MeshLoader(name, this->cache, execEvent, dataPath, isData);
     this->threadPool->scheduleTask(meshLoader);
 }
 

@@ -5,12 +5,19 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-MeshLoader::MeshLoader(std::string name, std::string data, MeshDataCache* cache, IExecutionEvent* execEvent)
+MeshLoader::MeshLoader(
+    std::string name,
+    MeshDataCache* cache,
+    IExecutionEvent* execEvent,
+    std::string dataPath,
+    bool isData
+)
 {
     this->name = name;
-    this->data = data;
     this->cache = cache;
     this->execEvent = execEvent;
+    this->dataPath = dataPath;
+    this->isData = isData;
 }
 
 MeshLoader::~MeshLoader()
@@ -20,20 +27,35 @@ MeshLoader::~MeshLoader()
 
 void MeshLoader::onStartTask()
 {
-    std::istringstream objStream(this->data);
     tinyobj::attrib_t attributes;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> material;
     std::string warning, error;
 
-    bool success = tinyobj::LoadObj(
-        &attributes,
-        &shapes,
-        &material,
-        &warning,
-        &error,
-        &objStream
-    );
+    bool success = false;
+    if (this->isData)
+    {
+        std::istringstream objStream(this->dataPath);
+        success = tinyobj::LoadObj(
+            &attributes,
+            &shapes,
+            &material,
+            &warning,
+            &error,
+            &objStream
+        );
+    }
+    else
+    {
+        success = tinyobj::LoadObj(
+            &attributes,
+            &shapes,
+            &material,
+            &warning,
+            &error,
+            this->dataPath.c_str()
+        );
+    }
 
     if (!success)
     {

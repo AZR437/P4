@@ -33,7 +33,7 @@ std::string StreamMeshClient::StreamMesh(std::string objName)
         if (reader->Finish().ok())
         {
             success = true;
-            MeshManager::getInstance()->loadMeshDataAsync(objName, meshReply.data());
+            MeshManager::getInstance()->loadMeshDataAsync(objName, meshReply.data(), NULL, true);
             return "Loading of OBJ Data Done";
         }
         else

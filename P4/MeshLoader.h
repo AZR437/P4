@@ -11,7 +11,13 @@ class IExecutionEvent;
 class MeshLoader : public IWorkerAction
 {
 public:
-	MeshLoader(std::string name, std::string data, MeshDataCache* cache, IExecutionEvent* execEvent);
+	MeshLoader(
+		std::string name,
+		MeshDataCache* cache,
+		IExecutionEvent* execEvent,
+		std::string dataPath,
+		bool isData
+	);
 	~MeshLoader();
 
 public:
@@ -19,8 +25,10 @@ public:
 
 private:
 	std::string name;
-	std::string data;
 	MeshDataCache* cache;
 	IExecutionEvent* execEvent;
+
+	std::string dataPath;
+	bool isData;
 };
 
