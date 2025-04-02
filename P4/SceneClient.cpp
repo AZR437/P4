@@ -2,7 +2,8 @@
 #include <grpcpp/create_channel.h>
 #include "MeshManager.h"
 #include "tiny_obj_loader.h"
-
+#include "SceneObjTransforms.h"
+#include "SceneManager.h"
 StreamMeshClient::StreamMeshClient(std::shared_ptr<grpc::ChannelInterface> channel)
 {
 	this->stub_ = MeshStream::NewStub(channel);
@@ -71,14 +72,18 @@ std::string SceneLoadClient::LoadScene(std::string sceneName)
         std::cout << "Loaded Scene: " << sceneName << std::endl;
         std::cout << "Meshes in scene:" << std::endl;
         for (int i = 0; i < reply.meshids_size(); ++i) {
-            std::string mesh_id = reply.meshids(i);
-            std::cout << "Mesh ID: " << mesh_id << " at Position: "
-                << "x: " << reply.positions(i).x() << ", "
-                << "y: " << reply.positions(i).y() << ", "
-                << "z: " << reply.positions(i).z() << " with a Scale: "
-                << "x: " << reply.scales(i).x() << ", "
-                << "y: " << reply.scales(i).y() << ", "
-                << "z: " << reply.scales(i).z() << std::endl;
+            std::string meshID = reply.meshids(i);
+            SceneObjTransforms objTransforms;
+            objTransforms.setPos(reply.positions(i).x(), reply.positions(i).y(), reply.positions(i).z());
+            objTransforms.setScale(reply.scales(i).x(), reply.scales(i).y(), reply.scales(i).z());
+            SceneManager::getInstance()->cacheSceneTransforms(sceneName, meshID, objTransforms);
+            std::cout << "Mesh ID: " << meshID << " at Position: "
+                << "x: " <<SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getPosX() << ", "
+                << "y: " << SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getPosY() << ", "
+                << "z: " << SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getPosZ() << " with a Scale: "
+                << "x: " << SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getScaleX() << ", "
+                << "y: " << SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getScaleY() << ", "
+                << "z: " << SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getScaleZ() << std::endl;
                
 
             int retries = 3;
@@ -86,20 +91,20 @@ std::string SceneLoadClient::LoadScene(std::string sceneName)
             while (retries > 0 && !success)
             {
                 StreamMeshClient streamMeshClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
-                std::string reply = streamMeshClient.StreamMesh(mesh_id);
+                std::string reply = streamMeshClient.StreamMesh(meshID);
                 if (reply == "Loading of OBJ Data Done") {
-                    std::cout << "Mesh received: " << mesh_id << std::endl;
+                    std::cout << "Mesh received: " << meshID << std::endl;
                     success = true;
                 }
                 else {
-                    std::cerr << "Failed to stream mesh " << mesh_id << ", retrying..." << std::endl;
+                    std::cerr << "Failed to stream mesh " << meshID << ", retrying..." << std::endl;
                     --retries;
                     std::this_thread::sleep_for(std::chrono::seconds(2)); // Exponential backoff can be added here
                 }
             }
 
             if (!success) {
-                std::cerr << "Failed to load mesh: " << mesh_id << std::endl;
+                std::cerr << "Failed to load mesh: " << meshID << std::endl;
             }
         }
 

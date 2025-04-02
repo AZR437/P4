@@ -157,6 +157,7 @@
     <ClCompile Include="SceneData.grpc.pb.cc" />
     <ClCompile Include="SceneData.pb.cc" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SceneObjTransforms.cpp" />
     <ClCompile Include="ScenePickerScreen.cpp" />
     <ClCompile Include="SceneServer.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="SceneData.grpc.pb.h" />
     <ClInclude Include="SceneData.pb.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SceneObjTransforms.h" />
     <ClInclude Include="ScenePickerScreen.h" />
     <ClInclude Include="SceneServer.h" />
     <ClInclude Include="ShaderManager.h" />
