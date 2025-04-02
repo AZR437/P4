@@ -44,4 +44,5 @@ message SceneReply
 	string sceneID = 1;
 	repeated string meshIDs = 2;
 	repeated Float3 positions = 3;
+	repeated Float3 scales = 4;
 }

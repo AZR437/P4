@@ -14,20 +14,38 @@ std::string StreamMeshClient::StreamMesh(std::string objName)
     request.set_file_name(objName);
     grpc::ClientContext context;
 
+    context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(10));
+
     std::unique_ptr<grpc::ClientReader<MeshReply>> reader(
         stub_->StreamMesh(&context, request));
 
     std::string objData;
     MeshReply meshReply;
-    while (reader->Read(&meshReply))
+    int retries = 3;
+    bool success = false;
+
+    while (retries > 0 && !success)
     {
-        objData.append(meshReply.data());
+        while (reader->Read(&meshReply))
+        {
+            objData.append(meshReply.data());
+        }
+        if (reader->Finish().ok())
+        {
+            success = true;
+            MeshManager::getInstance()->loadMeshDataAsync(objName, meshReply.data());
+            return "Loading of OBJ Data Done";
+        }
+        else
+        {
+            // Retry in case of failure
+            std::cerr << "Failed to stream mesh data, retrying..." << std::endl;
+            --retries;
+            std::cerr << retries<< std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(5)); // Exponential backoff can be added here
+        }
     }
-
-    // Now that we've received all chunks, load it with tinyobjloader
-    MeshManager::getInstance()->loadMeshDataAsync(objName, meshReply.data());
-
-    return "Loading of OBJ Data Done";
+    return "Failed to stream mesh data after retries.";
 }
 
 
@@ -45,6 +63,8 @@ std::string SceneLoadClient::LoadScene(std::string sceneName)
     SceneReply reply;
     ClientContext context;
 
+    //context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(10));
+
     Status status = this->stub_->LoadScene(&context, request, &reply);
     if (status.ok()) {
         std::cout << "Loaded Scene: " << sceneName << std::endl;
@@ -54,10 +74,32 @@ std::string SceneLoadClient::LoadScene(std::string sceneName)
             std::cout << "Mesh ID: " << mesh_id << " at Position: "
                 << "x: " << reply.positions(i).x() << ", "
                 << "y: " << reply.positions(i).y() << ", "
-                << "z: " << reply.positions(i).z() << std::endl;
-            StreamMeshClient streamMeshClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
-            std::string reply = streamMeshClient.StreamMesh(mesh_id);
-            std::cout << "Mesh received: " << reply << std::endl;
+                << "z: " << reply.positions(i).z() << " with a Scale: "
+                << "x: " << reply.scales(i).x() << ", "
+                << "y: " << reply.scales(i).y() << ", "
+                << "z: " << reply.scales(i).z() << std::endl;
+               
+
+            int retries = 3;
+            bool success = false;
+            while (retries > 0 && !success)
+            {
+                StreamMeshClient streamMeshClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
+                std::string reply = streamMeshClient.StreamMesh(mesh_id);
+                if (reply == "Loading of OBJ Data Done") {
+                    std::cout << "Mesh received: " << mesh_id << std::endl;
+                    success = true;
+                }
+                else {
+                    std::cerr << "Failed to stream mesh " << mesh_id << ", retrying..." << std::endl;
+                    --retries;
+                    std::this_thread::sleep_for(std::chrono::seconds(2)); // Exponential backoff can be added here
+                }
+            }
+
+            if (!success) {
+                std::cerr << "Failed to load mesh: " << mesh_id << std::endl;
+            }
         }
 
         return "Scene Loading done";  

@@ -17,8 +17,12 @@ private:
 	struct Position {
 		float x, y, z;
 	};
+	struct Scale
+	{
+		float x, y, z;
+	};
 public:
-	bool loadSceneFromFile(const std::string& scene_id, std::vector<std::string>& meshIDs, std::vector<Position>& positions);
+	bool loadSceneFromFile(const std::string& scene_id, std::vector<std::string>& meshIDs, std::vector<Position>& positions, std::vector<Scale>& scales);
 	grpc::Status LoadScene(grpc::ServerContext* context, const SceneRequest* request, SceneReply* reply) override;
 };
 class SceneServer final: public IETThread

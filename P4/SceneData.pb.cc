@@ -137,6 +137,7 @@ inline constexpr SceneReply::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : meshids_{},
         positions_{},
+        scales_{},
         sceneid_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
@@ -217,6 +218,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::SceneReply, _impl_.sceneid_),
         PROTOBUF_FIELD_OFFSET(::SceneReply, _impl_.meshids_),
         PROTOBUF_FIELD_OFFSET(::SceneReply, _impl_.positions_),
+        PROTOBUF_FIELD_OFFSET(::SceneReply, _impl_.scales_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -239,18 +241,19 @@ const char descriptor_table_protodef_SceneData_2eproto[] ABSL_ATTRIBUTE_SECTION_
     "\n\017SceneData.proto\")\n\006Float3\022\t\n\001x\030\001 \001(\002\022\t"
     "\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001(\002\" \n\013MeshRequest\022\021\n\tf"
     "ile_name\030\001 \001(\t\"\031\n\tMeshReply\022\014\n\004data\030\001 \001("
-    "\014\"\037\n\014SceneRequest\022\017\n\007sceneID\030\001 \001(\t\"J\n\nSc"
+    "\014\"\037\n\014SceneRequest\022\017\n\007sceneID\030\001 \001(\t\"c\n\nSc"
     "eneReply\022\017\n\007sceneID\030\001 \001(\t\022\017\n\007meshIDs\030\002 \003"
-    "(\t\022\032\n\tpositions\030\003 \003(\0132\007.Float328\n\nMeshSt"
-    "ream\022*\n\nStreamMesh\022\014.MeshRequest\032\n.MeshR"
-    "eply\"\0000\00126\n\tSceneLoad\022)\n\tLoadScene\022\r.Sce"
-    "neRequest\032\013.SceneReply\"\000b\006proto3"
+    "(\t\022\032\n\tpositions\030\003 \003(\0132\007.Float3\022\027\n\006scales"
+    "\030\004 \003(\0132\007.Float328\n\nMeshStream\022*\n\nStreamM"
+    "esh\022\014.MeshRequest\032\n.MeshReply\"\0000\00126\n\tSce"
+    "neLoad\022)\n\tLoadScene\022\r.SceneRequest\032\013.Sce"
+    "neReply\"\000b\006proto3"
 };
 static ::absl::once_flag descriptor_table_SceneData_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_SceneData_2eproto = {
     false,
     false,
-    352,
+    377,
     descriptor_table_protodef_SceneData_2eproto,
     "SceneData.proto",
     &descriptor_table_SceneData_2eproto_once,
@@ -1231,6 +1234,7 @@ inline PROTOBUF_NDEBUG_INLINE SceneReply::Impl_::Impl_(
     const Impl_& from, const ::SceneReply& from_msg)
       : meshids_{visibility, arena, from.meshids_},
         positions_{visibility, arena, from.positions_},
+        scales_{visibility, arena, from.scales_},
         sceneid_(arena, from.sceneid_),
         _cached_size_{0} {}
 
@@ -1255,6 +1259,7 @@ inline PROTOBUF_NDEBUG_INLINE SceneReply::Impl_::Impl_(
     ::google::protobuf::Arena* arena)
       : meshids_{visibility, arena},
         positions_{visibility, arena},
+        scales_{visibility, arena},
         sceneid_(arena),
         _cached_size_{0} {}
 
@@ -1285,6 +1290,10 @@ constexpr auto SceneReply::InternalNewImpl_() {
                   ::google::protobuf::Message::internal_visibility()),
       PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.positions_) +
           decltype(SceneReply::_impl_.positions_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.scales_) +
+          decltype(SceneReply::_impl_.scales_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
   });
@@ -1325,16 +1334,16 @@ const ::google::protobuf::internal::ClassData* SceneReply::GetClassData() const 
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 33, 2> SceneReply::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 2, 33, 2> SceneReply::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    1,  // num_aux_entries
+    4,  // num_field_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -1343,7 +1352,9 @@ const ::_pbi::TcParseTable<2, 3, 1, 33, 2> SceneReply::_table_ = {
     ::_pbi::TcParser::GetTable<::SceneReply>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // repeated .Float3 scales = 4;
+    {::_pbi::TcParser::FastMtR1,
+     {34, 63, 1, PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.scales_)}},
     // string sceneID = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.sceneid_)}},
@@ -1365,7 +1376,11 @@ const ::_pbi::TcParseTable<2, 3, 1, 33, 2> SceneReply::_table_ = {
     // repeated .Float3 positions = 3;
     {PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.positions_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .Float3 scales = 4;
+    {PROTOBUF_FIELD_OFFSET(SceneReply, _impl_.scales_), 0, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
+    {::_pbi::TcParser::GetTable<::Float3>()},
     {::_pbi::TcParser::GetTable<::Float3>()},
   }}, {{
     "\12\7\7\0\0\0\0\0"
@@ -1384,6 +1399,7 @@ PROTOBUF_NOINLINE void SceneReply::Clear() {
 
   _impl_.meshids_.Clear();
   _impl_.positions_.Clear();
+  _impl_.scales_.Clear();
   _impl_.sceneid_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -1430,6 +1446,17 @@ PROTOBUF_NOINLINE void SceneReply::Clear() {
                     target, stream);
           }
 
+          // repeated .Float3 scales = 4;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_scales_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_scales().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    4, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -1471,6 +1498,13 @@ PROTOBUF_NOINLINE void SceneReply::Clear() {
                 total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
               }
             }
+            // repeated .Float3 scales = 4;
+            {
+              total_size += 1UL * this_._internal_scales_size();
+              for (const auto& msg : this_._internal_scales()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
           }
            {
             // string sceneID = 1;
@@ -1494,6 +1528,8 @@ void SceneReply::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goog
   _this->_internal_mutable_meshids()->MergeFrom(from._internal_meshids());
   _this->_internal_mutable_positions()->MergeFrom(
       from._internal_positions());
+  _this->_internal_mutable_scales()->MergeFrom(
+      from._internal_scales());
   if (!from._internal_sceneid().empty()) {
     _this->_internal_set_sceneid(from._internal_sceneid());
   }
@@ -1515,6 +1551,7 @@ void SceneReply::InternalSwap(SceneReply* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.meshids_.InternalSwap(&other->_impl_.meshids_);
   _impl_.positions_.InternalSwap(&other->_impl_.positions_);
+  _impl_.scales_.InternalSwap(&other->_impl_.scales_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.sceneid_, &other->_impl_.sceneid_, arena);
 }
 

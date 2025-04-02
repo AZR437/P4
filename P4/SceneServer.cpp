@@ -37,7 +37,7 @@ grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const Mesh
    
     return grpc::Status::OK;
 }
-bool SceneLoadImpl::loadSceneFromFile(const std::string& scene_id, std::vector<std::string>& meshIDs, std::vector<Position>& positions)
+bool SceneLoadImpl::loadSceneFromFile(const std::string& scene_id, std::vector<std::string>& meshIDs, std::vector<Position>& positions, std::vector<Scale>& scales)
 {
 	std::string path = "C:/Users/theas/Documents/Acads/P4/P4/Scenes/" + scene_id + ".json";
 	std::ifstream file(path, std::ios::in);
@@ -52,8 +52,12 @@ bool SceneLoadImpl::loadSceneFromFile(const std::string& scene_id, std::vector<s
 	meshIDs = j["meshIDs"].get<std::vector<std::string>>();
 
 	positions.clear();
+	scales.clear();
 	for (const auto& pos : j["positions"]) {
 		positions.push_back({ pos["x"], pos["y"], pos["z"] });
+	}
+	for (const auto& scale : j["scales"]) {
+		scales.push_back({ scale["x"], scale["y"], scale["z"] });
 	}
 	return true;
 }
@@ -61,7 +65,8 @@ grpc::Status SceneLoadImpl::LoadScene(grpc::ServerContext* context, const SceneR
 {
 	std::vector<std::string> meshIDs;
 	std::vector<Position> positions;
-	if (!loadSceneFromFile(request->sceneid(), meshIDs, positions)) {
+	std::vector<Scale> scales;
+	if (!loadSceneFromFile(request->sceneid(), meshIDs, positions, scales)) {
 		return grpc::Status(grpc::StatusCode::NOT_FOUND, "Scene not found");
 	}
 
@@ -74,6 +79,15 @@ grpc::Status SceneLoadImpl::LoadScene(grpc::ServerContext* context, const SceneR
 		position->set_x(pos.x);
 		position->set_y(pos.y);
 		position->set_z(pos.z);
+	}
+	for (const auto& sc : scales) {
+		Float3* scale = reply->add_scales();
+		scale->set_x(sc.x);
+		scale->set_y(sc.y);
+		scale->set_z(sc.z);
+		std::cout << scale->x();
+		std::cout << scale->y();
+		std::cout << scale->z();
 	}
 
 	return grpc::Status::OK;

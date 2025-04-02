@@ -1032,6 +1032,7 @@ class SceneReply final
   enum : int {
     kMeshIDsFieldNumber = 2,
     kPositionsFieldNumber = 3,
+    kScalesFieldNumber = 4,
     kSceneIDFieldNumber = 1,
   };
   // repeated string meshIDs = 2;
@@ -1073,6 +1074,23 @@ class SceneReply final
   const ::Float3& positions(int index) const;
   ::Float3* add_positions();
   const ::google::protobuf::RepeatedPtrField<::Float3>& positions() const;
+  // repeated .Float3 scales = 4;
+  int scales_size() const;
+  private:
+  int _internal_scales_size() const;
+
+  public:
+  void clear_scales() ;
+  ::Float3* mutable_scales(int index);
+  ::google::protobuf::RepeatedPtrField<::Float3>* mutable_scales();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::Float3>& _internal_scales() const;
+  ::google::protobuf::RepeatedPtrField<::Float3>* _internal_mutable_scales();
+  public:
+  const ::Float3& scales(int index) const;
+  ::Float3* add_scales();
+  const ::google::protobuf::RepeatedPtrField<::Float3>& scales() const;
   // string sceneID = 1;
   void clear_sceneid() ;
   const std::string& sceneid() const;
@@ -1094,7 +1112,7 @@ class SceneReply final
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 1,
+      2, 4, 2,
       33, 2>
       _table_;
 
@@ -1114,6 +1132,7 @@ class SceneReply final
                           const SceneReply& from_msg);
     ::google::protobuf::RepeatedPtrField<std::string> meshids_;
     ::google::protobuf::RepeatedPtrField< ::Float3 > positions_;
+    ::google::protobuf::RepeatedPtrField< ::Float3 > scales_;
     ::google::protobuf::internal::ArenaStringPtr sceneid_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1523,6 +1542,55 @@ inline ::google::protobuf::RepeatedPtrField<::Float3>*
 SceneReply::_internal_mutable_positions() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.positions_;
+}
+
+// repeated .Float3 scales = 4;
+inline int SceneReply::_internal_scales_size() const {
+  return _internal_scales().size();
+}
+inline int SceneReply::scales_size() const {
+  return _internal_scales_size();
+}
+inline void SceneReply::clear_scales() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.scales_.Clear();
+}
+inline ::Float3* SceneReply::mutable_scales(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:SceneReply.scales)
+  return _internal_mutable_scales()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::Float3>* SceneReply::mutable_scales()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:SceneReply.scales)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_scales();
+}
+inline const ::Float3& SceneReply::scales(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:SceneReply.scales)
+  return _internal_scales().Get(index);
+}
+inline ::Float3* SceneReply::add_scales() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::Float3* _add = _internal_mutable_scales()->Add();
+  // @@protoc_insertion_point(field_add:SceneReply.scales)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::Float3>& SceneReply::scales() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:SceneReply.scales)
+  return _internal_scales();
+}
+inline const ::google::protobuf::RepeatedPtrField<::Float3>&
+SceneReply::_internal_scales() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.scales_;
+}
+inline ::google::protobuf::RepeatedPtrField<::Float3>*
+SceneReply::_internal_mutable_scales() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.scales_;
 }
 
 #ifdef __GNUC__
