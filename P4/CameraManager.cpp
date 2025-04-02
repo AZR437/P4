@@ -19,7 +19,7 @@ Camera* CameraManager::getCamera()
 
 CameraManager::CameraManager()
 {
-	this->camera = new PerspectiveCamera(glm::vec3(0.0f, 0.0f, -10.0f), glm::vec3(0.0f, 0.0f, -10.0f));
+	this->camera = new PerspectiveCamera(glm::vec3(0.0f, 0.0f, 0.0f));
 }
 
 CameraManager::~CameraManager()

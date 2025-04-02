@@ -4,6 +4,7 @@
 AGameObject::AGameObject(String name)
 {
 	this->name = name;
+    this->transformation = glm::mat4(1.0f);
 }
 
 AGameObject::~AGameObject() {

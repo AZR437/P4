@@ -8,6 +8,9 @@
 #include "DirLight.h"
 #include "TextureManager.h"
 #include "MeshManager.h"
+#include "CameraController.h"
+#include "MeshDisplay.h"
+#include "CameraManager.h"
 
 BaseRunner::BaseRunner()
 {
@@ -45,6 +48,13 @@ BaseRunner::BaseRunner()
     this->skybox = new Skybox(skyShaders, skyTex);
     
     //MeshManager::getInstance()->loadMeshDataAsync("Bunny", );
+
+    CameraManager::getInstance()->getCamera()->setPosition(glm::vec3(0.0f, 0.0f, -10.0f));
+    CameraController* controller = new CameraController();
+    GameObjectManager::getInstance()->addObject(controller);
+
+    MeshDisplay* meshDisplay = new MeshDisplay();
+    GameObjectManager::getInstance()->addObject(meshDisplay);
 }
 
 BaseRunner::~BaseRunner()
@@ -72,8 +82,7 @@ void BaseRunner::run()
 
 void BaseRunner::processEvents()
 {
-    if (Input::isKey(GLFW_KEY_W))
-        std::cout << "W" << "\n";
+    
 }
 
 void BaseRunner::update()
