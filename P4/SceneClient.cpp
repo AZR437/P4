@@ -77,13 +77,7 @@ std::string SceneLoadClient::LoadScene(std::string sceneName)
             objTransforms.setPos(reply.positions(i).x(), reply.positions(i).y(), reply.positions(i).z());
             objTransforms.setScale(reply.scales(i).x(), reply.scales(i).y(), reply.scales(i).z());
             SceneManager::getInstance()->cacheSceneTransforms(sceneName, meshID, objTransforms);
-            std::cout << "Mesh ID: " << meshID << " at Position: "
-                << "x: " <<SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getPosX() << ", "
-                << "y: " << SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getPosY() << ", "
-                << "z: " << SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getPosZ() << " with a Scale: "
-                << "x: " << SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getScaleX() << ", "
-                << "y: " << SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getScaleY() << ", "
-                << "z: " << SceneManager::getInstance()->getObjTransforms(sceneName, meshID).getScaleZ() << std::endl;
+           
                
 
             int retries = 3;
