@@ -1,5 +1,5 @@
 #include "Mesh.h"
-
+#include "iostream"
 Mesh::Mesh(VAO* vao, std::vector<GLfloat> vertices)
 {
     this->vao = vao;

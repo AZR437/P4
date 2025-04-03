@@ -12,6 +12,7 @@
 #include "MeshDisplay.h"
 #include "CameraManager.h"
 #include "SceneClient.h"
+#include "SceneManager.h"
 #include <grpcpp/create_channel.h>
 BaseRunner::BaseRunner()
 {
@@ -37,7 +38,7 @@ BaseRunner::BaseRunner()
     Input::initialize(this->window);
     std::shared_ptr<SceneClient> client(new SceneClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials())));
     UIManager::initialize(this->window, client);
-
+    SceneManager::initialize(client);
     ShaderManager::getInstance()->load("Default", "Shaders/Default.vert", "Shaders/Default.frag");
     ShaderManager::getInstance()->load("Skybox", "Shaders/Skybox.vert", "Shaders/Skybox.frag");
 
@@ -55,8 +56,8 @@ BaseRunner::BaseRunner()
 
     MeshDisplay* meshDisplay = new MeshDisplay();
     GameObjectManager::getInstance()->addObject(meshDisplay);
-
-    MeshManager::getInstance()->loadMeshDataAsync("Bunny", "Assets/Bunny.obj", meshDisplay);
+    client->runClient();
+    //MeshManager::getInstance()->loadMeshDataAsync("Bunny", "Assets/Bunny.obj", meshDisplay);
 }
 
 BaseRunner::~BaseRunner()

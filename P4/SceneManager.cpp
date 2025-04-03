@@ -1,14 +1,24 @@
 #include "SceneManager.h"
 #include "GameObjectManager.h"
-
+#include "MeshDisplay.h"
+#include "MeshManager.h"
 SceneManager* SceneManager::sharedInstance = NULL;
+
 
 SceneManager* SceneManager::getInstance()
 {
-    if (sharedInstance == NULL)
-        sharedInstance = new SceneManager();
-
     return sharedInstance;
+}
+void SceneManager::initialize(std::shared_ptr<SceneClient> client)
+{
+    sharedInstance = new SceneManager(client);
+}
+void SceneManager::destroy()
+{
+}
+SceneManager::SceneManager(std::shared_ptr<SceneClient> client)
+{
+    this->client = client;
 }
 
 void SceneManager::createScene(String name, SceneObjects& sceneObjects)
@@ -17,12 +27,13 @@ void SceneManager::createScene(String name, SceneObjects& sceneObjects)
     scene->registerSceneObjects(sceneObjects);
 }
 
-void SceneManager::cacheSceneTransforms(String name, String meshID, SceneObjTransforms transforms)
+void SceneManager::cacheSceneTransforms(String name, SceneObjTransforms transforms)
 {
-    this->sceneTransforms[name][meshID] = transforms;
-    std::cout << "Scene : " << name << " Object: " << meshID << std::endl;
+    this->sceneTransforms.push_back(transforms);
+   /* std::cout << "Scene : " << name << " Object: " << transforms.getName() << std::endl;
     std::cout << "Position: " << transforms.getPosX() << "," << transforms.getPosY() << "," << transforms.getPosZ() << "," << std::endl;
-    std::cout << "Scale: " << transforms.getScaleX() << "," << transforms.getScaleY() << "," << transforms.getScaleZ() << "," << std::endl;
+    std::cout << "Scale: " << transforms.getScaleX() << "," << transforms.getScaleY() << "," << transforms.getScaleZ() << "," << std::endl;*/
+    
 }
 
 void SceneManager::destroyScene(String name, bool destroyObjects)
@@ -33,14 +44,7 @@ void SceneManager::destroyScene(String name, bool destroyObjects)
         {
             GameObjectManager::getInstance()->deleteObject(gameObject);
         }
-        auto it = sceneTransforms.find(name);
-
-        if (it != sceneTransforms.end()) {
-          
-            it->second.clear();
-
-            sceneTransforms.erase(it);
-        }
+        
     }
 
     delete this->sceneMap[name];
@@ -53,10 +57,28 @@ Scene* SceneManager::getScene(String name)
     return this->sceneMap[name];
 }
 
-SceneObjTransforms SceneManager::getObjTransforms(String name, String meshID)
+void SceneManager::loadMesh (String name)
 {
-    return this->sceneTransforms[name][meshID];
+    std::cout << name << std::endl;
+    String data = client->StreamMesh(name);
+    MeshDisplay* mesh = (MeshDisplay*)GameObjectManager::getInstance()->findObjectByName("MeshData");
+    MeshManager::getInstance()->loadMeshDataAsync(name, data, mesh, true);
+
 }
+
+
+
+SceneObjTransforms SceneManager::getObjTransforms(String meshID)
+{
+    for (int i = 0; i < this->sceneTransforms.size(); i++)
+    {
+        if (this->sceneTransforms[i].getName() == meshID)
+        {
+            return this->sceneTransforms[i];
+        }
+    }
+}
+
 
 
 

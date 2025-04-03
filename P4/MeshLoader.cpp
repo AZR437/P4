@@ -59,7 +59,7 @@ void MeshLoader::onStartTask()
 
     if (!success)
     {
-        std::cout << error << std::endl;
+        std::cout <<"Error: " << error << std::endl;
     }
     else
     {
@@ -146,7 +146,7 @@ void MeshLoader::onStartTask()
 
         this->cache->cacheMeshData(this->name, vertexData);
         MeshManager::getInstance()->loadMeshFromCache(this->name);
-        if (this->execEvent) this->execEvent->onFinishedExecution();
+        if (this->execEvent) this->execEvent->onFinishedExecution(this->name);
     }
 
     delete this;

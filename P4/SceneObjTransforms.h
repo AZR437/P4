@@ -3,6 +3,7 @@
 class SceneObjTransforms
 {
 private:
+	std::string sceneName;
 	std::string name;
 	float posX, posY, posZ;
 	float scaleX, scaleY, scaleZ;
@@ -16,5 +17,9 @@ public:
 	float getScaleX();
 	float getScaleY();
 	float getScaleZ();
+	std::string getName();
+	void setName(std::string name);
+	std::string getSceneName();
+	void setSceneName(std::string name);
 };
 

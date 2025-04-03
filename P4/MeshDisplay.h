@@ -11,7 +11,10 @@ public:
 	void update() override;
 	void draw() override;
 
-	void onFinishedExecution() override;
+
+	void onFinishedExecution(std::string objName) override;
+
+
 
 };
 

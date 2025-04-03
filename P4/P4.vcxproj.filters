@@ -28,14 +28,14 @@
     <Filter Include="System\Managers">
       <UniqueIdentifier>{7e5e696c-e982-4fd9-aa4f-9586fec75797}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System\Mesh">
-      <UniqueIdentifier>{4d2d5f63-ca8b-4c71-990e-7cc9261c7902}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{e02f93bd-22ac-4938-b54b-5797fc090f3c}</UniqueIdentifier>
     </Filter>
     <Filter Include="System\Utility">
       <UniqueIdentifier>{5419d6e0-aaaf-43e3-810b-dda73c526e60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Mesh">
+      <UniqueIdentifier>{4d2d5f63-ca8b-4c71-990e-7cc9261c7902}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -162,15 +162,17 @@
     <ClCompile Include="LightManager.cpp">
       <Filter>System\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="SceneObjTransforms.cpp" />
     <ClCompile Include="ScenePickerScreen.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="CameraController.cpp">
-      <Filter>GameObject</Filter>
+    <ClCompile Include="SceneObjTransforms.cpp">
+      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="MeshDisplay.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>System\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -323,15 +325,17 @@
     <ClInclude Include="LightManager.h">
       <Filter>System\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="SceneObjTransforms.h" />
     <ClInclude Include="ScenePickerScreen.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="SceneObjTransforms.h">
+      <Filter>System</Filter>
+    </ClInclude>
     <ClInclude Include="MeshDisplay.h">
-      <Filter>GameObject</Filter>
+      <Filter>System\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="CameraController.h">
-      <Filter>GameObject</Filter>
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

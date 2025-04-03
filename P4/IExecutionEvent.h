@@ -5,6 +5,6 @@
 class IExecutionEvent
 {
 public:
-	virtual void onFinishedExecution() = 0;
+	virtual void onFinishedExecution(std::string name) = 0;
 };
 

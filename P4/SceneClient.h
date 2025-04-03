@@ -26,8 +26,12 @@ class SceneClient
 {
 public:
 	SceneClient(std::shared_ptr<grpc::ChannelInterface> channel);
+	void runClient();
 	std::string LoadScene(std::string sceneName);
+	std::string StreamMesh(std::string objName);
+
 private:
 	SceneLoadClient client;
+	StreamMeshClient meshClient;
 };
 

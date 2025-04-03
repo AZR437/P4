@@ -1,4 +1,5 @@
 {
+    "name": "Scene_4",
     "meshIDs": [ "house", "statue" ],
     "positions": [
         {

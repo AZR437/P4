@@ -43,3 +43,23 @@ float SceneObjTransforms::getScaleZ()
 {
 	return this->scaleZ;
 }
+
+std::string SceneObjTransforms::getName()
+{
+	return this->name;
+}
+
+void SceneObjTransforms::setName(std::string name)
+{
+	this->name = name;
+}
+
+std::string SceneObjTransforms::getSceneName()
+{
+	return this->sceneName;
+}
+
+void SceneObjTransforms::setSceneName(std::string name)
+{
+	this->sceneName = sceneName;
+}

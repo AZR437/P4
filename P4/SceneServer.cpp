@@ -15,18 +15,10 @@ void signalHandler(int signum) {
 	server_running = false;
 }
 
-SceneServer::SceneServer():scene_load_impl(this),mesh_service(this)
-{
-}
-void SceneServer::run()
-{
-	RunServer(50051);
-}
-
 grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const MeshRequest* request, grpc::ServerWriter<MeshReply>* writer)
 {
 	std::string path = "C:/Users/theas/Documents/Acads/P4/P4/Assets/" + request->file_name() + ".obj";
-	std::ifstream file(path, std::ios::in);
+	std::ifstream file(path, std::ios::binary);
 	if (!file.is_open()) {
 		return grpc::Status(grpc::StatusCode::NOT_FOUND, "File not found");
 	}
@@ -34,17 +26,27 @@ grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const Mesh
 	char buffer[chunkSize];
 
 	try {
-		server_->sleep(5000);
-		while (!file.read(buffer, chunkSize))
+		while (file.read(buffer, chunkSize))
 		{
 			MeshReply meshReply;
 			meshReply.set_data(buffer, file.gcount());
-			if (!writer->Write(meshReply)) {
+			if (!writer->Write(meshReply))
+			{
 				std::cerr << "Error: Failed to send mesh data to client" << std::endl;
 				return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to stream data");
 			}
 		}
+		if (file.gcount() > 0) {
+			MeshReply meshReply;
+			meshReply.set_data(buffer, file.gcount()); // Set the remaining data
+			if (!writer->Write(meshReply)) {
+				std::cerr << "Error: Failed to send last chunk of mesh data to client" << std::endl;
+				return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to stream remaining data");
+			}
+		}
 	}
+
+
 	catch (const std::exception& e) {
 		std::cerr << "Exception while streaming mesh: " << e.what() << std::endl;
 		return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to stream mesh");
@@ -122,6 +124,15 @@ grpc::Status SceneLoadImpl::LoadScene(grpc::ServerContext* context, const SceneR
 
 	return grpc::Status::OK;
 }
+
+SceneServer::SceneServer() :scene_load_impl(this), mesh_service(this)
+{
+}
+void SceneServer::run()
+{
+	RunServer(50051);
+}
+
 void SceneServer::RunServer(uint16_t port)
 {
 	std::string serverAddress = absl::StrFormat("localhost:%d", port);
