@@ -148,6 +148,7 @@
     <ClCompile Include="MeshDataCache.cpp" />
     <ClCompile Include="MeshDisplay.cpp" />
     <ClCompile Include="MeshLoader.cpp" />
+    <ClCompile Include="MeshLoaderAction.cpp" />
     <ClCompile Include="MeshManager.cpp" />
     <ClCompile Include="MeshObject.cpp" />
     <ClCompile Include="OrthoCamera.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="MeshDataCache.h" />
     <ClInclude Include="MeshDisplay.h" />
     <ClInclude Include="MeshLoader.h" />
+    <ClInclude Include="MeshLoaderAction.h" />
     <ClInclude Include="MeshManager.h" />
     <ClInclude Include="MeshObject.h" />
     <ClInclude Include="OrthoCamera.h" />

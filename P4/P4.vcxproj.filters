@@ -184,6 +184,9 @@
     <ClCompile Include="TestDisplay.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="MeshLoaderAction.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SceneData.proto">
@@ -359,6 +362,9 @@
     </ClInclude>
     <ClInclude Include="TestDisplay.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshLoaderAction.h">
+      <Filter>Thread</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

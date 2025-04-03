@@ -8,6 +8,7 @@ MeshObject::MeshObject(String name, Mesh* mesh, VFShaders* shaders, GLuint* text
     this->shaders = shaders;
     this->texture = texture;
     this->normalMap = normalMap;
+    this->scale(10);
 }
 
 MeshObject::~MeshObject()

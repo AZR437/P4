@@ -18,14 +18,19 @@ public:
     typedef std::unordered_map<String, Mesh*> HashTable;
 
     static MeshManager* getInstance();
+    bool loadMeshData(
+        String name,
+        String dataPath,
+        bool isData = false
+    );
     void loadMeshDataAsync(
         String name,
         String dataPath,
         IExecutionEvent* execEvent,
         bool isData = false
     );
-    void loadMeshFromCache(String path);
-    Mesh* getMesh(String path);
+    void loadMeshFromCache(String name);
+    Mesh* getMesh(String name);
 
 private:
     MeshManager();

@@ -4,31 +4,14 @@
 #include <glad/glad.h>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "IWorkerAction.h"
-#include "MeshDataCache.h"
-
-class IExecutionEvent;
-class MeshLoader : public IWorkerAction
+class MeshLoader
 {
 public:
-	MeshLoader(
-		std::string name,
-		MeshDataCache* cache,
-		IExecutionEvent* execEvent,
-		std::string dataPath,
-		bool isData
-	);
-	~MeshLoader();
-
-public:
-	virtual void onStartTask() override;
+	typedef std::string String;
+	static bool load(const char* path, std::vector<GLfloat>* vertexData);
+	static bool load(String data, std::vector<GLfloat>* vertexData);
 
 private:
-	std::string name;
-	MeshDataCache* cache;
-	IExecutionEvent* execEvent;
 
-	std::string dataPath;
-	bool isData;
 };
 

@@ -1,10 +1,11 @@
 #include "MeshManager.h"
 #include "MeshLoader.h"
+#include "MeshLoaderAction.h"
 
-Mesh* MeshManager::getMesh(String meshName)
+Mesh* MeshManager::getMesh(String name)
 {
-    if (this->meshMap.find(meshName) != this->meshMap.end())
-        return this->meshMap[meshName];
+    if (this->meshMap.find(name) != this->meshMap.end())
+        return this->meshMap[name];
 
     return NULL;
 }
@@ -33,6 +34,19 @@ MeshManager* MeshManager::getInstance() {
     return sharedInstance;
 }
 
+bool MeshManager::loadMeshData(String name, String dataPath, bool isData)
+{
+    std::vector<GLfloat> vertexData;
+    if (MeshLoader::load(dataPath, &vertexData))
+    {
+        Mesh* mesh = new Mesh(vertexData);
+        this->meshMap[name] = mesh;
+        std::cout << "[MeshManager] Mesh loaded: " << name << "\n";
+        return true;
+    }
+    return false;
+}
+
 void MeshManager::loadMeshDataAsync(
     String name,
     String dataPath,
@@ -40,20 +54,20 @@ void MeshManager::loadMeshDataAsync(
     bool isData
 )
 {
-    MeshLoader* meshLoader = new MeshLoader(name, this->cache, execEvent, dataPath, isData);
-    this->threadPool->scheduleTask(meshLoader);
+    MeshLoaderAction* meshLoaderAction = new MeshLoaderAction(name, this->cache, execEvent, dataPath, isData);
+    this->threadPool->scheduleTask(meshLoaderAction);
 }
 
-void MeshManager::loadMeshFromCache(String path)
+void MeshManager::loadMeshFromCache(String name)
 {
-    if (this->meshMap.find(path) != this->meshMap.end())
+    if (this->meshMap.find(name) != this->meshMap.end())
     {
         std::cout << "[MeshManager] WARNING: Mesh already exists." << "\n";
     }
     else
     {
-        Mesh* mesh = new Mesh(*this->cache->getMeshData(path));
-        this->meshMap[path] = mesh;
-        std::cout << "[MeshManager] Mesh loaded: " << path << "\n";
+        Mesh* mesh = new Mesh(*this->cache->getMeshData(name));
+        this->meshMap[name] = mesh;
+        std::cout << "[MeshManager] Mesh loaded: " << name << "\n";
     }
 }

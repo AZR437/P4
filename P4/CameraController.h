@@ -17,7 +17,7 @@ private:
 
 private:
 	Camera* camera;
-	float moveSpeed = 50.0f;
+	float moveSpeed = 20.0f;
 	float rotSpeed = 0.5f;
 	glm::vec2 lastMousePos = glm::vec2(0.0f);
 };
