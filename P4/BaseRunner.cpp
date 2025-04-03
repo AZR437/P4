@@ -56,7 +56,7 @@ BaseRunner::BaseRunner()
 
     MeshDisplay* meshDisplay = new MeshDisplay();
     GameObjectManager::getInstance()->addObject(meshDisplay);
-    client->runClient();
+    //client->runClient();
     //MeshManager::getInstance()->loadMeshDataAsync("Bunny", "Assets/Bunny.obj", meshDisplay);
 }
 

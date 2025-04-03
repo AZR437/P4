@@ -31,7 +31,6 @@ void MeshLoader::onStartTask()
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> material;
     std::string warning, error;
-
     bool success = false;
     if (this->isData)
     {
@@ -59,6 +58,7 @@ void MeshLoader::onStartTask()
 
     if (!success)
     {
+        std::cout <<"Warning:" << warning << std::endl;
         std::cout <<"Error: " << error << std::endl;
     }
     else

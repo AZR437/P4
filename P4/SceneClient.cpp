@@ -17,7 +17,7 @@ std::string StreamMeshClient::StreamMesh(std::string objName)
     request.set_file_name(objName);
     grpc::ClientContext context;
 
-    context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(10));
+    //context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(10));
 
     std::string objData;
     MeshReply meshReply;
@@ -67,7 +67,7 @@ std::string SceneLoadClient::LoadScene(std::string sceneName)
     SceneReply reply;
     ClientContext context;
 
-    context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(15));
+    //context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(15));
 
     Status status = this->stub_->LoadScene(&context, request, &reply);
     if (status.ok()) {
@@ -93,7 +93,7 @@ std::string SceneLoadClient::LoadScene(std::string sceneName)
                 StreamMeshClient streamMeshClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
                 std::string reply = streamMeshClient.StreamMesh(meshID);
                 if (reply != "Failed to stream mesh data after retries.") {
-                    std::cout << reply.substr(0, 1000) << std::endl;
+                    
                     std::cout << "Mesh received: " << meshID << std::endl;
                     meshLoaded++;
                     SceneManager::getInstance()->loadMesh(meshID);

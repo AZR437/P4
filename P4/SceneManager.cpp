@@ -59,9 +59,8 @@ Scene* SceneManager::getScene(String name)
 
 void SceneManager::loadMesh (String name)
 {
-    std::cout << name << std::endl;
     String data = client->StreamMesh(name);
-    MeshDisplay* mesh = (MeshDisplay*)GameObjectManager::getInstance()->findObjectByName("MeshData");
+    MeshDisplay* mesh = (MeshDisplay*)GameObjectManager::getInstance()->findObjectByName("MeshDisplay");
     MeshManager::getInstance()->loadMeshDataAsync(name, data, mesh, true);
 
 }

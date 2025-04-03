@@ -47,9 +47,6 @@ void MeshDisplay::onFinishedExecution(std::string objName)
 
 	MeshObject* meshObject = new MeshObject(objName, mesh, shader, NULL, NULL);
 	meshObject->translate(transforms.getPosX(), transforms.getPosY(), transforms.getPosZ());
-	std::cout<<meshObject->getPosition().x<<std::endl;
-	std::cout<<meshObject->getPosition().y<<std::endl;
-	std::cout << meshObject->getPosition().z << std::endl;
 	meshObject->scale(transforms.getScaleX(), transforms.getScaleY(), transforms.getScaleZ());
 	SceneManager::getInstance()->getScene(transforms.getSceneName())->registerSceneObject(meshObject);
 	
