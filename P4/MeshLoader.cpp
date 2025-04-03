@@ -70,69 +70,77 @@ void MeshLoader::onStartTask()
             for (int j = 0; j < shapes[i].mesh.indices.size(); j++)
             {
                 tinyobj::index_t vData1 = shapes[i].mesh.indices[j];
-                tinyobj::index_t vData2 = shapes[i].mesh.indices[j + 1];
-                tinyobj::index_t vData3 = shapes[i].mesh.indices[j + 2];
+                
+                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3]);         //X
+                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3 + 1]);     //Y
+                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3 + 2]);     //Z
 
-                //XYZ
-                glm::vec3 v1 = glm::vec3(
-                    attributes.vertices[vData1.vertex_index * 3],
-                    attributes.vertices[vData1.vertex_index * 3 + 1],
-                    attributes.vertices[vData1.vertex_index * 3 + 2]
-                );
-                glm::vec3 v2 = glm::vec3(
-                    attributes.vertices[vData2.vertex_index * 3],
-                    attributes.vertices[vData2.vertex_index * 3 + 1],
-                    attributes.vertices[vData2.vertex_index * 3 + 2]
-                );
-                glm::vec3 v3 = glm::vec3(
-                    attributes.vertices[vData3.vertex_index * 3],
-                    attributes.vertices[vData3.vertex_index * 3 + 1],
-                    attributes.vertices[vData3.vertex_index * 3 + 2]
-                );
+                if (!attributes.normals.empty())
+                {
+                    vertexData.push_back(attributes.normals[vData1.normal_index * 3]);      //Normals X
+                    vertexData.push_back(attributes.normals[vData1.normal_index * 3 + 1]);  //Normals Y
+                    vertexData.push_back(attributes.normals[vData1.normal_index * 3 + 2]);  //Normals Z
 
-                //UV
-                glm::vec2 uv1 = glm::vec2(
-                    attributes.texcoords[vData1.texcoord_index * 2],
-                    attributes.texcoords[vData1.texcoord_index * 2 + 1]
-                );
-                glm::vec2 uv2 = glm::vec2(
-                    attributes.texcoords[vData2.texcoord_index * 2],
-                    attributes.texcoords[vData2.texcoord_index * 2 + 1]
-                );
-                glm::vec2 uv3 = glm::vec2(
-                    attributes.texcoords[vData3.texcoord_index * 2],
-                    attributes.texcoords[vData3.texcoord_index * 2 + 1]
-                );
+                }
 
-                glm::vec3 deltaPos1 = v2 - v1;
-                glm::vec3 deltaPos2 = v3 - v1;
+                if (!attributes.texcoords.empty())
+                {
+                    vertexData.push_back(attributes.texcoords[vData1.texcoord_index * 2]);      //U
+                    vertexData.push_back(attributes.texcoords[vData1.texcoord_index * 2 + 1]);  //V
 
-                glm::vec2 deltaUV1 = uv2 - uv1;
-                glm::vec2 deltaUV2 = uv3 - uv1;
+                    tinyobj::index_t vData2 = shapes[i].mesh.indices[j + 1];
+                    tinyobj::index_t vData3 = shapes[i].mesh.indices[j + 2];
 
-                float r = 1.0f / ((deltaUV1.x * deltaUV2.y) - (deltaUV1.y * deltaUV2.x));
+                    //XYZ
+                    glm::vec3 v1 = glm::vec3(
+                        attributes.vertices[vData1.vertex_index * 3],
+                        attributes.vertices[vData1.vertex_index * 3 + 1],
+                        attributes.vertices[vData1.vertex_index * 3 + 2]
+                    );
+                    glm::vec3 v2 = glm::vec3(
+                        attributes.vertices[vData2.vertex_index * 3],
+                        attributes.vertices[vData2.vertex_index * 3 + 1],
+                        attributes.vertices[vData2.vertex_index * 3 + 2]
+                    );
+                    glm::vec3 v3 = glm::vec3(
+                        attributes.vertices[vData3.vertex_index * 3],
+                        attributes.vertices[vData3.vertex_index * 3 + 1],
+                        attributes.vertices[vData3.vertex_index * 3 + 2]
+                    );
 
-                glm::vec3 tangent = (deltaPos1 * deltaUV2.y - deltaPos2 * deltaUV1.y) * r;
-                glm::vec3 bitangent = (deltaPos2 * deltaUV1.x - deltaPos1 * deltaUV2.x) * r;
+                    //UV
+                    glm::vec2 uv1 = glm::vec2(
+                        attributes.texcoords[vData1.texcoord_index * 2],
+                        attributes.texcoords[vData1.texcoord_index * 2 + 1]
+                    );
+                    glm::vec2 uv2 = glm::vec2(
+                        attributes.texcoords[vData2.texcoord_index * 2],
+                        attributes.texcoords[vData2.texcoord_index * 2 + 1]
+                    );
+                    glm::vec2 uv3 = glm::vec2(
+                        attributes.texcoords[vData3.texcoord_index * 2],
+                        attributes.texcoords[vData3.texcoord_index * 2 + 1]
+                    );
 
-                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3]);          //X
-                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3 + 1]);      //Y
-                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3 + 2]);      //Z
+                    glm::vec3 deltaPos1 = v2 - v1;
+                    glm::vec3 deltaPos2 = v3 - v1;
 
-                vertexData.push_back(attributes.normals[vData1.normal_index * 3]);           //Normals X
-                vertexData.push_back(attributes.normals[vData1.normal_index * 3 + 1]);       //Normals Y
-                vertexData.push_back(attributes.normals[vData1.normal_index * 3 + 2]);       //Normals Z
+                    glm::vec2 deltaUV1 = uv2 - uv1;
+                    glm::vec2 deltaUV2 = uv3 - uv1;
 
-                vertexData.push_back(attributes.texcoords[vData1.texcoord_index * 2]);       //U
-                vertexData.push_back(attributes.texcoords[vData1.texcoord_index * 2 + 1]);   //V
+                    float r = 1.0f / ((deltaUV1.x * deltaUV2.y) - (deltaUV1.y * deltaUV2.x));
 
-                vertexData.push_back(tangent.x);
-                vertexData.push_back(tangent.y);
-                vertexData.push_back(tangent.z);
+                    glm::vec3 tangent = (deltaPos1 * deltaUV2.y - deltaPos2 * deltaUV1.y) * r;
+                    glm::vec3 bitangent = (deltaPos2 * deltaUV1.x - deltaPos1 * deltaUV2.x) * r;
 
-                vertexData.push_back(bitangent.x);
-                vertexData.push_back(bitangent.y);
-                vertexData.push_back(bitangent.z);
+                    vertexData.push_back(tangent.x);
+                    vertexData.push_back(tangent.y);
+                    vertexData.push_back(tangent.z);
+
+                    vertexData.push_back(bitangent.x);
+                    vertexData.push_back(bitangent.y);
+                    vertexData.push_back(bitangent.z);
+                }
             }
         }
 

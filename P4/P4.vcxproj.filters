@@ -162,17 +162,15 @@
     <ClCompile Include="LightManager.cpp">
       <Filter>System\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="SceneObjTransforms.cpp" />
     <ClCompile Include="ScenePickerScreen.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="SceneObjTransforms.cpp">
-      <Filter>System</Filter>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="MeshDisplay.cpp">
-      <Filter>System\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraController.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -325,17 +323,15 @@
     <ClInclude Include="LightManager.h">
       <Filter>System\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="SceneObjTransforms.h" />
     <ClInclude Include="ScenePickerScreen.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="SceneObjTransforms.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="MeshDisplay.h">
-      <Filter>System\Mesh</Filter>
+      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="CameraController.h">
-      <Filter>System</Filter>
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,6 +12,10 @@ void Input::keyCallback(
     int mod
 )
 {
+    if (!sharedInstance->enabled ||
+        ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow) ||
+        ImGui::IsAnyItemHovered()) return;
+
     if (action == GLFW_PRESS)
     {
         sharedInstance->keyState[key] = true;
@@ -29,6 +33,10 @@ void Input::mouseButtonCallback(
     int mods
 )
 {
+    if (!sharedInstance->enabled ||
+        ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow) ||
+        ImGui::IsAnyItemHovered()) return;
+
     if (action == GLFW_PRESS)
     {
         sharedInstance->mouseState[button] = true;
@@ -44,7 +52,11 @@ void Input::cursorPosCallback(
     double xPos,
     double yPos
 )
-{
+{   
+    if (!sharedInstance->enabled ||
+        ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow) ||
+        ImGui::IsAnyItemHovered()) return;
+
     sharedInstance->cursorPos = glm::vec2(xPos, yPos);
 }
 

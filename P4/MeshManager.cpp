@@ -54,11 +54,12 @@ void MeshManager::loadMeshFromCache(String path)
 {
     if (this->meshMap.find(path) != this->meshMap.end())
     {
-        std::cout << "Mesh already exists." << "/n";
+        std::cout << "[MeshManager] WARNING: Mesh already exists." << "\n";
     }
     else
     {
         Mesh* mesh = new Mesh(this->vao, *this->cache->getMeshData(path));
         this->meshMap[path] = mesh;
+        std::cout << "[MeshManager] Mesh loaded: " << path << "\n";
     }
 }
