@@ -18,7 +18,6 @@ int main()
 int main()
 {
 	BaseRunner baseRunner = BaseRunner();
-	SceneClient::runClient();
 	baseRunner.run();
 
 	return 0;

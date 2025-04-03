@@ -4,6 +4,7 @@
 #include "imgui_impl_opengl3.h"
 #include "MenuScreen.h"
 #include "ScenePickerScreen.h"
+#include "SceneClient.h"
 
 UIManager* UIManager::instance = NULL;
 
@@ -12,9 +13,9 @@ UIManager* UIManager::getInstance()
 	return instance;
 }
 
-void UIManager::initialize(GLFWwindow* window)
+void UIManager::initialize(GLFWwindow* window, std::shared_ptr<SceneClient> clientPtr)
 {
-	instance = new UIManager(window);
+	instance = new UIManager(window, clientPtr);
 }
 
 void UIManager::destroy()
@@ -78,7 +79,7 @@ void UIManager::setEnabled(std::string name, bool enabled)
 	if (ui) ui->enabled = enabled;
 }
 
-UIManager::UIManager(GLFWwindow* window)
+UIManager::UIManager(GLFWwindow* window, std::shared_ptr<SceneClient> clientPtr)
 {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -99,8 +100,8 @@ UIManager::UIManager(GLFWwindow* window)
 	//MenuScreen* menuScreen = new MenuScreen();
 	//this->uiTable[uiNames.MENU_SCREEN] = menuScreen;
 	//this->uiList.push_back(menuScreen);
-	
-	ScenePickerScreen* scenePickerScreen = new ScenePickerScreen();
+	this->client = clientPtr;
+	ScenePickerScreen* scenePickerScreen = new ScenePickerScreen(client);
 	this->uiTable[uiNames.SCENE_PICKER_SCREEN] = scenePickerScreen;
 	this->uiList.push_back(scenePickerScreen);
 

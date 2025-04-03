@@ -11,7 +11,8 @@
 #include "CameraController.h"
 #include "MeshDisplay.h"
 #include "CameraManager.h"
-
+#include "SceneClient.h"
+#include <grpcpp/create_channel.h>
 BaseRunner::BaseRunner()
 {
     if (!glfwInit())
@@ -34,7 +35,8 @@ BaseRunner::BaseRunner()
 
     Time::initialize();
     Input::initialize(this->window);
-    UIManager::initialize(this->window);
+    std::shared_ptr<SceneClient> client(new SceneClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials())));
+    UIManager::initialize(this->window, client);
 
     ShaderManager::getInstance()->load("Default", "Shaders/Default.vert", "Shaders/Default.frag");
     ShaderManager::getInstance()->load("Skybox", "Shaders/Skybox.vert", "Shaders/Skybox.frag");

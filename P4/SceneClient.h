@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "SceneData.grpc.pb.h"
-
+#include "memory"
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
@@ -25,7 +25,9 @@ private:
 class SceneClient
 {
 public:
-	static void runClient();
-
+	SceneClient(std::shared_ptr<grpc::ChannelInterface> channel);
+	std::string LoadScene(std::string sceneName);
+private:
+	SceneLoadClient client;
 };
 

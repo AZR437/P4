@@ -162,6 +162,18 @@
     <ClCompile Include="LightManager.cpp">
       <Filter>System\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="ScenePickerScreen.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObjTransforms.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshDisplay.cpp">
+      <Filter>System\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SceneData.proto">
@@ -312,6 +324,18 @@
     </ClInclude>
     <ClInclude Include="LightManager.h">
       <Filter>System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenePickerScreen.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneObjTransforms.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshDisplay.h">
+      <Filter>System\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
