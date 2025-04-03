@@ -12,14 +12,8 @@ Mesh* MeshManager::getMesh(String meshName)
 MeshManager::MeshManager()
 {
     this->cache = new MeshDataCache();
-    this->vao = new VAO();
     this->threadPool = new ThreadPool("MeshLoaderPool", 8);
     this->threadPool->startScheduler();
-
-    int dimensions[]{ 3,3,2,3,3 };
-    this->vao->bind();
-    this->vao->createPointers(dimensions, 5);
-    this->vao->unbind();
 }
 
 MeshManager::~MeshManager()
@@ -58,7 +52,7 @@ void MeshManager::loadMeshFromCache(String path)
     }
     else
     {
-        Mesh* mesh = new Mesh(this->vao, *this->cache->getMeshData(path));
+        Mesh* mesh = new Mesh(*this->cache->getMeshData(path));
         this->meshMap[path] = mesh;
         std::cout << "[MeshManager] Mesh loaded: " << path << "\n";
     }

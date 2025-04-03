@@ -48,6 +48,7 @@ private:
 
 public:
     Skybox(VFShaders* shaders, GLuint* texture);
+    ~Skybox();
     void draw();
 
     void setShaders(VFShaders* Shaders);

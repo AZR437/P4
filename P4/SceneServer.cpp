@@ -17,7 +17,7 @@ void signalHandler(int signum) {
 
 grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const MeshRequest* request, grpc::ServerWriter<MeshReply>* writer)
 {
-	std::string path = "C:/Users/theas/Documents/Acads/P4/P4/Assets/" + request->file_name() + ".obj";
+	std::string path = "Assets/" + request->file_name() + ".obj";
 	std::ifstream file(path, std::ios::binary);
 	if (!file.is_open()) {
 		return grpc::Status(grpc::StatusCode::NOT_FOUND, "File not found");
@@ -26,6 +26,7 @@ grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const Mesh
 	char buffer[chunkSize];
 
 	try {
+		std::cout << "Attempting to stream mesh data from " << request->file_name() << ".obj..." << std::endl;
 		while (file.read(buffer, chunkSize))
 		{
 			MeshReply meshReply;
@@ -51,7 +52,8 @@ grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const Mesh
 		std::cerr << "Exception while streaming mesh: " << e.what() << std::endl;
 		return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to stream mesh");
 	}
-   
+	
+	std::cout << "Stream SUCCESSFUL" << std::endl;
     return grpc::Status::OK;
 }
 bool SceneLoadImpl::retryLoadSceneFromFile(const std::string& scene_id, std::vector<std::string>& meshIDs, std::vector<Position>& positions, std::vector<Scale>& scales, int retries)
@@ -67,7 +69,7 @@ bool SceneLoadImpl::retryLoadSceneFromFile(const std::string& scene_id, std::vec
 }
 bool SceneLoadImpl::loadSceneFromFile(const std::string& scene_id, std::vector<std::string>& meshIDs, std::vector<Position>& positions, std::vector<Scale>& scales)
 {
-	std::string path = "C:/Users/theas/Documents/Acads/P4/P4/Scenes/" + scene_id + ".json";
+	std::string path = "Scenes/" + scene_id + ".json";
 	std::ifstream file(path, std::ios::in);
 	if (!file.is_open()) {
 		std::cerr << "Failed to open scene file: " << path << std::endl;
@@ -78,6 +80,7 @@ bool SceneLoadImpl::loadSceneFromFile(const std::string& scene_id, std::vector<s
 		json j;
 		file >> j;
 
+		std::cout << "Attempting to reply with scene data from " << scene_id << ".json..." << std::endl;
 		meshIDs = j["meshIDs"].get<std::vector<std::string>>();
 
 		positions.clear();
@@ -121,7 +124,7 @@ grpc::Status SceneLoadImpl::LoadScene(grpc::ServerContext* context, const SceneR
 		scale->set_y(sc.y);
 		scale->set_z(sc.z);
 	}
-
+	std::cout << "Scene data sent!" << std::endl;
 	return grpc::Status::OK;
 }
 

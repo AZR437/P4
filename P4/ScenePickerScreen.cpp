@@ -13,52 +13,53 @@ ScenePickerScreen::~ScenePickerScreen()
 
 void ScenePickerScreen::drawUI()
 {
-	ImGui::Begin("Scene Picker", &this->enabled, ImGuiWindowFlags_AlwaysAutoResize);
-	ImGui::BeginTable("Scene Table", 5);
-	ImVec2 buttonSize = ImVec2(120, 20);
-	ImGui::TableNextColumn();
+	ImGui::Begin("Scene Picker", &this->enabled, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoTitleBar);
+	ImGui::BeginTable("Scene Table", 6);
+	ImVec2 buttonSize = ImVec2(150, 20);
+
+	ImGui::TableNextColumn();	// r0, c0
 	if (ImGui::Button("Scene 1 Load", buttonSize))
 	{
-		
 		std::cout << "Start Load Scene 1" << std::endl;
 		this->client->LoadScene("Scene_1");
 	}
 
-	ImGui::TableNextColumn();
+	ImGui::TableNextColumn();	// r0, c1
 	if (ImGui::Button("Scene 2 Load", buttonSize))
 	{
 		std::cout << "Start Load Scene 2" << std::endl;
 		this->client->LoadScene("Scene_2");
 	}
 
-	ImGui::TableNextColumn();
+	ImGui::TableNextColumn();	// r0, c2
 	if (ImGui::Button("Scene 3 Load", buttonSize))
 	{
 		std::cout << "Start Load Scene 3" << std::endl;
 		this->client->LoadScene("Scene_3");
 	}
-	ImGui::TableNextColumn();
+
+	ImGui::TableNextColumn();	// r0, c3
 	if (ImGui::Button("Scene 4 Load", buttonSize))
 	{
 		std::cout << "Start Load Scene 4" << std::endl;
 		this->client->LoadScene("Scene_4");
 	}
 
-	ImGui::TableNextColumn();
+	ImGui::TableNextColumn();	// r0, c4
 	if (ImGui::Button("Scene 5 Load", buttonSize))
 	{
 		std::cout << "click Scene 5" << std::endl;
 		this->client->LoadScene("Scene_1");
 	}
-	ImGui::TableNextColumn();
+
+	ImGui::TableNextColumn();	// r0, c5
 	if (ImGui::Button("Load all", buttonSize))
 	{
 		std::cout << "click scene load all" << std::endl;
 		this->client->LoadScene("Scene_1");
 	}
 
-	ImGui::TableNextRow();
-	ImGui::TableSetColumnIndex(0);
+	ImGui::TableNextColumn();	// r1, c0
 	if (ImGui::Button("Scene 1 Toggle", buttonSize))
 	{
 		if (!SceneManager::getInstance()->getScene("Scene_1")->getSceneObjects().empty())
@@ -72,7 +73,7 @@ void ScenePickerScreen::drawUI()
 		}
 	}
 
-	ImGui::TableNextColumn();
+	ImGui::TableNextColumn();	// r1, c1
 	if (ImGui::Button("Scene 2 Toggle", buttonSize))
 	{
 		if (!SceneManager::getInstance()->getScene("Scene_2")->getSceneObjects().empty())
@@ -85,8 +86,8 @@ void ScenePickerScreen::drawUI()
 			std::cout << "Scene 2 has not been Loaded yet" << std::endl;
 		}
 	}
-	
-	ImGui::TableNextColumn();
+
+	ImGui::TableNextColumn();	// r1, c2
 	if (ImGui::Button("Scene 3 Toggle", buttonSize))
 	{
 		if (!SceneManager::getInstance()->getScene("Scene_3")->getSceneObjects().empty())
@@ -99,8 +100,8 @@ void ScenePickerScreen::drawUI()
 			std::cout << "Scene 3 has not been Loaded yet" << std::endl;
 		}
 	}
-	
-	ImGui::TableNextColumn();
+
+	ImGui::TableNextColumn();	// r1, c3
 	if (ImGui::Button("Scene 4 Toggle", buttonSize))
 	{
 		if (!SceneManager::getInstance()->getScene("Scene_4")->getSceneObjects().empty())
@@ -113,8 +114,8 @@ void ScenePickerScreen::drawUI()
 			std::cout << "Scene 4 has not been Loaded yet" << std::endl;
 		}
 	}
-	
-	ImGui::TableNextColumn();
+
+	ImGui::TableNextColumn();	// r1, c4
 	if (ImGui::Button("Scene 5 Toggle", buttonSize))
 	{
 		if (!SceneManager::getInstance()->getScene("Scene_5")->getSceneObjects().empty())
@@ -127,7 +128,8 @@ void ScenePickerScreen::drawUI()
 			std::cout << "Scene 5 has not been Loaded yet" << std::endl;
 		}
 	}
-	ImGui::TableNextColumn();
+
+	ImGui::TableNextColumn();	// r1, c5
 	if (ImGui::Button("Toggle All Scenes", buttonSize))
 	{
 		this->sceneAllEnabled = !this->sceneAllEnabled;
@@ -144,9 +146,7 @@ void ScenePickerScreen::drawUI()
 				std::cout << "Scene " << i << " has not been Loaded yet" << std::endl;
 			}
 		}
-		
 	}
-
 	ImGui::EndTable();
 	ImGui::End();
 }

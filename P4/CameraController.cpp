@@ -88,6 +88,6 @@ void CameraController::move()
 		this->camera->move(velocity.z, velocity.x, velocity.y);
 
 		glm::vec3 pos = this->camera->getPosition();
-		std::cout << "Cam Position: (" << pos.x << ", " << pos.y << ", " << pos.z << ")\n";
+		//std::cout << "Cam Position: (" << pos.x << ", " << pos.y << ", " << pos.z << ")\n";
 	}
 }

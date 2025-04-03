@@ -152,6 +152,8 @@
     <ClCompile Include="MeshObject.cpp" />
     <ClCompile Include="OrthoCamera.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="PlaneObject.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="PoolWorkerThread.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -166,6 +168,7 @@
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="StringUtils.cpp" />
+    <ClCompile Include="TestDisplay.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="Time.cpp" />
@@ -201,6 +204,8 @@
     <ClInclude Include="MeshObject.h" />
     <ClInclude Include="OrthoCamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="PlaneObject.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="PoolWorkerThread.h" />
     <ClInclude Include="Scene.h" />
@@ -216,6 +221,7 @@
     <ClInclude Include="SpotLight.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="StringUtils.h" />
+    <ClInclude Include="TestDisplay.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="Time.h" />
@@ -233,6 +239,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </None>
     <None Include="Shaders\Default.vert">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="Shaders\Simple.frag">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="Shaders\Simple.vert">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </None>
     <None Include="Shaders\Skybox.frag">

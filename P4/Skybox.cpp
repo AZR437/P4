@@ -24,6 +24,17 @@ Skybox::Skybox(VFShaders* shaders, GLuint* texture) {
     this->vao->unbind();
 }
 
+Skybox::~Skybox()
+{
+    this->vao->deleteVertexArray();
+    this->vbo->deleteVertexBuffer();
+    this->ebo->deleteElementBuffer();
+
+    delete this->vao;
+    delete this->vbo;
+    delete this->ebo;
+}
+
 void Skybox::draw() {
     Camera* cam = CameraManager::getInstance()->getCamera();
     glm::mat4 view = glm::mat4(1.0f);

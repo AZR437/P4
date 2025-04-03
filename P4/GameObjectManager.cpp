@@ -64,6 +64,7 @@ void GameObjectManager::addObject(AGameObject* gameObject)
 	this->gameObjectMap[gameObject->getName()] = gameObject;
 	this->gameObjectList.push_back(gameObject);
 	this->gameObjectMap[gameObject->getName()]->initialize();
+	std::cout << "[GameObjectManager] Object added: " << gameObject->getName() << "\n";
 }
 
 //also frees up allocation of the object.

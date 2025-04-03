@@ -5,7 +5,7 @@
 class Mesh
 {
 public:
-	Mesh(VAO* vao, std::vector<GLfloat> vertices);
+	Mesh(std::vector<GLfloat> vertices);
 	~Mesh();
 	void bind();
 	void draw();

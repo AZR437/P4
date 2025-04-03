@@ -37,5 +37,4 @@ private:
     HashTable meshMap;
     MeshDataCache* cache;
     ThreadPool* threadPool;
-    VAO* vao;
 };

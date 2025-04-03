@@ -10,9 +10,11 @@
 #include "MeshManager.h"
 #include "CameraController.h"
 #include "MeshDisplay.h"
+#include "TestDisplay.h"
 #include "CameraManager.h"
 #include "SceneClient.h"
 #include "SceneManager.h"
+#include "PlaneObject.h"
 #include <grpcpp/create_channel.h>
 BaseRunner::BaseRunner()
 {
@@ -39,6 +41,7 @@ BaseRunner::BaseRunner()
     std::shared_ptr<SceneClient> client(new SceneClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials())));
     UIManager::initialize(this->window, client);
     SceneManager::initialize(client);
+    ShaderManager::getInstance()->load("Simple", "Shaders/Simple.vert", "Shaders/Simple.frag");
     ShaderManager::getInstance()->load("Default", "Shaders/Default.vert", "Shaders/Default.frag");
     ShaderManager::getInstance()->load("Skybox", "Shaders/Skybox.vert", "Shaders/Skybox.frag");
 
@@ -47,17 +50,23 @@ BaseRunner::BaseRunner()
 
     VFShaders* skyShaders = ShaderManager::getInstance()->getShaders("Skybox");
     GLuint* skyTex = TextureManager::getInstance()->getTexture("NightSky");
-    std::cout << *skyTex << "\n";
     this->skybox = new Skybox(skyShaders, skyTex);
+
+    VFShaders* simpleShaders = ShaderManager::getInstance()->getShaders("Simple");
+    PlaneObject* plane = new PlaneObject("Plane", simpleShaders);
+    plane->scale(5);
+    GameObjectManager::getInstance()->addObject(plane);
     
-    CameraManager::getInstance()->getCamera()->setPosition(glm::vec3(0.0f, 0.0f, -10.0f));
+    CameraManager::getInstance()->getCamera()->setPosition(glm::vec3(0.0f, 10.0f, -10.0f));
     CameraController* controller = new CameraController();
     GameObjectManager::getInstance()->addObject(controller);
 
+    TestDisplay* testDisplay = new TestDisplay();
+    GameObjectManager::getInstance()->addObject(testDisplay);
+    MeshManager::getInstance()->loadMeshDataAsync("Bunny", "Assets/Bunny.obj", testDisplay);
+
     MeshDisplay* meshDisplay = new MeshDisplay();
     GameObjectManager::getInstance()->addObject(meshDisplay);
-    //client->runClient();
-    //MeshManager::getInstance()->loadMeshDataAsync("Bunny", "Assets/Bunny.obj", meshDisplay);
 }
 
 BaseRunner::~BaseRunner()
