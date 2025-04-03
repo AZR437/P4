@@ -96,7 +96,12 @@ void Input::setCursorPosition(const glm::vec2& position)
 
 void Input::showCursor(bool show)
 {
-    //::ShowCursor(show);
+    if (show == sharedInstance->cursorHidden)
+    {
+        sharedInstance->cursorHidden != show;
+        if (show) glfwSetInputMode(sharedInstance->window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        else glfwSetInputMode(sharedInstance->window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    }
 }
 
 bool Input::isMouseButton(int button)

@@ -29,5 +29,6 @@ void MeshDisplay::draw()
 
 void MeshDisplay::onFinishedExecution()
 {
+
 	//MeshManager::getInstance()->getMesh()
 }

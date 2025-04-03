@@ -38,17 +38,14 @@ void CameraController::rotate()
 	{
 		if (mousePos != this->lastMousePos)
 		{
-			//glm::vec2 lastMousePos = this->lastMousePos;
 			glm::vec2 deltaMousePos = mousePos - this->lastMousePos;
-			this->lastMousePos = mousePos;
-
 			float swivelTheta = deltaMousePos.x * this->rotSpeed * Time::getDeltaTime();
 			float tiltTheta = deltaMousePos.y * this->rotSpeed * Time::getDeltaTime();
 
 			this->camera->swivel(swivelTheta, glm::vec3(0.0f, 1.0f, 0.0f));
 			this->camera->tilt(tiltTheta, glm::vec3(1.0f, 0.0f, 0.0f));
 
-			//Input::setCursorPosition(lastMousePos);
+			Input::setCursorPosition(this->lastMousePos);
 		}
 	}
 	else this->lastMousePos = mousePos;

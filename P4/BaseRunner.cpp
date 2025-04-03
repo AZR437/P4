@@ -49,14 +49,14 @@ BaseRunner::BaseRunner()
     std::cout << *skyTex << "\n";
     this->skybox = new Skybox(skyShaders, skyTex);
     
-    //MeshManager::getInstance()->loadMeshDataAsync("Bunny", );
-
     CameraManager::getInstance()->getCamera()->setPosition(glm::vec3(0.0f, 0.0f, -10.0f));
     CameraController* controller = new CameraController();
     GameObjectManager::getInstance()->addObject(controller);
 
     MeshDisplay* meshDisplay = new MeshDisplay();
     GameObjectManager::getInstance()->addObject(meshDisplay);
+
+    MeshManager::getInstance()->loadMeshDataAsync("Bunny", "Assets/Bunny.obj", meshDisplay);
 }
 
 BaseRunner::~BaseRunner()

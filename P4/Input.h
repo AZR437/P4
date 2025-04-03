@@ -58,11 +58,13 @@ private:
 	static Input* sharedInstance;
 
 	GLFWwindow* window;
+	bool enabled = true;
 
 	std::bitset<GLFW_KEY_LAST> keyState;
 	std::bitset<GLFW_KEY_LAST> oldKeyState;
 	std::bitset<GLFW_MOUSE_BUTTON_LAST> mouseState;
 	std::bitset<GLFW_MOUSE_BUTTON_LAST> oldMouseState;
+
 	glm::vec2 cursorPos;
-	bool enabled = true;
+	bool cursorHidden = false;
 };
