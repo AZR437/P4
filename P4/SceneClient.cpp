@@ -113,5 +113,10 @@ void SceneClient::runClient()
 {
    SceneLoadClient client(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
    client.LoadScene("Scene_1");
+   client.LoadScene("Scene_2");
+   client.LoadScene("Scene_3");
+   client.LoadScene("Scene_4");
+   client.LoadScene("Scene_6");
+
 
 }

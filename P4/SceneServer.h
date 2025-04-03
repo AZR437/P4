@@ -8,7 +8,12 @@
 class SceneServer;
 class MeshStreamImpl final :public MeshStream::Service
 {
+public:
+	explicit MeshStreamImpl(SceneServer* server)
+		: server_(server) {}
 	grpc::Status StreamMesh(grpc::ServerContext* context, const MeshRequest* request, grpc::ServerWriter<MeshReply>* writer) override;
+private:
+	SceneServer* server_;
 };
 
 class SceneLoadImpl final :public SceneLoad::Service
@@ -41,4 +46,5 @@ public:
 	void RunServer(uint16_t port);
 private:
 	SceneLoadImpl scene_load_impl;
+	MeshStreamImpl mesh_service;
 };

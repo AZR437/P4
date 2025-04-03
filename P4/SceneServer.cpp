@@ -15,7 +15,7 @@ void signalHandler(int signum) {
 	server_running = false;
 }
 
-SceneServer::SceneServer():scene_load_impl(this)
+SceneServer::SceneServer():scene_load_impl(this),mesh_service(this)
 {
 }
 void SceneServer::run()
@@ -30,11 +30,11 @@ grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const Mesh
 	if (!file.is_open()) {
 		return grpc::Status(grpc::StatusCode::NOT_FOUND, "File not found");
 	}
-
 	const size_t chunkSize = 1024;
 	char buffer[chunkSize];
 
 	try {
+		server_->sleep(5000);
 		while (!file.read(buffer, chunkSize))
 		{
 			MeshReply meshReply;
@@ -118,9 +118,6 @@ grpc::Status SceneLoadImpl::LoadScene(grpc::ServerContext* context, const SceneR
 		scale->set_x(sc.x);
 		scale->set_y(sc.y);
 		scale->set_z(sc.z);
-		std::cout << scale->x();
-		std::cout << scale->y();
-		std::cout << scale->z();
 	}
 
 	return grpc::Status::OK;
@@ -128,7 +125,7 @@ grpc::Status SceneLoadImpl::LoadScene(grpc::ServerContext* context, const SceneR
 void SceneServer::RunServer(uint16_t port)
 {
 	std::string serverAddress = absl::StrFormat("localhost:%d", port);
-	MeshStreamImpl mesh_service;
+	
 	
 
 	grpc::EnableDefaultHealthCheckService(true);
