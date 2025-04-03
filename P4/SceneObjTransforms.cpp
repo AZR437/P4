@@ -61,5 +61,5 @@ std::string SceneObjTransforms::getSceneName()
 
 void SceneObjTransforms::setSceneName(std::string name)
 {
-	this->sceneName = sceneName;
+	this->sceneName = name;
 }

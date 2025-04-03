@@ -17,7 +17,6 @@ MeshObject::~MeshObject()
 
 void MeshObject::initialize()
 {
-    std::cout << "initialize" << std::endl;
 }
 
 void MeshObject::update()

@@ -25,6 +25,7 @@ void SceneManager::createScene(String name, SceneObjects& sceneObjects)
 {
     Scene* scene = new Scene(name);
     scene->registerSceneObjects(sceneObjects);
+    this->sceneMap[name] = scene;
 }
 
 void SceneManager::cacheSceneTransforms(String name, SceneObjTransforms transforms)

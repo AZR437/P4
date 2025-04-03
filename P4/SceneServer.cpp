@@ -104,7 +104,7 @@ grpc::Status SceneLoadImpl::LoadScene(grpc::ServerContext* context, const SceneR
 	if (!retryLoadSceneFromFile(request->sceneid(), meshIDs, positions, scales)) {
 		return grpc::Status(grpc::StatusCode::NOT_FOUND, "Scene not found");
 	}
-
+	reply->set_sceneid(request->sceneid());
 	for (const auto& meshID : meshIDs) {
 		reply->add_meshids(meshID);
 	}

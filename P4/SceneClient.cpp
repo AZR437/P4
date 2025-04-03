@@ -76,9 +76,10 @@ std::string SceneLoadClient::LoadScene(std::string sceneName)
         int meshLoaded = 0;
         int meshNo = reply.meshids_size();
         for (int i = 0; i < reply.meshids_size(); ++i) {
+            std::string sceneID = reply.sceneid();
             std::string meshID = reply.meshids(i);
             SceneObjTransforms objTransforms;
-            objTransforms.setSceneName(sceneName);
+            objTransforms.setSceneName(sceneID);
             objTransforms.setName(meshID);
             objTransforms.setPos(reply.positions(i).x(), reply.positions(i).y(), reply.positions(i).z());
             objTransforms.setScale(reply.scales(i).x(), reply.scales(i).y(), reply.scales(i).z());
