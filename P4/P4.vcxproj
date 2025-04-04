@@ -157,6 +157,7 @@
     <ClCompile Include="PlaneObject.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="PoolWorkerThread.cpp" />
+    <ClCompile Include="ProfilerScreen.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneClient.cpp" />
     <ClCompile Include="SceneData.grpc.pb.cc" />
@@ -210,6 +211,7 @@
     <ClInclude Include="PlaneObject.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="PoolWorkerThread.h" />
+    <ClInclude Include="ProfilerScreen.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneClient.h" />
     <ClInclude Include="SceneData.grpc.pb.h" />

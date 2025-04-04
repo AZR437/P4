@@ -1,4 +1,5 @@
 #include "VAO.h"
+#include <iostream>
 
 VAO::VAO() {
     glGenVertexArrays(1, &this->vertexArray);
@@ -25,6 +26,9 @@ void VAO::createPointers(int dimensions[], int attribs) {
         usedAttribs += dimensions[i];
     }
 
+    GLenum err;
+    if (err = glGetError() != GL_NO_ERROR)
+        std::cout << "Error generating vertex attrib pointers: " << err << "\n";
 }
 
 void VAO::bind() {

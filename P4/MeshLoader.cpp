@@ -7,6 +7,7 @@
 
 bool MeshLoader::load(const char* path, std::vector<GLfloat>* vertexData)
 {
+    std::cout << "[MeshLoader] Loading mesh from path: " << path << "\n";
     tinyobj::attrib_t attributes;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> material;
@@ -28,7 +29,7 @@ bool MeshLoader::load(const char* path, std::vector<GLfloat>* vertexData)
     }
     else
     {
-        std::vector<GLfloat> vertexData;
+        std::vector<GLfloat> vertices;
 
         for (int i = 0; i < shapes.size(); i++)
         {
@@ -36,11 +37,12 @@ bool MeshLoader::load(const char* path, std::vector<GLfloat>* vertexData)
             {
                 tinyobj::index_t vData1 = shapes[i].mesh.indices[j];
 
-                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3]);         //X
-                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3 + 1]);     //Y
-                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3 + 2]);     //Z
+                vertices.push_back(attributes.vertices[vData1.vertex_index * 3]);         //X
+                vertices.push_back(attributes.vertices[vData1.vertex_index * 3 + 1]);     //Y
+                vertices.push_back(attributes.vertices[vData1.vertex_index * 3 + 2]);     //Z
             }
         }
+        *vertexData = vertices;
         return true;
     }
 
@@ -49,6 +51,7 @@ bool MeshLoader::load(const char* path, std::vector<GLfloat>* vertexData)
 
 bool MeshLoader::load(String data, std::vector<GLfloat>* vertexData)
 {
+    std::cout << "[MeshLoader] Loading mesh with data: " << data << "\n";
     tinyobj::attrib_t attributes;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> material;
@@ -71,7 +74,7 @@ bool MeshLoader::load(String data, std::vector<GLfloat>* vertexData)
     }
     else
     {
-        std::vector<GLfloat> vertexData;
+        std::vector<GLfloat> vertices;
 
         for (int i = 0; i < shapes.size(); i++)
         {
@@ -79,11 +82,12 @@ bool MeshLoader::load(String data, std::vector<GLfloat>* vertexData)
             {
                 tinyobj::index_t vData1 = shapes[i].mesh.indices[j];
 
-                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3]);         //X
-                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3 + 1]);     //Y
-                vertexData.push_back(attributes.vertices[vData1.vertex_index * 3 + 2]);     //Z
+                vertices.push_back(attributes.vertices[vData1.vertex_index * 3]);         //X
+                vertices.push_back(attributes.vertices[vData1.vertex_index * 3 + 1]);     //Y
+                vertices.push_back(attributes.vertices[vData1.vertex_index * 3 + 2]);     //Z
             }
         }
+        *vertexData = vertices;
         return true;
     }
 

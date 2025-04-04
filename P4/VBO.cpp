@@ -1,4 +1,5 @@
 #include "VBO.h"
+#include <iostream>
 
 VBO::VBO() {
     glGenBuffers(1, &this->vertexBuffer);
@@ -11,6 +12,10 @@ void VBO::bufferData(std::vector<GLfloat> vertices) {
         vertices.data(),
         GL_STATIC_DRAW
     );
+
+    GLenum err;
+    if (err = glGetError() != GL_NO_ERROR)
+        std::cout << "Error generating buffer data: " << err << "\n";
 }
 
 void VBO::bind() {

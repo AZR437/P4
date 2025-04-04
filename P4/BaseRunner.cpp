@@ -66,13 +66,13 @@ BaseRunner::BaseRunner()
     GameObjectManager::getInstance()->addObject(testDisplay);
     //MeshManager::getInstance()->loadMeshDataAsync("Bunny", "Assets/Bunny.obj", testDisplay);
 
-    //std::vector<GLfloat> vertexData;
-    //if (MeshManager::getInstance()->loadMeshData("Bunny", "Assets/Bunny.obj"))
-    //{
-    //    Mesh* mesh = MeshManager::getInstance()->getMesh("Bunny");
-    //    MeshObject* meshObject = new MeshObject("Bunny", mesh, simpleShaders, NULL, NULL);
-    //    GameObjectManager::getInstance()->addObject(meshObject);
-    //}
+    std::vector<GLfloat> vertexData;
+    if (MeshManager::getInstance()->loadMeshData("Bunny", "Assets/Bunny.obj"))
+    {
+        Mesh* mesh = MeshManager::getInstance()->getMesh("Bunny");
+        MeshObject* meshObject = new MeshObject("Bunny", mesh, simpleShaders, NULL, NULL);
+        GameObjectManager::getInstance()->addObject(meshObject);
+    }
 
     MeshDisplay* meshDisplay = new MeshDisplay();
     GameObjectManager::getInstance()->addObject(meshDisplay);
@@ -87,23 +87,24 @@ void BaseRunner::run()
 {
     while (!glfwWindowShouldClose(this->window))
     {
+        auto start = std::chrono::high_resolution_clock::now();
         Time::logFrameStart();
-        this->processEvents();
         this->update();
         this->render();
 
         glfwSwapBuffers(this->window);
         glfwPollEvents();
 
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double, std::milli> frameTime = end - start;
+
+        double sleepTime = FRAME_TIME - frameTime.count();
+        if (sleepTime > 0) std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(sleepTime)));
+
         Time::logFrameEnd();
     }
 
     glfwTerminate();
-}
-
-void BaseRunner::processEvents()
-{
-    
 }
 
 void BaseRunner::update()

@@ -187,6 +187,9 @@
     <ClCompile Include="MeshLoaderAction.cpp">
       <Filter>Thread</Filter>
     </ClCompile>
+    <ClCompile Include="ProfilerScreen.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SceneData.proto">
@@ -365,6 +368,9 @@
     </ClInclude>
     <ClInclude Include="MeshLoaderAction.h">
       <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfilerScreen.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

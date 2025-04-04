@@ -37,8 +37,9 @@ MeshManager* MeshManager::getInstance() {
 bool MeshManager::loadMeshData(String name, String dataPath, bool isData)
 {
     std::vector<GLfloat> vertexData;
-    if (MeshLoader::load(dataPath, &vertexData))
+    if (MeshLoader::load(dataPath.c_str(), &vertexData))
     {
+        std::cout << "[MeshManager] Creating GPU Mesh with size: " << vertexData.size() << "\n";
         Mesh* mesh = new Mesh(vertexData);
         this->meshMap[name] = mesh;
         std::cout << "[MeshManager] Mesh loaded: " << name << "\n";

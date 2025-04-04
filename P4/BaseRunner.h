@@ -16,11 +16,13 @@ public:
 
     void run();
 
+    const int TARGET_FPS = 120;
+    const double FRAME_TIME = 1000.0 / TARGET_FPS;
+
     static const int WINDOW_WIDTH = 1024;
     static const int WINDOW_HEIGHT = 768;
 
 private:
-    void processEvents();
     void update();
     void render();
 

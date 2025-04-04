@@ -5,7 +5,7 @@ Mesh::Mesh(std::vector<GLfloat> vertices)
     this->vao = new VAO;
     this->vbo = new VBO;
     this->numVertices = vertices.size();
-    std::cout << "Creating GPU Mesh with size: " << this->numVertices << "\n";
+    std::cout << "[Mesh] Creating GPU Mesh with size: " << this->numVertices << "\n";
     int dimensions[]{ 3 };
 
     this->vao->bind();

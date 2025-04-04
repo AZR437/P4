@@ -3,6 +3,7 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "MenuScreen.h"
+#include "ProfilerScreen.h"
 #include "ScenePickerScreen.h"
 #include "SceneClient.h"
 
@@ -100,9 +101,15 @@ UIManager::UIManager(GLFWwindow* window, std::shared_ptr<SceneClient> clientPtr)
 	//MenuScreen* menuScreen = new MenuScreen();
 	//this->uiTable[uiNames.MENU_SCREEN] = menuScreen;
 	//this->uiList.push_back(menuScreen);
+	 
+	ProfilerScreen* profilerScreen = new ProfilerScreen();
+	this->uiTable[uiNames.PROFILER_SCREEN] = profilerScreen;
+	this->uiList.push_back(profilerScreen);
+
 	this->client = clientPtr;
 	ScenePickerScreen* scenePickerScreen = new ScenePickerScreen(client);
 	this->uiTable[uiNames.SCENE_PICKER_SCREEN] = scenePickerScreen;
 	this->uiList.push_back(scenePickerScreen);
+
 
 }
