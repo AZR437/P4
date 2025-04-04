@@ -18,7 +18,7 @@ public:
     void cacheSceneTransforms(String name, SceneObjTransforms transforms);
     void destroyScene(String name, bool destroyObjects = false);
     Scene* getScene(String name);
-    void loadMesh(String name);
+    void loadMesh(String name, String data);
     //for Testing
     SceneObjTransforms getObjTransforms(String meshID);
 

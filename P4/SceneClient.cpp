@@ -29,6 +29,7 @@ std::string StreamMeshClient::StreamMesh(std::string objName)
         std::unique_ptr<grpc::ClientReader<MeshReply>> reader(
             stub_->StreamMesh(&context, request));
 
+        objData.clear();
         while (reader->Read(&meshReply))
         {
             objData.append(meshReply.data());
@@ -94,11 +95,10 @@ std::string SceneLoadClient::LoadScene(std::string sceneName)
                 StreamMeshClient streamMeshClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
                 std::string reply = streamMeshClient.StreamMesh(meshID);
                 if (reply != "Failed to stream mesh data after retries.") {
-                    
+                    //std::cout << reply.substr(0, reply.size()) << std::endl;
                     std::cout << "Mesh received: " << meshID << std::endl;
                     meshLoaded++;
-                    SceneManager::getInstance()->loadMesh(meshID);
-                    std::cout << meshLoaded << "/" << meshNo << " meshes loaded from scene" << std::endl;
+                    SceneManager::getInstance()->loadMesh(meshID,reply);
                     success = true;
                    
                 }

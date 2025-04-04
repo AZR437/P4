@@ -30,6 +30,7 @@ public:
         bool isData = false
     );
     void loadMeshFromCache(String name);
+    void deleteMeshFromCache(String name);
     Mesh* getMesh(String name);
 
 private:

@@ -43,13 +43,15 @@ void SceneManager::destroyScene(String name, bool destroyObjects)
     {
         for (auto gameObject : this->sceneMap[name]->getSceneObjects())
         {
+            String objName = gameObject->getName();
+            this->sceneMap[name]->unregisterSceneObject(gameObject);
             GameObjectManager::getInstance()->deleteObject(gameObject);
+            MeshManager::getInstance()->deleteMeshFromCache(objName);
         }
         
     }
-
-    delete this->sceneMap[name];
-    this->sceneMap.erase(name);
+    //delete this->sceneMap[name];
+    //this->sceneMap.erase(name);
 
 }
 
@@ -58,9 +60,8 @@ Scene* SceneManager::getScene(String name)
     return this->sceneMap[name];
 }
 
-void SceneManager::loadMesh (String name)
+void SceneManager::loadMesh (String name, String data)
 {
-    String data = client->StreamMesh(name);
     MeshDisplay* mesh = (MeshDisplay*)GameObjectManager::getInstance()->findObjectByName("MeshDisplay");
     MeshManager::getInstance()->loadMeshDataAsync(name, data, mesh, true);
 

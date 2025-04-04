@@ -17,7 +17,7 @@ void signalHandler(int signum) {
 
 grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const MeshRequest* request, grpc::ServerWriter<MeshReply>* writer)
 {
-	std::string path = "Assets/" + request->file_name() + ".obj";
+	std::string path = "C:/Users/theas/Documents/Acads/P4/P4/Assets/" + request->file_name() + ".obj";
 	std::ifstream file(path, std::ios::binary);
 	if (!file.is_open()) {
 		return grpc::Status(grpc::StatusCode::NOT_FOUND, "File not found");
@@ -25,18 +25,35 @@ grpc::Status MeshStreamImpl::StreamMesh(grpc::ServerContext* context, const Mesh
 	const size_t chunkSize = 1024;
 	char buffer[chunkSize];
 
+	size_t retryCount = 3;
+	bool success = false;
+
 	try {
 		std::cout << "Attempting to stream mesh data from " << request->file_name() << ".obj..." << std::endl;
 		while (file.read(buffer, chunkSize))
 		{
-			MeshReply meshReply;
-			meshReply.set_data(buffer, file.gcount());
-			if (!writer->Write(meshReply))
+			while (retryCount > 0)
 			{
-				std::cerr << "Error: Failed to send mesh data to client" << std::endl;
-				return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to stream data");
+				MeshReply meshReply;
+				meshReply.set_data(buffer, file.gcount());
+				if (writer->Write(meshReply)) {
+					success = true;
+					break;  // Exit retry loop if write succeeded
+				}
+				else
+				{
+					std::cerr << "Error: Failed to send mesh data to client, retrying..." << std::endl;
+					--retryCount;  // Decrement retry count
+					this->server_->sleep(1000);
+				}
 			}
+			if (!success) {
+				std::cout << "Error with streaming the file" << std::endl;
+				return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to stream data after retries");
+			}
+
 		}
+		//remaining data if any
 		if (file.gcount() > 0) {
 			MeshReply meshReply;
 			meshReply.set_data(buffer, file.gcount()); // Set the remaining data
@@ -62,14 +79,14 @@ bool SceneLoadImpl::retryLoadSceneFromFile(const std::string& scene_id, std::vec
 		if (loadSceneFromFile(scene_id, meshIDs, positions, scales)) {
 			return true;
 		}
-		std::cerr << "Retrying to load scene file, attempt " << i + 1 << " of " << retries << "...\n";
+		std::cerr << "Retrying to load scene file, attempt " << i + 1 << " of " << retries << ".../n";
 		this->server_->sleep(1000);
 	}
 	return false;
 }
 bool SceneLoadImpl::loadSceneFromFile(const std::string& scene_id, std::vector<std::string>& meshIDs, std::vector<Position>& positions, std::vector<Scale>& scales)
 {
-	std::string path = "Scenes/" + scene_id + ".json";
+	std::string path = "C:/Users/theas/Documents/Acads/P4/P4/Scenes/" + scene_id + ".json";
 	std::ifstream file(path, std::ios::in);
 	if (!file.is_open()) {
 		std::cerr << "Failed to open scene file: " << path << std::endl;

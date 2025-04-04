@@ -62,12 +62,23 @@ void MeshManager::loadMeshFromCache(String name)
 {
     if (this->meshMap.find(name) != this->meshMap.end())
     {
-        std::cout << "[MeshManager] WARNING: Mesh already exists." << "\n";
+        std::cout << "[MeshManager] WARNING: Mesh "<<name<< " already exists." << "\n";
     }
     else
     {
         Mesh* mesh = new Mesh(*this->cache->getMeshData(name));
         this->meshMap[name] = mesh;
         std::cout << "[MeshManager] Mesh loaded: " << name << "\n";
+    }
+}
+
+void MeshManager::deleteMeshFromCache(String name)
+{
+    auto it = this->meshMap.find(name);
+
+    if (it != this->meshMap.end()) {  
+        delete it->second; 
+        this->meshMap.erase(it);
+        std::cout << "[MeshManager] Mesh deleted: " << name << "\n";
     }
 }
