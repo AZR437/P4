@@ -32,7 +32,6 @@ void MeshLoaderAction::onStartTask()
         if (MeshLoader::load(this->dataPath, &vertexData))
         {
             this->cache->cacheMeshData(this->name, vertexData);
-            MeshManager::getInstance()->loadMeshFromCache(this->name);
             if (this->execEvent) this->execEvent->onFinishedExecution(this->name);
         }
     }
@@ -41,7 +40,6 @@ void MeshLoaderAction::onStartTask()
         if (MeshLoader::load(this->dataPath.c_str(), &vertexData))
         {
             this->cache->cacheMeshData(this->name, vertexData);
-            MeshManager::getInstance()->loadMeshFromCache(this->name);
             if (this->execEvent) this->execEvent->onFinishedExecution(this->name);
         }
     }

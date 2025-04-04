@@ -22,6 +22,7 @@ void MeshDataCache::cacheMeshData(String path, const Data& data)
     Data* dataPtr = new Data(data);
     this->cacheList.push_back(dataPtr);
     this->cacheMap[path] = dataPtr;
+    std::cout << "Cached mesh with size: " << dataPtr->size() << "\n";
     this->guard.unlock();
 }
 

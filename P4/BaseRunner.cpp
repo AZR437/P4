@@ -66,7 +66,7 @@ BaseRunner::BaseRunner()
 
     TestDisplay* testDisplay = new TestDisplay();
     GameObjectManager::getInstance()->addObject(testDisplay);
-    //MeshManager::getInstance()->loadMeshDataAsync("Bunny", "Assets/Bunny.obj", testDisplay);
+    MeshManager::getInstance()->loadMeshDataAsync("Bunny", "Assets/Bunny.obj", testDisplay);
 
     //std::vector<GLfloat> vertexData;
     //if (MeshManager::getInstance()->loadMeshData("Bunny", "Assets/Bunny.obj"))
