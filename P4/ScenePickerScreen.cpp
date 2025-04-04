@@ -44,7 +44,7 @@ void ScenePickerScreen::drawUI()
 				for (int j = 0; j < 5; j++)
 				{
 					this->sceneToggle[j] = this->sceneToggle[i];
-					if (!this->hasScene(i))
+					if (!this->hasScene(j))
 					{
 						std::cout << "Start Load Scene " << j + 1 << std::endl;
 						this->loadScene(j);
@@ -52,6 +52,7 @@ void ScenePickerScreen::drawUI()
 					else
 					{
 						std::cout << "Destroying Scene " << j + 1 << std::endl;
+						
 						this->destroyScene(j);
 					}
 				}
@@ -109,7 +110,7 @@ bool ScenePickerScreen::hasScene(unsigned int index)
 void ScenePickerScreen::toggleScene(unsigned int index)
 {
 	std::string sceneName = "Scene_" + std::to_string(index + 1);
-	if (!SceneManager::getInstance()->getScene(sceneName)->getSceneObjects().empty())
+	if (SceneManager::getInstance()->getScene(sceneName) != NULL)
 		SceneManager::getInstance()->getScene(sceneName)->setSceneObjectsEnabled(this->sceneToggle[index]);
 	else std::cout << "Scene " << index + 1 << " has not been loaded yet" << std::endl;
 }
@@ -117,5 +118,6 @@ void ScenePickerScreen::toggleScene(unsigned int index)
 void ScenePickerScreen::destroyScene(unsigned int index)
 {
 	std::string sceneName = "Scene_" + std::to_string(index + 1);
+	//SceneManager::getInstance()->getScene(sceneName)->setSceneObjectsEnabled();
 	SceneManager::getInstance()->destroyScene(sceneName, true);
 }

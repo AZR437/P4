@@ -50,8 +50,8 @@ void SceneManager::destroyScene(String name, bool destroyObjects)
         }
         
     }
-    //delete this->sceneMap[name];
-    //this->sceneMap.erase(name);
+    delete this->sceneMap[name];
+    this->sceneMap.erase(name);
 
 }
 
