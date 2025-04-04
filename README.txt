@@ -3,3 +3,4 @@
 3. After doing this rename the currently made P4 into P4_Server.
 4. Run P4_server.
 5. Make the Client to do this set the define of main to Client the build using the local windows debugger.
+6. press the Load Buttons to Load scene, toggle to toggle them on and off and unload to unload the scenes.
