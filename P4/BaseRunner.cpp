@@ -49,11 +49,13 @@ BaseRunner::BaseRunner()
     LightManager::getInstance()->addLight(new DirLight(glm::vec3(1.0f)));
     TextureManager::getInstance()->loadSkybox("NightSky", "Skybox");
 
+    VFShaders* defaultShaders = ShaderManager::getInstance()->getShaders("Default");
+    VFShaders* simpleShaders = ShaderManager::getInstance()->getShaders("Simple");
     VFShaders* skyShaders = ShaderManager::getInstance()->getShaders("Skybox");
     GLuint* skyTex = TextureManager::getInstance()->getTexture("NightSky");
     this->skybox = new Skybox(skyShaders, skyTex);
 
-    VFShaders* simpleShaders = ShaderManager::getInstance()->getShaders("Simple");
+    
     PlaneObject* plane = new PlaneObject("Plane", simpleShaders);
     plane->scale(5);
     GameObjectManager::getInstance()->addObject(plane);
@@ -66,13 +68,14 @@ BaseRunner::BaseRunner()
     GameObjectManager::getInstance()->addObject(testDisplay);
     //MeshManager::getInstance()->loadMeshDataAsync("Bunny", "Assets/Bunny.obj", testDisplay);
 
-    std::vector<GLfloat> vertexData;
-    if (MeshManager::getInstance()->loadMeshData("Bunny", "Assets/Bunny.obj"))
-    {
-        Mesh* mesh = MeshManager::getInstance()->getMesh("Bunny");
-        MeshObject* meshObject = new MeshObject("Bunny", mesh, simpleShaders, NULL, NULL);
-        GameObjectManager::getInstance()->addObject(meshObject);
-    }
+    //std::vector<GLfloat> vertexData;
+    //if (MeshManager::getInstance()->loadMeshData("Bunny", "Assets/Bunny.obj"))
+    //{
+    //    Mesh* mesh = MeshManager::getInstance()->getMesh("Bunny");
+    //    MeshObject* meshObject = new MeshObject("Bunny", mesh, simpleShaders, NULL, NULL);
+    //    meshObject->scale(5.0f);
+    //    GameObjectManager::getInstance()->addObject(meshObject);
+    //}
 
     MeshDisplay* meshDisplay = new MeshDisplay();
     GameObjectManager::getInstance()->addObject(meshDisplay);

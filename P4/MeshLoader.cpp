@@ -51,7 +51,7 @@ bool MeshLoader::load(const char* path, std::vector<GLfloat>* vertexData)
 
 bool MeshLoader::load(String data, std::vector<GLfloat>* vertexData)
 {
-    std::cout << "[MeshLoader] Loading mesh with data: " << data << "\n";
+    std::cout << "[MeshLoader] Loading mesh with data" << "\n";
     tinyobj::attrib_t attributes;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> material;

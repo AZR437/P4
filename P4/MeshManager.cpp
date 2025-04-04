@@ -42,9 +42,9 @@ bool MeshManager::loadMeshData(String name, String dataPath, bool isData)
         std::cout << "[MeshManager] Creating GPU Mesh with size: " << vertexData.size() << "\n";
         Mesh* mesh = new Mesh(vertexData);
         this->meshMap[name] = mesh;
-        std::cout << "[MeshManager] Mesh loaded: " << name << "\n";
         return true;
     }
+    std::cout << "[MeshManager] Mesh failed to load: " << name << "\n";
     return false;
 }
 

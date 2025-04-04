@@ -11,12 +11,7 @@ protected:
 	friend class UIManager;
 private:
 	std::shared_ptr<SceneClient> client;
-	bool scene1Enabled = false;
-	bool scene2Enabled = false;
-	bool scene3Enabled = false;
-	bool scene4Enabled = false;
-	bool scene5Enabled = false;
-	bool sceneAllEnabled = false;
-
+	bool sceneToggle[6] { false, false, false, false, false, false };
+	float progress[5] { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
 };
 
