@@ -17,7 +17,7 @@ std::string StreamMeshClient::StreamMesh(std::string objName)
     request.set_file_name(objName);
     grpc::ClientContext context;
 
-    //context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(10));
+    context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(10));
 
     std::string objData;
     MeshReply meshReply;
@@ -68,7 +68,7 @@ std::string SceneLoadClient::LoadScene(std::string sceneName)
     SceneReply reply;
     ClientContext context;
 
-    //context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(15));
+    context.set_deadline(std::chrono::system_clock::now() + std::chrono::seconds(15));
 
     Status status = this->stub_->LoadScene(&context, request, &reply);
     if (status.ok()) {
