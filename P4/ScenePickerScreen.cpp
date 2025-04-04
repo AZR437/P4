@@ -97,6 +97,7 @@ void ScenePickerScreen::loadScene(unsigned int index)
 {
 	std::string sceneName = "Scene_" + std::to_string(index + 1);
 	std::vector<AGameObject*> empty;
+	this->sceneToggle[index] = true;
 	SceneManager::getInstance()->createScene(sceneName, empty);
 	this->client->LoadScene(sceneName);
 }
@@ -118,6 +119,6 @@ void ScenePickerScreen::toggleScene(unsigned int index)
 void ScenePickerScreen::destroyScene(unsigned int index)
 {
 	std::string sceneName = "Scene_" + std::to_string(index + 1);
-	//SceneManager::getInstance()->getScene(sceneName)->setSceneObjectsEnabled();
+	this->sceneToggle[index] = false;
 	SceneManager::getInstance()->destroyScene(sceneName, true);
 }

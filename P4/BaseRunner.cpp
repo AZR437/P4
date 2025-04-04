@@ -56,10 +56,6 @@ BaseRunner::BaseRunner()
     this->skybox = new Skybox(skyShaders, skyTex);
 
     
-    PlaneObject* plane = new PlaneObject("Plane", simpleShaders);
-    plane->scale(5);
-    GameObjectManager::getInstance()->addObject(plane);
-    
     CameraManager::getInstance()->getCamera()->setPosition(glm::vec3(0.0f, 10.0f, -10.0f));
     CameraController* controller = new CameraController();
     GameObjectManager::getInstance()->addObject(controller);
