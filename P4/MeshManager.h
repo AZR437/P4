@@ -32,6 +32,7 @@ public:
     void loadMeshFromCache(String name);
     void deleteMeshFromCache(String name);
     Mesh* getMesh(String name);
+    bool hasMesh(String name);
 
 private:
     MeshManager();

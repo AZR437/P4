@@ -19,6 +19,7 @@ public:
     void destroyScene(String name, bool destroyObjects = false);
     Scene* getScene(String name);
     void loadMesh(String name, String data);
+    bool hasScene(String name);
     //for Testing
     SceneObjTransforms getObjTransforms(String meshID);
 

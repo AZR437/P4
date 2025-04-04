@@ -4,10 +4,15 @@
 
 Mesh* MeshManager::getMesh(String name)
 {
-    if (this->meshMap.find(name) != this->meshMap.end())
+    if (this->hasMesh(name))
         return this->meshMap[name];
 
     return NULL;
+}
+
+bool MeshManager::hasMesh(String name)
+{
+    return this->meshMap.find(name) != this->meshMap.end();
 }
 
 MeshManager::MeshManager()
@@ -61,7 +66,7 @@ void MeshManager::loadMeshDataAsync(
 
 void MeshManager::loadMeshFromCache(String name)
 {
-    if (this->meshMap.find(name) != this->meshMap.end())
+    if (this->hasMesh(name))
     {
         std::cout << "[MeshManager] WARNING: Mesh "<<name<< " already exists." << "\n";
     }

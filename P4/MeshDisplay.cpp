@@ -16,11 +16,6 @@ MeshDisplay::~MeshDisplay()
 
 void MeshDisplay::initialize()
 {
-	std::vector<AGameObject*> empty;
-	for (int i = 1; i < 6; i++)
-	{
-		SceneManager::getInstance()->createScene("Scene_" + std::to_string(i), empty);
-	}
 	
 }
 

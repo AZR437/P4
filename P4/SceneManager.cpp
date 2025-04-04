@@ -67,7 +67,10 @@ void SceneManager::loadMesh (String name, String data)
 
 }
 
-
+bool SceneManager::hasScene(String name)
+{
+    return this->sceneMap.find(name) != this->sceneMap.end();
+}
 
 SceneObjTransforms SceneManager::getObjTransforms(String meshID)
 {

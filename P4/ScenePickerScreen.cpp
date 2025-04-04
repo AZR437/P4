@@ -17,149 +17,66 @@ void ScenePickerScreen::drawUI()
 	ImGui::BeginTable("Scene Table", 6);
 	ImVec2 cellSize = ImVec2(150, 20);
 
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Scene 1 Load", cellSize))
+	for (int i = 0; i < 6; i++)
 	{
-		std::cout << "Start Load Scene 1" << std::endl;
-		this->client->LoadScene("Scene_1");
-	}
-
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Scene 2 Load", cellSize))
-	{
-		std::cout << "Start Load Scene 2" << std::endl;
-		this->client->LoadScene("Scene_2");
-	}
-
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Scene 3 Load", cellSize))
-	{
-		std::cout << "Start Load Scene 3" << std::endl;
-		this->client->LoadScene("Scene_3");
-	}
-
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Scene 4 Load", cellSize))
-	{
-		std::cout << "Start Load Scene 4" << std::endl;
-		this->client->LoadScene("Scene_4");
-	}
-
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Scene 5 Load", cellSize))
-	{
-		std::cout << "click Scene 5" << std::endl;
-		this->client->LoadScene("Scene_5");
-	}
-
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Load all", cellSize))
-	{
-		std::cout << "click scene load all" << std::endl;
-		for (int i = 1; i < 6; i++)
+		ImGui::TableNextColumn();
+		if (i < 5)
 		{
-			this->client->LoadScene("Scene_" + std::to_string(i));
+			std::string buttonLabel = "Scene " + std::to_string(i + 1) + " Un/Load";
+			if (ImGui::Button(buttonLabel.c_str(), cellSize))
+			{
+				if (!this->hasScene(i))
+				{
+					std::cout << "Start Load Scene " << i + 1 << std::endl;
+					this->loadScene(i);
+				}
+				else
+				{
+					std::cout << "Destroying Scene " << i + 1 << std::endl;
+					this->destroyScene(i);
+				}
+			}
+		}
+		else
+		{
+			if (ImGui::Button("Un/Load All Scenes", cellSize))
+			{
+				for (int j = 0; j < 5; j++)
+				{
+					this->sceneToggle[j] = this->sceneToggle[i];
+					if (!this->hasScene(i))
+					{
+						std::cout << "Start Load Scene " << j + 1 << std::endl;
+						this->loadScene(j);
+					}
+					else
+					{
+						std::cout << "Destroying Scene " << j + 1 << std::endl;
+						this->destroyScene(j);
+					}
+				}
+			}
 		}
 	}
 
 	for (int i = 0; i < 6; i++)
 	{
-		std::string checkBoxLabel = "Scene " + std::to_string(i + 1) + " Toggle";
 		ImGui::TableNextColumn();
-		if (ImGui::Checkbox(checkBoxLabel.c_str(), &this->sceneToggle[i]))
+		if (i < 5)
 		{
-			if (i < 5)
-			{
-				std::string checkBoxLabel = "Scene_" + std::to_string(i + 1);
-				if (!SceneManager::getInstance()->getScene("Scene_1")->getSceneObjects().empty())
-					SceneManager::getInstance()->getScene("Scene_1")->setSceneObjectsEnabled(this->sceneToggle[i]);
-				else std::cout << "Scene " << i + 1 << " has not been Loaded yet" << std::endl;
-			}
-			else
+			std::string checkBoxLabel = "Scene " + std::to_string(i + 1) + " Toggle";
+			if (ImGui::Checkbox(checkBoxLabel.c_str(), &this->sceneToggle[i]))
+				this->toggleScene(i);
+		}
+		else
+		{
+			if (ImGui::Checkbox("Toggle All Scenes", &this->sceneToggle[i]))
 			{
 				for (int j = 0; j < 5; j++)
 				{
-					this->sceneToggle[j + 1] = this->sceneToggle[i];
-					if (!SceneManager::getInstance()->getScene("Scene_" + std::to_string(j + 1))->getSceneObjects().empty())
-						SceneManager::getInstance()->getScene("Scene_" + std::to_string(j + 1))->setSceneObjectsEnabled(this->sceneToggle[j + 1]);
-					else std::cout << "Scene " << j + 1 << " has not been Loaded yet" << std::endl;
+					this->sceneToggle[j] = this->sceneToggle[i];
+					this->toggleScene(j);
 				}
-			}
-		}
-	}
-	
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Scene 1 Unload", cellSize))
-	{
-		if (!SceneManager::getInstance()->getScene("Scene_1")->getSceneObjects().empty())
-		{
-			SceneManager::getInstance()->destroyScene("Scene_1", true);
-		}
-		else
-		{
-			std::cout << "Scene 1 has not been Loaded yet" << std::endl;
-		}
-	}
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Scene 2 Unload", cellSize))
-	{
-		if (!SceneManager::getInstance()->getScene("Scene_2")->getSceneObjects().empty())
-		{
-			SceneManager::getInstance()->destroyScene("Scene_2", true);
-		}
-		else
-		{
-			std::cout << "Scene 2 has not been Loaded yet" << std::endl;
-		}
-	}
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Scene 3 Unload", cellSize))
-	{
-		if (!SceneManager::getInstance()->getScene("Scene_3")->getSceneObjects().empty())
-		{
-			SceneManager::getInstance()->destroyScene("Scene_3", true);
-		}
-		else
-		{
-			std::cout << "Scene 3 has not been Loaded yet" << std::endl;
-		}
-	}
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Scene 4 Unload", cellSize))
-	{
-		if (!SceneManager::getInstance()->getScene("Scene_4")->getSceneObjects().empty())
-		{
-			SceneManager::getInstance()->destroyScene("Scene_4", true);
-		}
-		else
-		{
-			std::cout << "Scene 4 has not been Loaded yet" << std::endl;
-		}
-	}
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Scene 5 Unload", cellSize))
-	{
-		if (!SceneManager::getInstance()->getScene("Scene_5")->getSceneObjects().empty())
-		{
-			SceneManager::getInstance()->destroyScene("Scene_5", true);
-		}
-		else
-		{
-			std::cout << "Scene 5 has not been Loaded yet" << std::endl;
-		}
-	}
-	ImGui::TableNextColumn();
-	if (ImGui::Button("Unload All Scenes", cellSize))
-	{
-		for (int i = 1; i < 6; i++)
-		{
-			if (!SceneManager::getInstance()->getScene("Scene_" + std::to_string(i))->getSceneObjects().empty())
-			{
-				SceneManager::getInstance()->destroyScene("Scene_" + std::to_string(i), true);
-			}
-			else
-			{
-				std::cout << "Scene " << i << " has not been Loaded yet" << std::endl;
 			}
 		}
 	}
@@ -173,4 +90,32 @@ void ScenePickerScreen::drawUI()
 	ImGui::EndTable();
 	ImGui::End();
 	
+}
+
+void ScenePickerScreen::loadScene(unsigned int index)
+{
+	std::string sceneName = "Scene_" + std::to_string(index + 1);
+	std::vector<AGameObject*> empty;
+	SceneManager::getInstance()->createScene(sceneName, empty);
+	this->client->LoadScene(sceneName);
+}
+
+bool ScenePickerScreen::hasScene(unsigned int index)
+{
+	std::string sceneName = "Scene_" + std::to_string(index + 1);
+	return SceneManager::getInstance()->hasScene(sceneName);
+}
+
+void ScenePickerScreen::toggleScene(unsigned int index)
+{
+	std::string sceneName = "Scene_" + std::to_string(index + 1);
+	if (!SceneManager::getInstance()->getScene(sceneName)->getSceneObjects().empty())
+		SceneManager::getInstance()->getScene(sceneName)->setSceneObjectsEnabled(this->sceneToggle[index]);
+	else std::cout << "Scene " << index + 1 << " has not been loaded yet" << std::endl;
+}
+
+void ScenePickerScreen::destroyScene(unsigned int index)
+{
+	std::string sceneName = "Scene_" + std::to_string(index + 1);
+	SceneManager::getInstance()->destroyScene(sceneName, true);
 }

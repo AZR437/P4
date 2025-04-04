@@ -14,7 +14,7 @@ ProfilerScreen::~ProfilerScreen()
 
 void ProfilerScreen::drawUI()
 {
-	ImGui::Begin("Profiler", NULL);
+	ImGui::Begin("Profiler", NULL, ImGuiWindowFlags_NoResize);
 
 	this->ticks += Time::getUnscaledDeltaTime();
 	if (this->ticks > 1.0)
